@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 17:18:26 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/11 21:44:44 by vihane           ###   ########.fr       */
+/*   Updated: 2025/06/11 22:28:04 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,9 @@ void    data_init(int argc, char **argv, t_cub3d *cub3d)
         ft_putstr_fd(ERR_WIN, 2);
         exit(EXIT_FAILURE);
     }
+}
+
+int parse_cub_file(const char *filename, t_cub3d *cub3d)
+{
+    
 }
