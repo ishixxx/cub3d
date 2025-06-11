@@ -33,6 +33,8 @@ MYLIB =			-L $(MYLIB_DIR) -l:libft.a
 MLX =			-L $(MLX_DIR) -l:libmlx.a -lXext -lX11 -lm
 
 SRCS =			$(SRCS_DIR)/parsing/main.c \
+				$(SRCS_DIR)/initialisation.c \
+
 
 OBJS =			$(patsubst $(SRCS_DIR)%, $(OBJS_DIR)%, $(SRCS:.c=.o))
 
@@ -69,7 +71,7 @@ clean:
 fclean:			
 			@make fclean --no-print-directory -C $(MYLIB_DIR)
 			@echo "$(RED)Deleting $(CYAN)project object files $(DEFAULT)..."
-			@$(RM) -r $(OBJ)
+			@$(RM) -r $(OBJS_DIR)
 			@echo "$(GREEN)Done $(DEFAULT)✔️"
 			@echo "$(RED)Deleting $(YELLOW)$(NAME) $(CYAN)executable $(DEFAULT)..."
 			@$(RM) $(NAME)

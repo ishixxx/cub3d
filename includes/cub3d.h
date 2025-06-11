@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/05/05 22:49:26 by vihane           ###   ########.fr       */
+/*   Updated: 2025/06/11 18:09:01 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@
 # define ERR_NO_PLAYER "Error\nMissing player position\n"
 # define ERR_NO_FLOOR "Error\nMissing floor color\n"
 # define ERR_NO_CEILING "Error\nMissing ceiling color\n"
+
+# define WIN_WIDTH 800
+# define WIN_HEIGHT 600
 
 typedef enum e_keys
 {
@@ -130,5 +133,6 @@ typedef struct s_cub3d
 /*FUNCTIONS*/
 
 int main(int argc, char **argv);
+void data_init(int argc, char **argv, t_cub3d *cub3d);
 
 #endif
