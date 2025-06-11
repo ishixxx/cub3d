@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/11 18:09:01 by vihane           ###   ########.fr       */
+/*   Updated: 2025/06/11 23:18:03 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,11 +95,11 @@ typedef struct s_player
 	int		turn_right;
 }					t_player;
 
-typedef struct s_mlx
+typedef struct s_color
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-}					t_mlx;
+	int floor;
+	int ceiling;
+} 				t_color;
 
 typedef struct s_img
 {
@@ -122,8 +122,6 @@ typedef struct s_cub3d
 	t_img		*south;
 	t_img		*west;
 	t_img		*east;
-	int			floor_color;
-	int			ceiling_color;
 	char		**map;
 	int			map_start;
 	int			map_width;

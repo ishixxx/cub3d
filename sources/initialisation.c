@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 17:18:26 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/11 22:28:04 by vihane           ###   ########.fr       */
+/*   Updated: 2025/06/11 23:12:16 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,9 @@ void    data_init(int argc, char **argv, t_cub3d *cub3d)
 
 int parse_cub_file(const char *filename, t_cub3d *cub3d)
 {
-    
+    if (!filename || !cub3d)
+    {
+        ft_putstr_fd(ERR_NO_MAP, 2);
+        return (EXIT_FAILURE);
+    }
 }
