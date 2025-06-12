@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/11 23:18:03 by vihane           ###   ########.fr       */
+/*   Updated: 2025/06/12 18:47:51 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,12 +105,12 @@ typedef struct s_img
 {
 	char 	*path;
 	void	*img_ptr;
-	char	*addr;
-	int		bpp;
-	int 	width;
+	char	*addr; // adresse memoire brut ou les pixels sont stockes
+	int		bpp; // bits par pixel
+	int 	width; // taille de la fenetre graphique en pixels
 	int		height;
-	int		line_length;
-	int		endian;
+	int		line_length; // nb d'octets par ligne
+	int		endian; // ordre des octets en memoire
 }					t_img;
 
 typedef struct s_cub3d
@@ -124,7 +124,7 @@ typedef struct s_cub3d
 	t_img		*east;
 	char		**map;
 	int			map_start;
-	int			map_width;
+	int			map_width; // taille de la map en cases
 	int			map_height;
 }					t_cub3d;
 
