@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/11 23:18:03 by vihane           ###   ########.fr       */
+/*   Updated: 2025/06/12 21:14:15 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <math.h>
 # include <stdbool.h>
 # include <stdio.h>
+# include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <sys/time.h>
@@ -34,6 +35,7 @@
 # define ERR_IMG "Error\nFailed to create image\n"
 # define ERR_MAP "Error\nInvalid map\n"
 # define ERR_MALLOC "Error\nMemory allocation failed\n"
+# define ERR_FILE "Error\nFile not found\n"
 # define ERR_COLOR "Error\nInvalid color\n"
 # define ERR_TEXTURE "Error\nInvalid texture path\n"
 # define ERR_PLAYER "Error\nInvalid player position\n"
@@ -113,15 +115,19 @@ typedef struct s_img
 	int		endian;
 }					t_img;
 
+typedef struct s_texture
+{
+	t_img	*north;
+	t_img	*south;
+	t_img	*west;
+	t_img	*east;
+}					t_texture;
+
 typedef struct s_cub3d
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_player	*player;
-	t_img		*north;
-	t_img		*south;
-	t_img		*west;
-	t_img		*east;
 	char		**map;
 	int			map_start;
 	int			map_width;
