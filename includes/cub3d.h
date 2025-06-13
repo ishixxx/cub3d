@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/12 18:47:51 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/06/13 15:35:21 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ typedef struct s_player
 	t_point *dir;
 	t_point *pos;
 	t_point *mouse_pos;
+	t_point	*plane; // same que mouse_pos ?
 	int		move_up;
 	int		move_down;
 	int		move_left;
@@ -126,6 +127,19 @@ typedef struct s_cub3d
 	int			map_start;
 	int			map_width; // taille de la map en cases
 	int			map_height;
+	int			map_x; // case actuelle du rayon dans la grille (non la pos du joueur)
+	int			map_y;
+	int			step_x;
+	int			step_y;
+	int			wall_side; // si 0 (mur X), si 1 (mur Y)
+	int			cam_x;
+	double		ray_dir_x;
+	double		ray_dir_y;
+	double		delta_dist_x;
+	double		delta_dist_y;
+	double		side_dist_x;
+	double		side_dist_y;
+	double		perpwalldist;
 }					t_cub3d;
 
 /*FUNCTIONS*/
