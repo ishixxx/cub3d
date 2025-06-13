@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/13 15:35:21 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/06/13 18:49:50 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,12 +106,12 @@ typedef struct s_img
 {
 	char 	*path;
 	void	*img_ptr;
-	char	*addr; // adresse memoire brut ou les pixels sont stockes
-	int		bpp; // bits par pixel
-	int 	width; // taille de la fenetre graphique en pixels
+	char	*addr;
+	int		bpp;
+	int 	width;
 	int		height;
-	int		line_length; // nb d'octets par ligne
-	int		endian; // ordre des octets en memoire
+	int		line_length;
+	int		endian;
 }					t_img;
 
 typedef struct s_cub3d
@@ -129,6 +129,8 @@ typedef struct s_cub3d
 	int			map_height;
 	int			map_x; // case actuelle du rayon dans la grille (non la pos du joueur)
 	int			map_y;
+	int			win_width; // taille de la fenetre en pixels
+	int			win_height;
 	int			step_x;
 	int			step_y;
 	int			wall_side; // si 0 (mur X), si 1 (mur Y)
@@ -139,7 +141,7 @@ typedef struct s_cub3d
 	double		delta_dist_y;
 	double		side_dist_x;
 	double		side_dist_y;
-	double		perpwalldist;
+	double		perp_wall_dist;
 }					t_cub3d;
 
 /*FUNCTIONS*/
