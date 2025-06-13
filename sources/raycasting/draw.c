@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:04:20 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/06/12 20:12:43 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/06/13 18:49:32 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,28 @@ void    draw_colored_pixel(t_img *img, int x, int y, int color)
     (unsigned int *)pixel = color;
 }
 
-// fonction pour preparer les colonnes
-void    define_columns(t_img *img, int *line_height, int *start, int *end)
+
+// fonction qui calcule la hauteur et les positions verticales d'un mur a afficher
+/*
+ETAPES ->
+1. lancer un rayon pour savoir ou il frappe un mur
+2. calculer la distance du mur par rapport au joueur
+3. en fonction de la distance, calculer la hauteur du mur a afficher (line_height)+ position de depart et fin de la ligne verticale
+*/
+void    define_columns(t_cub3d *cub, int *line_height, int *start, int *end)
+{
+    // calcul de la hauteur de la ligne a tracer
+    *line_height = cub->win_height / cub->perp_wall_dist;
+    // centrer le mur verticalement a l'ecran
+    // le sommet du mur se place a demi hauteur au dessus du centre de l'ecran
+    *start = *line_height / 2 * cub->win_height / 2;
+    // si depassement, on coupe
+    if (*start < 0)
+        *start = 0;
+    // calcul du bas du mur, a demi hauteur en dessous du centre de l'ecran
+    *end = *line_height / 2 + cub->win_height / 2;
+    if (*end >= cub->win_height)
+        *end = cub->win_height - 1;
+}
+
+void    define_textures

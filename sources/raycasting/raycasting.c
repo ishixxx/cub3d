@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:03:49 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/06/13 15:37:09 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/06/13 18:49:24 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,9 +129,9 @@ void	raycasting(t_cub3d *cub)
 		digital_differential_analyse(cub);
 		// calcul de la dist perp au mur selon le cote du mur touche
 		if (cub->wall_side = 0)
-			cub->perpwalldist = ((cub->side_dist_x - cub->delta_dist_x));
+			cub->perp_wall_dist = ((cub->side_dist_x - cub->delta_dist_x));
 		else
-			cub->perpwalldist = ((cub->side_dist_y - cub->delta_dist_y));
+			cub->perp_wall_dist = ((cub->side_dist_y - cub->delta_dist_y));
 		draw_columns(cub, x); // coder fonction pour dessiner les colonnes
 		x++;
 	}
@@ -149,12 +149,12 @@ Initialise le rayon (init_raycasting).
 
 Calcule les distances entre les lignes verticales/horizontales (get_delta_dist).
 
-Calcule le pas à avancer en X et Y (get_step).
+Calcule le pas à avancer en X et Y (set_step_and_side_distance).
 
 Lance la boucle DDA pour trouver le mur (digital_differential_analyser).
 
-Calcule la distance perpendiculaire au mur (perpwalldist) selon le côté du mur touché.
+Calcule la distance perpendiculaire au mur (perp_wall_dist) selon le côté du mur touché.
 
-Dessine la colonne correspondante (draw_column).
+Dessine la colonne correspondante (coder une fonction draw_column).
 */
 
