@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:04:20 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/06/13 18:49:32 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/06/19 00:31:17 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,38 @@ void    define_columns(t_cub3d *cub, int *line_height, int *start, int *end)
         *end = cub->win_height - 1;
 }
 
-void    define_textures
+/* fonction pour determiner la position exacte de la colonne de texture a afficher
+sur un mur, en fonction de l'impact du rayon sur le mur et la taille de la ligne
+verticale a dessiner */
+void    setup_wall_texture(t_cub3d *cub, int start, int line_height)
+{
+    // 1. calcul de la position de l'impact sur le mur
+    if (cub->wall_side == 0)
+        cub->wall_x = cub->player->pos->y + cub->perp_wall_dist * cub->ray_dir_y;
+    else
+         cub->wall_x = cub->player->pos->x + cub->perp_wall_dist * cub->ray_dir_x;
+    // 2. on garde la partie decimale pour localiser l'impact sur le mur
+    cub->wall_x -= floor(cub->wall_x); // fonction mathematique qui retourne la + grande valeur entiere inferieure ou egale a un nb donne
+    // 3. calcul la coordonnee texture_x (colonne de texture a prelever)
+    cub->texture_x = cub->wall_x * 128; // 128 pixels de large pour la texture
+    // 4. on ajuste texture_x si le mur est vu de l'autre cote
+    if (cub->wall_side == 0 && cub->ray_dir_x > 0)
+        cub->texture_x = 128 - cub->texture_x - 1;
+    if (cub->wall_side == 1 && cub->ray_dir_y < 0)
+        cub->texture_x = 128 - cub->texture_x - 1;
+    // 5. calcul du pas de progression vertical dans la texture
+    cub->step = 1.0 * 128 / line_height;
+    // 6. position initale dans la texture pour la premiere ligne affichee
+    cub->texture_pos = (start - cub->win_height / 2 + line_height / 2) * cub->step;
+}
+
+/* fonction pour dessiner un pixel vertical de mur a l'ecran a la colonne x
+avec la bonne couleur prelevee depuis la texture */
+void    draw_wall_pixel(t_cub3d *cub, int x, int texture)
+{
+    int color;
+    color = get_color(cub, cub->texture_x, cub->teture_y, texture);
+    draw_colored_pixel(cub, c, cub->start, color);
+}
+
+void    draw_wall_column(t_cub3d *cub, int x)
