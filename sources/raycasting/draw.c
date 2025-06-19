@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:04:20 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/06/19 00:31:17 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/06/19 16:39:58 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,4 +87,29 @@ void    draw_wall_pixel(t_cub3d *cub, int x, int texture)
     draw_colored_pixel(cub, c, cub->start, color);
 }
 
+/* fonction qui trace une ligne verticale sur l'ecran representant un mur*/
 void    draw_wall_column(t_cub3d *cub, int x)
+{
+    // 1. definir la hauteur et les limites de la colonne
+    int line_height;
+    define_columns(cub, &line_height, &cub->start, &cub->end);
+    // 2. configurer les coordonnees de texture
+    setup_wall_texture(cub, cub->start, line_height);
+    // 3. boucle de dessin de la colonne
+    while (cub->start < cub->end)
+    // on dessine pixel par pixel
+    {
+        cub->texture_y = (int)cub->texture_pos & (128 - 1);
+        cub->texture_pos += cub->step;
+        // determiner la direction du mur
+        if (cub->wall_side == 1 && cub->ray_dir_y < 0)
+            draw_wall_pixel(cub, x, SOUTH);
+        else if (cub->wall_side == 1 && cub->ray_dir_y > 0)
+            draw_wall_pixel(cub, x, NORTH);
+        else if (cub_>wall_side == 0 && cub->ray_dir_x < 0)
+            draw_wall_pixel(cub, x, WEST);
+        else if (cub->wall_side == 0 && cub->ray_dir_x > 0)
+            draw_wall_pixel(cub, x, EAST);
+        cub->start++;
+    }
+}
