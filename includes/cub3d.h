@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/19 16:30:27 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/06/21 13:36:16 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,8 @@ typedef struct s_cub3d
 	int			step_y;
 	int			wall_side; // si 0 (mur X), si 1 (mur Y)
 	int			cam_x;
+	int			sky_rgb[3];
+	int			floor_rgb[3];
 	double		step;
 	double		texture_pos;
 	double		ray_dir_x;
