@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/21 13:36:16 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/06/23 17:32:50 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ typedef struct s_player
 	t_point *dir;
 	t_point *pos;
 	t_point *mouse_pos;
-	t_point	*plane; // same que mouse_pos ?
+	t_point	*plane; // champ de vision du player
 	int		move_up;
 	int		move_down;
 	int		move_left;
@@ -103,20 +103,20 @@ typedef struct s_player
 
 typedef struct s_color
 {
-	int floor;
-	int ceiling;
+	int r;
+	int g;
+	int	b;
 } 				t_color;
 
 typedef struct s_img
 {
-	char 	*path;
-	void	*img_ptr;
-	char	*addr;
-	int		bpp;
-	int 	width;
-	int		height;
-	int		line_length;
-	int		endian;
+	char 	*data; // adresse brut de l'image (utile ?)
+	char	*addr; // pointeur vers les pixels (image buffer)
+	int		bpp; // bits par pixel (32)
+	int 	width; // largeur de l'image en pixels
+	int		height; // hauteur de l'image en pixels
+	int		line_length; // nb d'octets par ligne de l'image
+	int		endian; // ordre des octets (couleurs)
 }					t_img;
 
 typedef struct s_cub3d
@@ -128,6 +128,7 @@ typedef struct s_cub3d
 	t_img		*south;
 	t_img		*west;
 	t_img		*east;
+	char		*line;
 	char		**map;
 	int			map_start;
 	int			map_width; // taille de la map en cases
@@ -140,8 +141,8 @@ typedef struct s_cub3d
 	int			step_y;
 	int			wall_side; // si 0 (mur X), si 1 (mur Y)
 	int			cam_x;
-	int			sky_rgb[3];
-	int			floor_rgb[3];
+	int			sky;
+	int			floor;
 	double		step;
 	double		texture_pos;
 	double		ray_dir_x;
