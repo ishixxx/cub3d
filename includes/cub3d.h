@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/12 21:14:15 by vihane           ###   ########.fr       */
+/*   Updated: 2025/06/23 15:55:09 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,9 @@
 
 # include "../libft/includes/libft.h"
 # include "../libft/includes/get_next_line.h"
-# include "../minilibx-linux-master/mlx.h"
-# include "X11/keysym.h"
-# include "X11/keysymdef.h"
+# include "../minilibx-mac-osx/mlx.h"
 
+# include <string.h>
 # include <limits.h>
 # include <math.h>
 # include <stdbool.h>
@@ -99,14 +98,14 @@ typedef struct s_player
 
 typedef struct s_color
 {
-	int floor;
-	int ceiling;
+	int r;
+	int g;
+	int	b;
 } 				t_color;
 
 typedef struct s_img
 {
-	char 	*path;
-	void	*img_ptr;
+	void	*data;
 	char	*addr;
 	int		bpp;
 	int 	width;
@@ -117,17 +116,26 @@ typedef struct s_img
 
 typedef struct s_texture
 {
-	t_img	*north;
-	t_img	*south;
-	t_img	*west;
-	t_img	*east;
+	char	*path;
+	void	*image;
+	void	*addr;
+	int		width;
+	int		height;
+	int		bits_per_pixel;
+	int		line_len;
+	int		endian;
 }					t_texture;
 
 typedef struct s_cub3d
 {
+	char		*line;
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_player	*player;
+	t_texture	*texture;
+	t_img		image;
+	t_color		floor;
+	t_color		ceiling;
 	char		**map;
 	int			map_start;
 	int			map_width;
@@ -137,6 +145,6 @@ typedef struct s_cub3d
 /*FUNCTIONS*/
 
 int main(int argc, char **argv);
-void data_init(int argc, char **argv, t_cub3d *cub3d);
+int init_cub(char *path, t_cub3d *cub3d);
 
 #endif

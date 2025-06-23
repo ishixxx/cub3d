@@ -5,9 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/12 18:38:27 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/12 23:20:16 by vihane           ###   ########.fr       */
+/*   Created: 2025/06/22 14:07:39 by vihane            #+#    #+#             */
+/*   Updated: 2025/06/22 14:07:41 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+
+int ft_error(char *msg)
+{
+    ft_putstr_fd(msg, 2);
+    return (1);
+}

@@ -1,34 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   initialisation.c                                   :+:      :+:    :+:   */
+/*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/05/04 17:18:26 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/23 15:59:46 by vihane           ###   ########.fr       */
+/*   Created: 2025/06/12 18:38:27 by vihane            #+#    #+#             */
+/*   Updated: 2025/06/22 21:40:24 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int    init_cub(char *map_file, t_cub3d *cub3d)
+int close_window(t_cub3d *cub3d)
 {
-    int fd;
-    char **map_tmp;
-    
-    fd = open(map_file, O_RDONLY);
-	if (fd == -1)
-		return (ft_putstr_fd(ERR_FILE, 2), 1);
-    map_tmp = read_file(fd, cub3d);
-    if (!map_tmp)
-        return (ft_putstr_fd(ERR_MAP, 2), 1);
-    if (close(fd) == -1)
-        return (ft_putstr_fd(ERR_FILE, 2), 1);
-    
-}
-
-void    init_mlx(t_cub3d cub3d)
-{
-    cub3d->win_ptr = mlx_new_window
+    if (cub3d->mlx_ptr && cub3d->win_ptr)
+    {
+        mlx_destroy_window(cub3d->mlx_ptr, cub3d->win_ptr);
+        cub3d->win_ptr = NULL;
+    }
+    if (cub3d->mlx_ptr)
+    {
+        mlx_destroy_display(cub3d->mlx_ptr);
+        free(cub3d->mlx_ptr);
+        cub3d->mlx_ptr = NULL;
+    }
+    return (0);
 }
