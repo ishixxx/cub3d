@@ -6,35 +6,26 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:03:49 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/06/13 18:49:24 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/06/24 20:19:32 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-/*
-Quand on lance un rayon dans une map 2D (vue du dessus), on veut savoir a quel
-moment le rayon traverse une ligne veticale ou horizontale de la grille.
-Utilisation de l'algorithme DDA, qui avance case par case jusqu'a frapper un
-mur -> il faut connaitre a quelle distance le rayon doit parcourir pour traverser
-une case en X ou Y (calcul des delta distances)
-*/
-
-/* fonction pour avancer le rayon a travers la map et detecter les collisions
-avec les murs -> pour le rendu du raycasting */
-void    get_delta_distance(t_cub3d *cub)
+/* fonction qui calcule la distance qu'un rayon doit parcourir pour
+franchir une case de la grille dans chaque direction X ou Y */
+void	get_delta_distance(t_ray *ray)
 {
-	// si le rayon ne va pas dans la dir X (vertical), la dist pour croiser une ligne verticale est infinie
-	if (cub->ray_dir_x == 0)
-		cub->delta_dist_x = INT_MAX;
-	// sinon on calcule cb d'unite il faut pour passer d'une ligne verticale a la suivante
+	if (ray->ray_dir_x == 0)
+		ray->delta_dist_x = INT_MAX;
 	else
-		cub->delta_dist_x = fabs(1 / cub->ray_dir_x); // si = ray_dir_x = 2 il va vite (1 vitesse 1 case normale)
-	// pareil pour l'axe y (horizontal)
-	if (cub->ray_dir_y == 0)
-		cub->delta_dist_y = INT_MAX;
+	// distance qu'un rayon doit parcourir pour passer d'une ligne verticale a l'autre (changer de case en X)
+		ray->delta_dist_x = fabs(1 / ray->ray_dir_x);
+	if (ray->ray_dir_y == 0)
+		ray->delta_dist_y = INT_MAX;
 	else
-		cub->delta_dist_y = fabs(1 / cub->ray_dir_y);
+	// distance qu'un rayon doit parcourir pour passer d'une ligne horizontale a l'autre (changer de case en X)
+		ray->delta_dist_y = fabs(1 / ray->ray_dir_y);
 }
 
 /* fonction qui :
@@ -44,7 +35,7 @@ void    get_delta_distance(t_cub3d *cub)
 -> indispensable pour lancer le rayon dans la bonne diretion et detecter les
 collisions murales
 */
-void    set_step_and_side_distance(t_cub3d *cub)
+void	set_step_and_side_distance(t_cub3d *cub)
 {
 	// si le rayon va vers la gauche, on va reculer dans la grille
 	if (cub->ray_dir_x < 0)
@@ -139,22 +130,12 @@ void	raycasting(t_cub3d *cub)
 
 /*
 ETAPES :
-raycasting
-
-Boucle sur chaque colonne x de la fenêtre.
-
-Pour chaque colonne :
-
-Initialise le rayon (init_raycasting).
-
-Calcule les distances entre les lignes verticales/horizontales (get_delta_dist).
-
-Calcule le pas à avancer en X et Y (set_step_and_side_distance).
-
-Lance la boucle DDA pour trouver le mur (digital_differential_analyser).
-
-Calcule la distance perpendiculaire au mur (perp_wall_dist) selon le côté du mur touché.
-
-Dessine la colonne correspondante (coder une fonction draw_column).
+Pour chaque colonne X :
+1. Initialisation du rayon
+2. calcul les distances entre les lignes verticales + horizontales
+3. calcul les pas a avancer sur X et Y
+4. lancement de la boucle DDA pour trouver le mur
+5. calcul de la distance perpendiculaire au mur
+3. dessin de la colonne correspondante
 */
 
