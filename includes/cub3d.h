@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/23 17:32:50 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/06/24 13:22:24 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,39 +119,42 @@ typedef struct s_img
 	int		endian; // ordre des octets (couleurs)
 }					t_img;
 
+typedef	struct s_ray
+{
+	int			map_x; // case actuelle du rayon dans la grille
+	int			map_y;
+	int			step_x; // direction a prendre (+1 ou -1) en X
+	int			step_y; // same en Y
+	int			wall_side; // 0 si mur X touche, 1 si mur Y
+	double		cam_x; // coordonnee "camera" pour ce rayon
+	double		step; // pas pour le sampling vertical de la texture
+	double		texture_pos; // position verticale actuelle dans la texture
+	double		ray_dir_x; // direction du rayon en X
+	double		ray_dir_y;
+	double		delta_dist_x; // distance entre 2 lignes de grille sur X
+	double		delta_dist_y;
+	double		side_dist_x; // distance restante jusqu'a la prochaine case X
+	double		side_dist_y;
+	double		perp_wall_dist; // distance du joueur au mur perpendiculaire (pour corriger le fish-eye distortion)
+}					t_ray;
+
+
 typedef struct s_cub3d
 {
-	void		*mlx_ptr;
-	void		*win_ptr;
-	t_player	*player;
-	t_img		*north;
-	t_img		*south;
-	t_img		*west;
-	t_img		*east;
 	char		*line;
 	char		**map;
-	int			map_start;
-	int			map_width; // taille de la map en cases
-	int			map_height;
-	int			map_x; // case actuelle du rayon dans la grille (non la pos du joueur)
-	int			map_y;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	t_player	player; // structure sur les infos du player
+	t_img		image; // structure sur l'image de l'ecran
+	t_color		floor; // couleurs de sol et plafond
+	t_color		ceiling;
+	t_ray		ray; // pointeur ou pas ?
+	int			map_start; // ligne a partir de laquelle commence la map
+	int			map_width; // largeur de la map (en cases)
+	int			map_height; // hauteur de la map (en cases)
 	int			win_width; // taille de la fenetre en pixels
 	int			win_height;
-	int			step_x;
-	int			step_y;
-	int			wall_side; // si 0 (mur X), si 1 (mur Y)
-	int			cam_x;
-	int			sky;
-	int			floor;
-	double		step;
-	double		texture_pos;
-	double		ray_dir_x;
-	double		ray_dir_y;
-	double		delta_dist_x;
-	double		delta_dist_y;
-	double		side_dist_x;
-	double		side_dist_y;
-	double		perp_wall_dist;
 }					t_cub3d;
 
 /*FUNCTIONS*/
