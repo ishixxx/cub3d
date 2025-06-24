@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/24 13:22:24 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/06/24 20:19:31 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ typedef	struct s_ray
 	double		texture_pos; // position verticale actuelle dans la texture
 	double		ray_dir_x; // direction du rayon en X
 	double		ray_dir_y;
-	double		delta_dist_x; // distance entre 2 lignes de grille sur X
+	double		delta_dist_x; // distance entre 2 lignes de grille sur X = distance pour traverser une case en X (horizontalement)
 	double		delta_dist_y;
 	double		side_dist_x; // distance restante jusqu'a la prochaine case X
 	double		side_dist_y;
