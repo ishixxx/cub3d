@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:03:49 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/06/24 20:19:32 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/06/25 11:04:42 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	get_delta_distance(t_ray *ray)
 	if (ray->ray_dir_y == 0)
 		ray->delta_dist_y = INT_MAX;
 	else
-	// distance qu'un rayon doit parcourir pour passer d'une ligne horizontale a l'autre (changer de case en X)
+	// distance qu'un rayon doit parcourir pour passer d'une ligne horizontale a l'autre (changer de case en Y)
 		ray->delta_dist_y = fabs(1 / ray->ray_dir_y);
 }
 
@@ -38,28 +38,26 @@ collisions murales
 void	set_step_and_side_distance(t_cub3d *cub)
 {
 	// si le rayon va vers la gauche, on va reculer dans la grille
-	if (cub->ray_dir_x < 0)
+	if (cub->ray.ray_dir_x < 0)
 	{
-		cub->step_x = -1
+		cub->ray.step_x = -1
 		// calcul de la distance physique pour parcourir jusqu'au premier mur vertical
-		cub->side_dist_x = (cub->player->pos->x - cub->map_x) * cub->delta_dist_x;
-	}
-	// si le rayon va vers la droite, on avance
-	else
-	{
-		cub->step_x = 1;
-		cub->side_dist_x = (cub->map_x + 1.0 - cub->player->pos->x) * map->delta_dist_x;
-	}
-	// pareil pour l'axe y
-	if (cub->ray_dir_y < 0)
-	{
-		cub->step_y = -1;
-		cub->side_dist_y = (cub->player->pos->y - cub->map_y) * cub->delta_dist_y;
+		cub->ray.side_dist_x = (cub->player.pos.x - cub->ray.map_x) * cub->ray.delta_dist_x;
 	}
 	else
 	{
-		cub->step_y = 1;
-		cub->side_dist_y = (cub->map_y + 1.0 - cub->player->pos->y) * cub->delta_dist_y;
+		cub->ray.step_x = 1;
+		cub->ray.side_dist_x = (cub->ray.map_x + 1.0 - cub->player.pos.x) * map->ray.delta_dist_x;
+	}
+	if (cub->ray.ray_dir_y < 0)
+	{
+		cub->ray.step_y = -1;
+		cub->ray.side_dist_y = (cub->player.pos.y - cub->ray.map_y) * cub->ray.delta_dist_y;
+	}
+	else
+	{
+		cub->ray.step_y = 1;
+		cub->ray.side_dist_y = (cub->ray.map_y + 1.0 - cub->player.pos.y) * cub->ray.delta_dist_y;
 	}
 }
 
