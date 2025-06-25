@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:03:49 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/06/25 11:04:42 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/06/26 00:46:53 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ franchir une case de la grille dans chaque direction X ou Y */
 void	get_delta_distance(t_ray *ray)
 {
 	if (ray->ray_dir_x == 0)
-		ray->delta_dist_x = INT_MAX;
+		ray->delta_dist_x = DBL_MAX;
 	else
 	// distance qu'un rayon doit parcourir pour passer d'une ligne verticale a l'autre (changer de case en X)
 		ray->delta_dist_x = fabs(1 / ray->ray_dir_x);
@@ -28,26 +28,22 @@ void	get_delta_distance(t_ray *ray)
 		ray->delta_dist_y = fabs(1 / ray->ray_dir_y);
 }
 
-/* fonction qui :
-1. calcule dans quelle direction (step_x, step_y) le rayon doit avancer
-2. calcule la distance jusqu'a la premiere grille ver/hor (side_dist)
-3. prepare tout pour lancer la boucle DDA
--> indispensable pour lancer le rayon dans la bonne diretion et detecter les
-collisions murales
-*/
-void	set_step_and_side_distance(t_cub3d *cub)
+/* fonction qui determine dans quelle direction traverser la grille
+et a quelle distance se trouve la premiere case murale 
+-> prepare pour le DDA */
+void	setup_dda_steps(t_cub3d *cub)
 {
 	// si le rayon va vers la gauche, on va reculer dans la grille
 	if (cub->ray.ray_dir_x < 0)
 	{
-		cub->ray.step_x = -1
+		cub->ray.step_x = -1;
 		// calcul de la distance physique pour parcourir jusqu'au premier mur vertical
 		cub->ray.side_dist_x = (cub->player.pos.x - cub->ray.map_x) * cub->ray.delta_dist_x;
 	}
 	else
 	{
 		cub->ray.step_x = 1;
-		cub->ray.side_dist_x = (cub->ray.map_x + 1.0 - cub->player.pos.x) * map->ray.delta_dist_x;
+		cub->ray.side_dist_x = (cub->ray.map_x + 1.0 - cub->player.pos.x) * cub->ray.delta_dist_x;
 	}
 	if (cub->ray.ray_dir_y < 0)
 	{
@@ -61,8 +57,9 @@ void	set_step_and_side_distance(t_cub3d *cub)
 	}
 }
 
-/* fonction pour lancer la boucle DDA -> pour detecter ou le rayon touche un mur */
-void    digital_differential_analyser(t_cub3d *cub)
+/* fonction qui lancer la boucle DDA -> traverse la grille case par case,
+jusqu'a rencontrer un mur */
+void	digital_differential_analyser(t_cub3d *cub)
 {
 	int wall;
 
@@ -70,23 +67,23 @@ void    digital_differential_analyser(t_cub3d *cub)
 	while (wall == 0)
 	{
 		// si le mur vertical est + proche
-		if (cub->side_dist_x < cub->side_dist_y)
+		if (cub->ray.side_dist_x < cub->ray.side_dist_y)
 		{
-			// on ajoute delta a side pour la prochaine intersection verticale
-			cub->side_dist_x + cub->delta_dist_x;
-			cub->map_x += cub->step_x;
+			// traversee verticale
+			cub->ray.side_dist_x += cub->ray.delta_dist_x;
+			cub->ray.map_x += cub->ray.step_x;
 			// on touche un mur vertical
-			cub->wall_side = 0;
+			cub->ray.wall_side = 0;
 		}
 		else
 		{
-			cub->side_dist_y += cub->delta_dist_y;
-			cub->map_y += cub->step_y;
+			cub->ray.side_dist_y += cub->ray.delta_dist_y;
+			cub->ray.map_y += cub->ray.step_y;
 			// on touche un mur horizontal
-			cub->wall_side = 1;
+			cub->ray.wall_side = 1;
 		}
 		// check si il y a un mur -> si 1 le point d'impact du rayon est trouve -> stop la boucle
-		if (cub->map[cub->map_y][cub->map_x] == '1')
+		if (cub->map[cub->ray.map_y][cub->ray.map_x] == '1')
 			wall = 1;
 	}
 }
@@ -95,13 +92,13 @@ void    digital_differential_analyser(t_cub3d *cub)
 void	init_raycasting(t_cub3d *cub, int x)
 {
 	// init des positions de depart
-	cub->map_x = cub->player->pos->x;
-	cub->map_y = cub->player->pos->y;
+	cub->ray.map_x = (int)cub->player.pos.x;
+	cub->ray.map_y = (int)cub->player.pos.y;
 	// cam_x -> position horizontale de la camera
-	cub->cam_x = 2 * (double)cub->map_width - 1;
+	cub->ray.cam_x = 2.0 * (double)cub->win_width - 1.0;
 	// calcul de la direction du rayon (+ direction du joueur + camera)
-	cub->ray_dir_x = cub->player->dir->x + cub->player->plane->x * cub->cam_x;
-	cub->ray_dir_y = cub->player->dir->y + cub->player->plane->y * cub->cam_x;
+	cub->ray.ray_dir_x = cub->player.dir.x + cub->player.plane.x * cub->ray.cam_x;
+	cub->ray.ray_dir_y = cub->player.dir.y + cub->player.plane.y * cub->ray.cam_x;
 }
 
 /* fonction qui gere le raycasting */
@@ -110,18 +107,18 @@ void	raycasting(t_cub3d *cub)
 	int	x;
 
 	x = 0;
-	while (x < cub->map_width)
+	while (x < cub->win_width)
 	{
 		init_raycasting(cub, x);
-		get_delta_distance(cub);
-		set_step_and_side_distance(cub);
+		get_delta_distance(&cub->ray);
+		setup_dda_steps(cub);
 		digital_differential_analyse(cub);
 		// calcul de la dist perp au mur selon le cote du mur touche
-		if (cub->wall_side = 0)
-			cub->perp_wall_dist = ((cub->side_dist_x - cub->delta_dist_x));
+		if (cub->ray.wall_side == 0)
+			cub->ray.perp_wall_dist = ((cub->ray.side_dist_x - cub->ray.delta_dist_x));
 		else
-			cub->perp_wall_dist = ((cub->side_dist_y - cub->delta_dist_y));
-		draw_columns(cub, x); // coder fonction pour dessiner les colonnes
+			cub->ray.perp_wall_dist = ((cub->ray.side_dist_y - cub->ray.delta_dist_y));
+		draw_columns(cub, x);
 		x++;
 	}
 }
