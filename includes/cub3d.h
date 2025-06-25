@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/24 20:19:31 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/06/26 00:43:58 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 
 # include <limits.h>
 # include <math.h>
+# include <float.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -83,8 +84,8 @@ typedef enum e_event_mask
 
 typedef struct s_point
 {
-	int		x;
-	int		y;
+	double		x;
+	double		y;
 }					t_point;
 
 typedef struct s_player
