@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:03:49 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/06/26 00:46:53 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/06/28 18:26:24 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,9 @@ void	init_raycasting(t_cub3d *cub, int x)
 	cub->ray.ray_dir_y = cub->player.dir.y + cub->player.plane.y * cub->ray.cam_x;
 }
 
-/* fonction qui gere le raycasting */
+/* fonction qui gere le raycasting -> simule la vision 3D +
+corrige l'effet fish-eye en calcula la distance perpendiculaire
+au mur */
 void	raycasting(t_cub3d *cub)
 {
 	int	x;
@@ -122,15 +124,3 @@ void	raycasting(t_cub3d *cub)
 		x++;
 	}
 }
-
-/*
-ETAPES :
-Pour chaque colonne X :
-1. Initialisation du rayon
-2. calcul les distances entre les lignes verticales + horizontales
-3. calcul les pas a avancer sur X et Y
-4. lancement de la boucle DDA pour trouver le mur
-5. calcul de la distance perpendiculaire au mur
-3. dessin de la colonne correspondante
-*/
-
