@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/28 19:44:28 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/06/29 16:32:01 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ typedef	struct s_ray
 	double		delta_dist_y;
 	double		side_dist_x; // distance restante jusqu'a la prochaine case X
 	double		side_dist_y;
-	double		perp_wall_dist; // distance du joueur au mur perpendiculaire (pour corriger le fish-eye distortion)
+	double		perp_wall_dist; // distance perpendiculaire entre le joueur et le mur (pour corriger le fish-eye distortion)
 	double		wall_x; // position precise ou le rayon touche le mur
 	int			tex_x; // colonne precise de la texture choisie pour le rayon actuel
 	int			tex_y;
