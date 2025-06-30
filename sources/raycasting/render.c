@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:04:24 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/06/29 19:55:14 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/06/30 19:01:17 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ void	render_3D_scene(t_cub3d *cub)
 {
 	render_background(cub);
 	raycasting(cub);
-	mlx_put_img_to_window(cub->mlx, cub->mlx_win, cub->img[4].mlx_img, 0, 0);
+	mlx_put_img_to_window(cub->mlx, cub->mlx_win, cub->image[4].mlx_img, 0, 0);
 	return (0);
 }
