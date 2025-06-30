@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/29 16:32:01 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/06/30 20:01:51 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,9 +149,9 @@ typedef struct s_cub3d
 	char		**map;
 	void		*mlx_ptr;
 	void		*win_ptr;
-	t_player	player; // structure sur les infos du player
-	t_img		image; // structure sur l'image de l'ecran
-	t_color		floor; // couleurs de sol et plafond
+	t_player	player;
+	t_img		image[5];
+	t_color		floor;
 	t_color		ceiling;
 	t_ray		ray; // pointeur ou pas ?
 	int			map_start; // ligne a partir de laquelle commence la map
