@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   ft_ignore_space.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/12 23:18:00 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/12 23:18:29 by vihane           ###   ########.fr       */
+/*   Created: 2025/06/29 16:31:44 by vihane            #+#    #+#             */
+/*   Updated: 2025/06/29 16:32:03 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../includes/libft.h"
 
-int parse_map_border(char *line, t_cub3d *cub3d)
+char	*ft_ignore_spaces(char *str)
 {
-    int i;
+	int		i;
+	char	*new;
 
-    i = 0;
-    while (line[i])
-    {
-        if (line[i] != '1' && line[i] != ' ')
-        {
-            ft_putstr_fd(ERR_MAP, 2);
-            return (0);
-        }
-        i++;
-    }
-    if (i > cub3d->map_width)
-        cub3d->map_width = i;
-    return (1);
+	i = ft_strlen(str) - 2;
+	while (i >= 0 && ((str[i] >= 9 && str[i] <= 13) || str[i] == 32))
+		i--;
+	str[i + 1] = '\0';
+	i = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == 32)
+		i++;
+	new = ft_strdup(&str[i]);
+	free(str);
+	if (!new)
+		return (NULL);
+	return (new);
 }

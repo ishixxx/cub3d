@@ -6,44 +6,34 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 23:16:54 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/12 23:17:38 by vihane           ###   ########.fr       */
+/*   Updated: 2025/06/29 17:16:24 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int is_texture_line_valid(char *line)
+void	check_texture(t_cub3d *cub3d, char *line)
 {
-    if (!line || ft_strlen(line) < 3)
-        return 0;
-    return (ft_strncmp("NO ", line, 3) == 0 ||
-            ft_strncmp("SO ", line, 3) == 0 ||
-            ft_strncmp("WE ", line, 3) == 0 ||
-            ft_strncmp("EA ", line, 3) == 0);
-}
+	t_img	*img;
 
-int parse_textures_line(char *line, t_texture *texture)
-{
-    char *path;
-    
-    while (*line && *line != ' ')
-        line++;
-    while (*line == ' ')
-        line++;
-    path = ft_strtrim(line, " \n");
-    if (ft_strncmp(path, "NO ", 3) == 0)
-         texture->north = path;
-    else if (ft_strncmp(path, "SO ", 3) == 0)
-        texture->south = path;
-    else if (ft_strncmp(path, "WE ", 3) == 0)
-        texture->west = path;
-    else if (ft_strncmp(path, "EA ", 3) == 0)
-        texture->east = path;
-    else
-    {
-        ft_putstr_fd(ERR_TEXTURE, 2);
-        free(path);
-        return (0);
-    }
-
+	if (!ft_strncmp(line, "NO ", 3) && !cub3d->texture_north.data)
+		img = &cub3d->texture_north;
+	else if (!ft_strncmp(line, "SO ", 3) && !cub3d->texture_south.data)
+		img = &cub3d->texture_south;
+	else if (!ft_strncmp(line, "WE ", 3) && !cub3d->texture_west.data)
+		img = &cub3d->texture_west;
+	else if (!ft_strncmp(line, "EA ", 3) && !cub3d->texture_east.data)
+		img = &cub3d->texture_east;
+	else
+		close_game(cub3d, ERR_DUP_TEXTURE);
+	if (ft_strncmp(line + ft_strlen(line) - 4, ".xpm", 4) != 0)
+		close_game(cub3d, ERR_XPM);
+	while (ft_isspace(*line))
+		line++;
+	img->data = mlx_xpm_file_to_image(cub3d->mlx_ptr, line, &img->width, &img->height);
+	if (!img->data)
+		close_game(cub3d, ERR_XPM_IMG);
+	img->addr = mlx_get_data_addr(img->data, &img->bpp, &img->line_size, &img->endian);
+	if (!img->addr)
+		close_game(cub3d, ERR_TEXTURE_ADDR);
 }

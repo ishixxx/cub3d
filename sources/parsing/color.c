@@ -6,43 +6,29 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 23:18:44 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/12 23:20:55 by vihane           ###   ########.fr       */
+/*   Updated: 2025/06/29 17:16:31 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int is_color_line_valid(char *line)
+void	check_color(t_cub3d *cub3d, t_color *color, char *line)
 {
-    if (!line || ft_strlen(line) < 2)
-        return 0;
-    return (ft_strncmp("F ", line, 2) == 0 ||
-            ft_strncmp("C ", line, 2) == 0);
-}
+	char **split;
 
-int parse_color_value(char *line)
-{
-    int r;
-    int g;
-    int b;
-    char **colors;
-    colors = ft_split(line, ',');
-    if (!colors || !colors[0] || !colors[1] || !colors[2])
-    {
-        ft_putstr_fd(ERR_COLOR, 2);
-        return (-1);
-    }
-    r = ft_atoi(colors[0]);
-    g = ft_atoi(colors[1]);
-    b = ft_atoi(colors[2]);
-    if (r < 0 || r > 255 || g < 0 || g > 255 || b < 0 || b > 255)
-    {
-        ft_putstr_fd(ERR_COLOR, 2);
-        return (-1);
-    }
-    free(colors[0]);
-    free(colors[1]);
-    free(colors[2]);
-    free(colors);
-    return ((r << 16) | (g << 8) | b);
+	if (handle_coma(line) != 2)
+		close_game(cub3d, ERR_COLOR);
+	split = ft_split(line + 2, ',');
+	if (!split || !split[0] || !split[1] || !split[2])
+	{
+		ft_free_split(split);
+		close_game(cub3d, ERR_COLOR);
+	}
+	color->r = ft_atoi(split[0]);
+	color->g = ft_atoi(split[1]);
+	color->b = ft_atoi(split[2]);
+	ft_free_split(&split);
+	if (color->r < 0 || color->r > 255 || color->g < 0 || color->g > 255
+		|| color->b < 0 || color->b > 255)
+		close_game(cub3d, ERR_COLOR);
 }
