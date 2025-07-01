@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:04:20 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/07/01 17:07:57 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/01 18:07:48 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	draw_pixel(t_img *img, t_point p, int color)
 	if (x < 0 || x >= img->width || y < 0 || y >= img->height)
 		return;
 	// calcul de l'adresse memoire precise ou est stocke le pixel
-	pixel = img->addr + (y * img->line_length + x * (img->bpp / 8));
+	pixel = img->addr + (y * img->line_size + x * (img->bpp / 8));
 	// on fait un cast pour pouvoir modifier un pixel ->
 	// on ecrit 4 octets en une seule operation
 	*(unsigned int *)pixel = color;

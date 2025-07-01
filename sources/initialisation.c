@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialisation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 17:18:26 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/24 17:06:00 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/01 18:07:39 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ void	init_image(t_img *img, char *line, t_cub3d cub3d)
 			&img->height);
 	if (!img->data)
 		close_game(&cub3d, ERR_TEXTURE);
-	img->addr = mlx_get_data_addr(img->data, &img->bpp, &img->line_length,
+	img->addr = mlx_get_data_addr(img->data, &img->bpp, &img->line_size,
 			&img->endian);
 	if (!img->addr)
 	{

@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/01 17:06:38 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/01 18:09:27 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,12 +123,13 @@ typedef struct s_color
 
 typedef struct s_img
 {
+	void	*mlx_img;
 	char 	*data; // adresse brut de l'image (utile ?)
 	char	*addr; // pointeur vers les pixels (image buffer)
 	int		bpp; // bits par pixel (32)
 	int 	width; // largeur de l'image en pixels
 	int		height; // hauteur de l'image en pixels
-	int		line_length; // nb d'octets par ligne de l'image // line_size !?!
+	int		line_size; // nb d'octets par ligne de l'image
 	int		endian; // ordre des octets (couleurs)
 }			t_img;
 
@@ -228,5 +229,11 @@ void    calculate_wall_slice(t_cub3d *cub, int *line_height, int *start, int *en
 void    calculate_tex_mapping(t_cub3d *cub, int start, int line_height);
 void    draw_wall_pixel(t_cub3d *cub, t_point pos, int texture);
 void    draw_wall_column(t_cub3d *cub, int x);
+
+int		create_trgb(int t, t_color color);
+void	render_background(t_cub3d *cub);
+void	render_3D_scene(t_cub3d *cub);
+
+int get_color(t_cub3d *cub, int x, int y, int i);
 
 #endif
