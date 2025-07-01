@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:04:24 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/06/30 19:01:17 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/01 17:09:36 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	render_background(t_cub3d *cub)
 			p.x = (double)x;
 			p.y = (double)y;
 			if (y < cub->win_height / 2) // si on est a la moitie haute de l'ecran
-				draw_pixel(&cub->image, p, create_trgb(0, cub->ceiling.r, cub->ceiling.g, cub->ceiling.b)); // coder ces 2 fonctions
+				draw_pixel(&cub->img, p, create_trgb(0, cub->ceiling.r, cub->ceiling.g, cub->ceiling.b)); // coder ces 2 fonctions
 			else
 				draw_pixel(&cub->image, p, create_trgb(0, cub->floor.r, cub->floor.g, cub->floor.b));
 			y++;

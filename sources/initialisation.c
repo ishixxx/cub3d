@@ -6,36 +6,115 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 17:18:26 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/11 23:12:16 by vihane           ###   ########.fr       */
+/*   Updated: 2025/06/24 17:06:00 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-void    data_init(int argc, char **argv, t_cub3d *cub3d)
+int	init_file(char *map_file, t_cub3d *cub3d)
 {
-    (void) argc;
-    (void) *argv;
-    ft_memset(cub3d, 0, sizeof(t_cub3d));
-    cub3d->mlx_ptr = mlx_init();
-    if (!cub3d->mlx_ptr)
-    {
-        ft_putstr_fd(ERR_MLX, 2);
-        exit(EXIT_FAILURE);
-    }
-    cub3d->win_ptr = mlx_new_window(cub3d->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, "Cub3D");
-    if (cub3d->win_ptr == NULL)
-    {
-        ft_putstr_fd(ERR_WIN, 2);
-        exit(EXIT_FAILURE);
-    }
+	int		fd;
+	char	*map_tmp;
+
+	fd = open(map_file, O_RDONLY);
+	if (fd == -1)
+		close_game(cub3d, ERR_FILE);
+	map_tmp = read_file(fd, cub3d);
+	if (!map_tmp)
+		return (close_game(cub3d, ERR_MAP), 1);
+	if (close(fd) == -1)
+		return (close_game(cub3d, ERR_FILE), 1);
+	return (0);
 }
 
-int parse_cub_file(const char *filename, t_cub3d *cub3d)
+void	init_mlx(t_cub3d *cub3d)
 {
-    if (!filename || !cub3d)
-    {
-        ft_putstr_fd(ERR_NO_MAP, 2);
-        return (EXIT_FAILURE);
-    }
+	cub3d->win_ptr = mlx_new_window(cub3d->mlx_ptr, WIN_WIDTH, WIN_HEIGHT,
+			"Cub3D");
+	if (!cub3d->win_ptr)
+	{
+		ft_putstr_fd(ERR_WIN, 2);
+		exit(EXIT_FAILURE);
+	}
+	cub3d->image.data = mlx_new_image(cub3d->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
+	if (!cub3d->image.data)
+	{
+		ft_putstr_fd(ERR_IMG, 2);
+		exit(EXIT_FAILURE);
+	}
+	cub3d->image.addr = mlx_get_data_addr(cub3d->image.data, &cub3d->image.bpp,
+			&cub3d->image.line_length, &cub3d->image.endian);
+	cub3d->image.width = WIN_WIDTH;
+	cub3d->image.height = WIN_HEIGHT;
+	if (!cub3d->image.addr)
+	{
+		ft_putstr_fd(ERR_IMG_ADDR, 2);
+		exit(EXIT_FAILURE);
+	}
+}
+
+void	init_data(t_cub3d *cub3d)
+{
+	cub3d->mlx_ptr = mlx_init();
+	if (!cub3d->mlx_ptr)
+	{
+		ft_putstr_fd(ERR_MLX, 2);
+		exit(EXIT_FAILURE);
+	}
+	cub3d->win_ptr = NULL;
+	cub3d->image.data = NULL;
+	cub3d->image.addr = NULL;
+	cub3d->image.width = 0;
+	cub3d->image.height = 0;
+	cub3d->image.line_length = 0;
+	cub3d->image.endian = 0;
+	cub3d->map = NULL;
+	cub3d->map_width = 0;
+	cub3d->map_height = 0;
+	cub3d->floor.r = 0;
+	cub3d->floor.g = 0;
+	cub3d->floor.b = 0;
+	cub3d->ceiling.r = 0;
+	cub3d->ceiling.g = 0;
+	cub3d->ceiling.b = 0;
+	init_texture(cub3d);
+	init_player(cub3d);
+}
+
+void	init_texture(t_cub3d *cub3d)
+{
+	cub3d->texture_north.data = NULL;
+	cub3d->texture_south.data = NULL;
+	cub3d->texture_west.data = NULL;
+	cub3d->texture_east.data = NULL;
+}
+
+void	init_player(t_cub3d *cub3d)
+{
+	cub3d->player.x = 0;
+	cub3d->player.y = 0;
+	cub3d->player.angle = 0;
+	cub3d->player.speed = 0.1;
+	cub3d->player.move_up = 0;
+	cub3d->player.move_down = 0;
+	cub3d->player.move_left = 0;
+	cub3d->player.move_right = 0;
+	cub3d->player.turn_left = 0;
+	cub3d->player.turn_right = 0;
+}
+
+void	init_image(t_img *img, char *line, t_cub3d cub3d)
+{
+	img->data = mlx_xpm_file_to_image(cub3d.mlx_ptr, line, &img->width,
+			&img->height);
+	if (!img->data)
+		close_game(&cub3d, ERR_TEXTURE);
+	img->addr = mlx_get_data_addr(img->data, &img->bpp, &img->line_length,
+			&img->endian);
+	if (!img->addr)
+	{
+		mlx_destroy_image(cub3d.mlx_ptr, img->data);
+		close_game(&cub3d, ERR_TEXTURE_ADDR);
+	}
 }
