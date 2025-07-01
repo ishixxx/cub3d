@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 17:18:26 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/01 18:07:39 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/01 19:04:56 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	init_mlx(t_cub3d *cub3d)
 		exit(EXIT_FAILURE);
 	}
 	cub3d->image.addr = mlx_get_data_addr(cub3d->image.data, &cub3d->image.bpp,
-			&cub3d->image.line_length, &cub3d->image.endian);
+			&cub3d->image.line_size, &cub3d->image.endian);
 	cub3d->image.width = WIN_WIDTH;
 	cub3d->image.height = WIN_HEIGHT;
 	if (!cub3d->image.addr)
@@ -67,7 +67,7 @@ void	init_data(t_cub3d *cub3d)
 	cub3d->image.addr = NULL;
 	cub3d->image.width = 0;
 	cub3d->image.height = 0;
-	cub3d->image.line_length = 0;
+	cub3d->image.line_size = 0;
 	cub3d->image.endian = 0;
 	cub3d->map = NULL;
 	cub3d->map_width = 0;
@@ -92,8 +92,8 @@ void	init_texture(t_cub3d *cub3d)
 
 void	init_player(t_cub3d *cub3d)
 {
-	cub3d->player.x = 0;
-	cub3d->player.y = 0;
+	cub3d->player.pos->x = 0;
+	cub3d->player.pos->y = 0;
 	cub3d->player.angle = 0;
 	cub3d->player.speed = 0.1;
 	cub3d->player.move_up = 0;

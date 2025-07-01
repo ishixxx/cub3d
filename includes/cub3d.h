@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/01 18:09:27 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/01 19:02:39 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -165,7 +165,7 @@ typedef struct s_cub3d
 	void		*mlx_ptr;
 	void		*win_ptr;
 	t_player	player;
-	t_img		img[5];
+	t_img		image;
 	t_img		minimap;
 	t_img		minimap_player;
 	t_img		texture_north;

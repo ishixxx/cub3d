@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:04:20 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/07/01 18:07:48 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/01 19:02:09 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	draw_wall_pixel(t_cub3d *cub, t_point pos, int texture)
 	p.x = (int)pos.x;
 	p.y = (int)pos.y;
 	color = get_color(cub, cub->ray.tex_x, cub->ray.tex_y, texture);
-	draw_pixel(&cub->img, p, color);
+	draw_pixel(&cub->image, p, color);
 }
 
 /* fonction qui trace une ligne verticale sur l'ecran representant un mur*/
