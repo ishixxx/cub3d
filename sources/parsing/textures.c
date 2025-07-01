@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 23:16:54 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/29 17:16:24 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/01 14:17:26 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,12 @@ void	check_texture(t_cub3d *cub3d, char *line)
 		close_game(cub3d, ERR_XPM);
 	while (ft_isspace(*line))
 		line++;
-	img->data = mlx_xpm_file_to_image(cub3d->mlx_ptr, line, &img->width, &img->height);
+	img->data = mlx_xpm_file_to_image
+		(cub3d->mlx_ptr, line, &img->width, &img->height);
 	if (!img->data)
 		close_game(cub3d, ERR_XPM_IMG);
-	img->addr = mlx_get_data_addr(img->data, &img->bpp, &img->line_size, &img->endian);
+	img->addr = mlx_get_data_addr
+		(img->data, &img->bpp, &img->line_size, &img->endian);
 	if (!img->addr)
 		close_game(cub3d, ERR_TEXTURE_ADDR);
 }

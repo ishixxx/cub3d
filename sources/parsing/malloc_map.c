@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   malloc_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 17:20:27 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/29 19:14:55 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/01 14:15:01 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,15 @@ void	add_map_line(t_cub3d *cub3d, char *line)
 		close_game(cub3d, ERR_STRDUP);
 	if (cub3d->map[cub3d->map_height][n] == '\n')
 		cub3d->map[cub3d->map_height][n] = '\0';
-	cub3d->map_width[cub3d->map_height] = ft_strlen(cub3d->map[cub3d->map_height]);
+	cub3d->map_width[cub3d->map_height] = ft_strlen
+		(cub3d->map[cub3d->map_height]);
 	cub3d->map_height++;
 	cub3d->map[cub3d->map_height] = NULL;
 }
 
-/*On ouvre le fichier,
-	appelle map_size pour déterminer la taille (height) de la map,
-on alloue ensuite la mémoire nécessaire pour le tableau de ligne et leur largeur*/
+/*On ouvre le fichier, appelle map_size pour déterminer la taille (height) 
+de la map, on alloue ensuite la mémoire nécessaire pour le tableau 
+de ligne et leur largeur*/
 void	init_map(t_cub3d *cub3d, char *file, int n)
 {
 	int	fd;
@@ -92,7 +93,7 @@ On ignore les espaces au début de la ligne et
 on ensure que la ligne n'est pas vide.*/
 void	keep_map(t_cub3d *cub3d, char *file, char *line, int n)
 {
-	int i;
+	int	i;
 
 	if (!cub3d->map)
 		init_map(cub3d, file, n);

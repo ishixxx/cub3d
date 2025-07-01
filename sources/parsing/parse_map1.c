@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_map.c                                        :+:      :+:    :+:   */
+/*   parse_map1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 14:44:54 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/29 19:20:15 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/01 14:16:22 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	check_map_texture_and_color(t_cub3d *cub3d)
 
 int	map_texture_and_color(t_cub3d *cub3d, char *line)
 {
-	char *tmp;
+	char	*tmp;
 
 	if (line_is_empty(cub3d, line))
 		return ;
@@ -52,7 +52,7 @@ int	map_texture_and_color(t_cub3d *cub3d, char *line)
 
 int	parse_map_first(int fd, t_cub3d *cub3d, char *file)
 {
-	int n;
+	int	n;
 
 	n = 0;
 	cub3d->fd = open(file, O_RDONLY);
@@ -62,14 +62,15 @@ int	parse_map_first(int fd, t_cub3d *cub3d, char *file)
 	while (cub3d->line)
 	{
 		n++;
-		if (!cub3d->texture_north.data || !cub3d->texture_south.data || !cub3d->texture_east.data 
-			|| !cub3d->texture_west.data || !cub3d->floor.b || !cub3d->ceiling.b)
+		if (!cub3d->texture_north.data || !cub3d->texture_south.data
+			|| !cub3d->texture_east.data || !cub3d->texture_west.data
+			|| !cub3d->floor.b || !cub3d->ceiling.b)
 		{
 			cub3d->line = ft_ignore_spaces(cub3d->line);
 			map_texture_and_color(cub3d, cub3d->line);
 		}
-		else 
-			keep_map(cub3d, file, cub3d->line, n);	
+		else
+			keep_map(cub3d, file, cub3d->line, n);
 		free(cub3d->line);
 		cub3d->line = get_next_line(cub3d->fd);
 	}

@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/29 19:36:38 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/01 14:12:26 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,15 +153,35 @@ typedef struct s_cub3d
 
 /*FUNCTIONS*/
 
+void	close_game(t_cub3d *cub3d, char *msg);
+void	free_map(t_cub3d *cub3d);
+void	free_double_array(char ***array);
+
+void	check_color(t_cub3d *cub3d, t_color *color, char *line);
+
 int				main(int argc, char **argv);
 
-int				init_file(char *map_file, t_cub3d *cub3d);
-void			init_mlx(t_cub3d *cub3d);
-void			init_data(t_cub3d *cub3d);
-void			init_player(t_cub3d *cub3d);
-void			check_texture(t_cub3d *cub3d, char *line);
-int				parse_map(int fd, t_cub3d *cub3d, char *line);
+void	map_height_size(t_cub3d *cub3d, int fd, int n);
+void	add_map_line(t_cub3d *cub3d, char *line);
+void	init_map(t_cub3d *cub3d, char *file, int n);
+void	keep_map(t_cub3d *cub3d, char *file, char *line, int n);
+
+void			check_map_texture_and_color(t_cub3d *cub3d);
+int	map_texture_and_color(t_cub3d *cub3d, char *line);
+int	parse_map_first(int fd, t_cub3d *cub3d, char *file);
+
+void    check_map_inside(t_cub3d *cub3d, char c, int i, int j);
+void    check_space(t_cub3d *cub3d, int i, int j);
+void    parse_map_second(t_cub3d *cub3d);
+
 char			**read_file(int fd, t_cub3d *cub3d);
-int				map_texture_and_color(t_cub3d *cub3d, char *line);
+
+void			check_texture(t_cub3d *cub3d, char *line);
+
+int	ft_isin(char c, char *str);
+int	is_null(char **map, int i, int j);
+void	ignore_space(char **line);
+int	line_is_empty(t_cub3d *cub3d, char *line);
+int	handle_coma(char *str);
 
 #endif

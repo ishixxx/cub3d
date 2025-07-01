@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 14:07:32 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/24 19:49:36 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/01 14:11:15 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,25 +23,4 @@ char	**read_file(int fd, t_cub3d *cub3d)
 	}
 	close(fd);
 	buffer[sizeof(buffer) - 1] = '\0';
-}
-
-static void	free_line(char **line)
-{
-	size_t	i;
-
-	i = 0;
-	if (line[i])
-		free(line[i++]);
-	free(line);
-}
-
-static void	ft_erase_newline(char *line)
-{
-	size_t	len;
-
-	if (!line)
-		return ;
-	len = ft_strlen(line);
-	if (len > 0 && line[len - 1] == '\n')
-		line[len - 1] = '\0';
 }

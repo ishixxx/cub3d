@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 23:18:44 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/29 17:16:31 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/01 14:13:32 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	check_color(t_cub3d *cub3d, t_color *color, char *line)
 {
-	char **split;
+	char	**split;
 
 	if (handle_coma(line) != 2)
 		close_game(cub3d, ERR_COLOR);

@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 19:20:49 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/29 20:41:35 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/01 14:19:05 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,35 +19,6 @@ void    check_map_inside(t_cub3d *cub3d, char c, int i, int j)
         if (c == ' ')
             return ;
         close_game(cub3d, ERR_MAP);
-    }
-    if ((c == 'N' || c == 'S' || c == 'E' || c == 'W') && 
-        (cub3d->player.x != -1 || cub3d->player.y != -1))
-    {
-        close_game(cub3d, ERR_PLAYER);
-    }
-    if (c == 'N')
-    {
-        cub3d->player.x = j;
-        cub3d->player.y = i;
-        cub3d->player.dir = 0;
-    }
-    else if (c == 'S')
-    {
-        cub3d->player.x = j;
-        cub3d->player.y = i;
-        cub3d->player.dir = 180;
-    }
-    else if (c == 'E')
-    {
-        cub3d->player.x = j;
-        cub3d->player.y = i;
-        cub3d->player.dir = 90;
-    }
-    else if (c == 'W')
-    {
-        cub3d->player.x = j;
-        cub3d->player.y = i;
-        cub3d->player.dir = 270;
     }
 }
 

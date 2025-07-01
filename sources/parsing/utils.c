@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 14:07:39 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/29 20:40:40 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/01 14:17:56 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ int	line_is_empty(t_cub3d *cub3d, char *line)
 	return (0);
 }
 
-int handle_coma(char *str)
+int	handle_coma(char *str)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!str)
