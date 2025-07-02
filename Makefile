@@ -34,7 +34,6 @@ MLX =			-L $(MLX_DIR) -l:libmlx.a -lXext -lX11 -lm
 
 SRCS =			$(SRCS_DIR)/parsing/clean.c \
 				$(SRCS_DIR)/parsing/color.c \
-				$(SRCS_DIR)/parsing/events.c \
 				$(SRCS_DIR)/parsing/main.c \
 				$(SRCS_DIR)/parsing/malloc_map.c \
 				$(SRCS_DIR)/parsing/read_file.c \
@@ -47,6 +46,7 @@ SRCS =			$(SRCS_DIR)/parsing/clean.c \
 				$(SRCS_DIR)/raycasting/render.c \
 				$(SRCS_DIR)/raycasting/utils.c \
 				$(SRCS_DIR)/initialisation.c \
+				$(SRCS_DIR)/gameplay/events.c \
 
 
 OBJS =			$(patsubst $(SRCS_DIR)%, $(OBJS_DIR)%, $(SRCS:.c=.o))
