@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/02 19:44:47 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/02 23:03:00 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -244,5 +244,7 @@ void	render_background(t_cub3d *cub);
 void	render_3D_scene(t_cub3d *cub);
 
 int get_color(t_cub3d *cub, int x, int y, int i);
+
+int init_game(t_cub3d *cub);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:04:36 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/02 16:06:20 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/02 23:03:50 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,13 @@ int	main(int argc, char **argv)
 		close(fd);
 		close_game(&cub3d, ERR_MAP);
 	}
-	ft_memset(&cub3d, 0, sizeof(t_cub3d));
+	ft_memset(&cub3d, 0, sizeof(t_cub3d)); // memset au debut ?
 	if (init_file(argv[1], &cub3d) != 0)
 		return (1);
 	init_data(&cub3d);
 	init_player(&cub3d);
 	init_mlx(&cub3d);
 	handle_events(&cub3d);
+	init_game(&cub3d);
 	return (0);
 }
