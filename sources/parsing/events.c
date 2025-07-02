@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 15:29:20 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/02 16:27:41 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/02 19:13:05 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int keypress(int keycode, t_cub3d *cub3d)
 {
     if (keycode == LEFT || keycode == RIGHT)
         close_window(cub3d);
+    
 }
 
 int keyrealease(int keycode, t_cub3d *cub3d)

@@ -32,7 +32,20 @@ INCLUDES_DIR =	./includes/ ./libft/includes/
 MYLIB =			-L $(MYLIB_DIR) -l:libft.a
 MLX =			-L $(MLX_DIR) -l:libmlx.a -lXext -lX11 -lm
 
-SRCS =			$(SRCS_DIR)/parsing/main.c \
+SRCS =			$(SRCS_DIR)/parsing/clean.c \
+				$(SRCS_DIR)/parsing/color.c \
+				$(SRCS_DIR)/parsing/events.c \
+				$(SRCS_DIR)/parsing/main.c \
+				$(SRCS_DIR)/parsing/malloc_map.c \
+				$(SRCS_DIR)/parsing/read_file.c \
+				$(SRCS_DIR)/parsing/textures.c \
+				$(SRCS_DIR)/parsing/utils.c \
+				$(SRCS_DIR)/parsing/parse_map1.c \
+				$(SRCS_DIR)/parsing/parse_map2.c \
+				$(SRCS_DIR)/raycasting/draw.c \
+				$(SRCS_DIR)/raycasting/raycastiing.c \
+				$(SRCS_DIR)/raycasting/render.c \
+				$(SRCS_DIR)/raycasting/utils.c \
 				$(SRCS_DIR)/initialisation.c \
 
 

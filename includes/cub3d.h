@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/02 16:26:34 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/02 19:16:37 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 # define CUB3D_H
 
 // # include "../minilibx-mac-osx/mlx.h"
+// # include "../minilibx-linux-master/mlx.h"
 # include "../libft/includes/get_next_line.h"
 # include "../libft/includes/libft.h"
-// # include "../minilibx-linux-master/mlx.h"
 # include <fcntl.h>
 # include <limits.h>
 # include <math.h>
