@@ -6,11 +6,19 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:04:36 by vihane            #+#    #+#             */
-/*   Updated: 2025/06/29 19:20:28 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/02 16:06:20 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
+
+void	handle_events(t_cub3d *cub3d)
+{
+	mlx_hook(cub3d->win_ptr, KEY_PRESS, 1L << 0, keypress, &cub3d);
+	mlx_hook(cub3d->win_ptr, 3, 1L << 1, keyrelease, &cub3d);
+	mlx_hook(cub3d->win_ptr, 17, 1L << 17, close_window, &cub3d);
+	mlx_loop(cub3d->mlx_ptr);
+}
 
 int	main(int argc, char **argv)
 {
@@ -36,4 +44,7 @@ int	main(int argc, char **argv)
 		return (1);
 	init_data(&cub3d);
 	init_player(&cub3d);
+	init_mlx(&cub3d);
+	handle_events(&cub3d);
+	return (0);
 }

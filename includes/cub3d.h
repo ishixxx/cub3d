@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/01 19:02:39 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/02 16:26:34 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,11 @@
 # define SOUTH 1
 # define WEST 2
 # define EAST 3
+
+# define LEFT 65361
+# define RIGHT 65363
+# define UP 65362
+# define DOWN 65364
 
 typedef enum e_keys
 {
@@ -190,6 +195,10 @@ void	free_map(t_cub3d *cub3d);
 void	free_double_array(char ***array);
 
 void	check_color(t_cub3d *cub3d, t_color *color, char *line);
+
+int		keypress(int keycode, t_cub3d *cub3d);
+int		keyrelease(int keycode, t_cub3d *cub3d);
+int		close_window(t_cub3d *cub3d);
 
 int		main(int argc, char **argv);
 

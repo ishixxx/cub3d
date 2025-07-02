@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 14:44:54 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/01 14:16:22 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/02 15:23:01 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	check_map_texture_and_color(t_cub3d *cub3d)
 		close_game(cub3d, ERR_NO_CEILING);
 	if (!cub3d->map || !cub3d->map[0])
 		close_game(cub3d, ERR_NO_MAP);
-	handle_map(cub3d);
+	parse_map_second(cub3d);
 }
 
 int	map_texture_and_color(t_cub3d *cub3d, char *line)
