@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 19:20:49 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/02 15:09:13 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/03 14:27:02 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,6 @@ void    parse_map_second(t_cub3d *cub3d)
     }
     cub3d->i++;
     }
-    if (cub3d->player.pos->x == -1 || cub3d->player.pos->y == -1)
+    if (cub3d->player.pos.x == -1 || cub3d->player.pos.y == -1)
         close_game(cub3d, ERR_NO_PLAYER); 
 }

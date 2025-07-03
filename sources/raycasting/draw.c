@@ -6,13 +6,11 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:04:20 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/07/01 19:02:09 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/03 14:27:40 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-// coder la lecture des couleurs
 
 // fonction pour dessiner un pixel de couleur dans une image memoire
 void	draw_pixel(t_img *img, t_point p, int color)
@@ -59,9 +57,9 @@ void	calculate_tex_mapping(t_cub3d *cub, int start, int line_height)
 {
 	// calcul de la position ou le rayon touche le mur
 	if (cub->ray.wall_side == 0)
-		cub->ray.wall_x = cub->player.pos->y + cub->ray.perp_wall_dist * cub->ray.ray_dir_y;
+		cub->ray.wall_x = cub->player.pos.y + cub->ray.perp_wall_dist * cub->ray.ray_dir_y;
 	else
-		cub->ray.wall_x = cub->player.pos->x + cub->ray.perp_wall_dist * cub->ray.ray_dir_x;
+		cub->ray.wall_x = cub->player.pos.x + cub->ray.perp_wall_dist * cub->ray.ray_dir_x;
 	// on garde la partie decimale pour localiser l'impact sur le mur
 	cub->ray.wall_x -= floor(cub->ray.wall_x); // fonction mathematique qui retourne la + grande valeur entiere inferieure ou egale a un nb donne
 	// calcul la coordonnee texture_x (colonne de texture a prelever)

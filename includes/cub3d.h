@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/03 00:24:52 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/03 14:24:18 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,10 +105,10 @@ typedef struct s_point
 
 typedef struct s_player
 {
-	t_point	*dir;
-	t_point	*pos;
-	t_point	*mouse_pos;
-	t_point	*plane; // champ de vision du player
+	t_point	dir;
+	t_point	pos;
+	t_point	mouse_pos;
+	t_point	plane; // champ de vision du player
 	double	angle;
 	double	speed;
 	int		move_up;

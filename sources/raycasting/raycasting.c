@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:03:49 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/07/01 16:56:59 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/03 14:28:40 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,22 +38,22 @@ void	setup_dda_steps(t_cub3d *cub)
 	{
 		cub->ray.step_x = -1;
 		// calcul de la distance physique pour parcourir jusqu'au premier mur vertical
-		cub->ray.side_dist_x = (cub->player.pos->x - cub->ray.map_x) * cub->ray.delta_dist_x;
+		cub->ray.side_dist_x = (cub->player.pos.x - cub->ray.map_x) * cub->ray.delta_dist_x;
 	}
 	else
 	{
 		cub->ray.step_x = 1;
-		cub->ray.side_dist_x = (cub->ray.map_x + 1.0 - cub->player.pos->x) * cub->ray.delta_dist_x;
+		cub->ray.side_dist_x = (cub->ray.map_x + 1.0 - cub->player.pos.x) * cub->ray.delta_dist_x;
 	}
 	if (cub->ray.ray_dir_y < 0)
 	{
 		cub->ray.step_y = -1;
-		cub->ray.side_dist_y = (cub->player.pos->y - cub->ray.map_y) * cub->ray.delta_dist_y;
+		cub->ray.side_dist_y = (cub->player.pos.y - cub->ray.map_y) * cub->ray.delta_dist_y;
 	}
 	else
 	{
 		cub->ray.step_y = 1;
-		cub->ray.side_dist_y = (cub->ray.map_y + 1.0 - cub->player.pos->y) * cub->ray.delta_dist_y;
+		cub->ray.side_dist_y = (cub->ray.map_y + 1.0 - cub->player.pos.y) * cub->ray.delta_dist_y;
 	}
 }
 
@@ -92,13 +92,13 @@ void	digital_differential_analyser(t_cub3d *cub)
 void	init_raycasting(t_cub3d *cub, int x)
 {
 	// init des positions de depart
-	cub->ray.map_x = (int)cub->player.pos->x;
-	cub->ray.map_y = (int)cub->player.pos->y;
+	cub->ray.map_x = (int)cub->player.pos.x;
+	cub->ray.map_y = (int)cub->player.pos.y;
 	// cam_x -> position horizontale de la camera
 	cub->ray.cam_x = 2.0 * (double)cub->win_width - 1.0;
 	// calcul de la direction du rayon (+ direction du joueur + camera)
-	cub->ray.ray_dir_x = cub->player.dir->x + cub->player.plane->x * cub->ray.cam_x;
-	cub->ray.ray_dir_y = cub->player.dir->y + cub->player.plane->y * cub->ray.cam_x;
+	cub->ray.ray_dir_x = cub->player.dir.x + cub->player.plane.x * cub->ray.cam_x;
+	cub->ray.ray_dir_y = cub->player.dir.y + cub->player.plane.y * cub->ray.cam_x;
 }
 
 /* fonction qui gere le raycasting -> simule la vision 3D +
