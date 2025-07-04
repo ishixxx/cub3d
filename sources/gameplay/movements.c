@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 void    player_move(t_cub3d *cub, double dx, double dy, char sign)
 {
@@ -54,5 +54,4 @@ void    player_rotate(t_cub3d *cub, double angle)
     // garder le champ de vision aligne a la nouvelle direction
     cub->player.plane.x = cub->player.plane.x * cos(angle) - cub->player.plane.y * sin(angle);
     cub->player.plane.y = old_plane_x * sin(angle) + cub->player.plane.y * cos(angle);
-
 }

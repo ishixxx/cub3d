@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 int init_game(t_cub3d *cub)
 {
@@ -21,8 +21,8 @@ int init_game(t_cub3d *cub)
     }
     // Hook principal : appel a render a chaque frame
     mlx_loop_hook(cub->mlx_ptr, render_3D_scene, cub);
-    // reste des hook ?
-    // boucle graphique
-    mlx_loop(cub->mlx_ptr);
+    mlx_hook(cub->win_ptr, 2, 1L << 0, keypress, cub);
+    mlx_hook(cub->win_ptr, 17, 1L << 0, close_game, cub);
+    mlx_loop(cub->mlx_ptr);  // boucle graphique
     return (0);
 }

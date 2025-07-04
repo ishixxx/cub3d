@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/03 14:24:18 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/04 13:56:30 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CUB3D_H
 
 // # include "../minilibx-mac-osx/mlx.h"
-// # include "../minilibx-linux-master/mlx.h"
+# include "../minilibx-linux/mlx.h"
 # include "../libft/includes/get_next_line.h"
 # include "../libft/includes/libft.h"
 # include <fcntl.h>
@@ -190,15 +190,13 @@ typedef struct s_cub3d
 
 /*FUNCTIONS*/
 
-void	close_game(t_cub3d *cub3d, char *msg);
+int		close_game(void *param, char *msg);
 void	free_map(t_cub3d *cub3d);
 void	free_double_array(char ***array);
 
 void	check_color(t_cub3d *cub3d, t_color *color, char *line);
 
 int		keypress(int keycode, t_cub3d *cub3d);
-int		keyrelease(int keycode, t_cub3d *cub3d);
-int		close_window(t_cub3d *cub3d);
 
 int		main(int argc, char **argv);
 
@@ -225,6 +223,17 @@ void	ignore_space(char **line);
 int		line_is_empty(t_cub3d *cub3d, char *line);
 int		handle_coma(char *str);
 
+void	ft_free_split(char **split);
+
+// INIT
+
+int	init_file(char *map_file, t_cub3d *cub3d);
+void	init_mlx(t_cub3d *cub3d);
+void	init_data(t_cub3d *cub3d);
+void	init_texture(t_cub3d *cub3d);
+void	init_player(t_cub3d *cub3d);
+void	init_image(t_img *img, char *line, t_cub3d cub3d);
+
 // RAYCASTING
 
 void	get_delta_distance(t_ray *ray);
@@ -241,12 +250,19 @@ void    draw_wall_column(t_cub3d *cub, int x);
 
 int		create_trgb(int t, t_color color);
 void	render_background(t_cub3d *cub);
-void	render_3D_scene(t_cub3d *cub);
+int	render_3D_scene(void *param);
 
-int get_color(t_cub3d *cub, int x, int y, int i);
+int 	get_color(t_cub3d *cub, int x, int y, int i);
 
+// GAMEPLAY
+
+int 	keypress(int keycode, t_cub3d *cub3d);
+int 	close_window(t_cub3d *cub3d);
 void    player_move(t_cub3d *cub, double dx, double dy, char sign);
 void    player_rotate(t_cub3d *cub, double angle);
 int 	init_game(t_cub3d *cub);
+
+// void	handle_events(t_cub3d *cub3d);
+
 
 #endif

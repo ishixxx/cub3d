@@ -6,14 +6,17 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 19:20:49 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/03 14:27:02 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/04 14:24:19 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 void    check_map_inside(t_cub3d *cub3d, char c, int i, int j)
 {
+    (void)i; // parametre non utilise
+    (void)j;
+    
     if (ft_isin(c, "NSEW"))
     {
         if (c == ' ')

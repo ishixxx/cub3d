@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 14:07:39 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/01 14:17:56 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/04 14:24:10 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 int	ft_isin(char c, char *str)
 {

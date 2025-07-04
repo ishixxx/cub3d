@@ -24,7 +24,7 @@ RM =			rm -f
 SRCS_DIR =		./sources/
 OBJS_DIR =		./objets/
 MYLIB_DIR =		./libft/
-MLX_DIR =		./minilibx-linux-master/
+MLX_DIR =		./minilibx-linux/
 INCLUDES_DIR =	./includes/ ./libft/includes/
 
 #Libraries
@@ -34,7 +34,7 @@ MLX =			-L $(MLX_DIR) -l:libmlx.a -lXext -lX11 -lm
 
 SRCS =			$(SRCS_DIR)/parsing/clean.c \
 				$(SRCS_DIR)/parsing/color.c \
-				$(SRCS_DIR)/parsing/main.c \
+				$(SRCS_DIR)/main.c \
 				$(SRCS_DIR)/parsing/malloc_map.c \
 				$(SRCS_DIR)/parsing/read_file.c \
 				$(SRCS_DIR)/parsing/textures.c \
@@ -42,11 +42,13 @@ SRCS =			$(SRCS_DIR)/parsing/clean.c \
 				$(SRCS_DIR)/parsing/parse_map1.c \
 				$(SRCS_DIR)/parsing/parse_map2.c \
 				$(SRCS_DIR)/raycasting/draw.c \
-				$(SRCS_DIR)/raycasting/raycastiing.c \
+				$(SRCS_DIR)/raycasting/raycasting.c \
 				$(SRCS_DIR)/raycasting/render.c \
 				$(SRCS_DIR)/raycasting/utils.c \
 				$(SRCS_DIR)/initialisation.c \
 				$(SRCS_DIR)/gameplay/events.c \
+				$(SRCS_DIR)/gameplay/init_game.c \
+				$(SRCS_DIR)/gameplay/movements.c \
 
 
 OBJS =			$(patsubst $(SRCS_DIR)%, $(OBJS_DIR)%, $(SRCS:.c=.o))
@@ -58,7 +60,7 @@ OBJS =			$(patsubst $(SRCS_DIR)%, $(OBJS_DIR)%, $(SRCS:.c=.o))
 # Rule for compiling source files into object files
 $(OBJS_DIR)%.o:		$(SRCS_DIR)%.c
 					@mkdir -p $(dir $@)
-					@$(CC) $(CFLAGS) -c $< -o $@ $(foreach dir,$(INCLUDES),-I$(dir))
+					@$(CC) $(CFLAGS) -c $< -o $@ $(foreach dir,$(INCLUDES_DIR),-I$(dir))
 
 # Rule for creating the executionutable
 $(NAME):	$(OBJS)
@@ -77,7 +79,7 @@ all:			$(NAME)
 clean:
 				@make clean --no-print-directory -C $(MYLIB_DIR)
 				@echo "$(RED)Deleting $(CYAN)project object files $(DEFAULT)..."
-				@$(RM) -r $(OBJ)
+				@$(RM) -r $(OBJS)
 				@echo "$(GREEN)Done $(DEFAULT)✔️"
 
 # Full clean rule (objects files, executionutable and libraries)

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   textures.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 23:16:54 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/01 14:17:26 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/04 13:07:05 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 void	check_texture(t_cub3d *cub3d, char *line)
 {

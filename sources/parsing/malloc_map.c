@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   malloc_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 17:20:27 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/01 14:15:01 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/04 13:06:52 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 /*On ouvre le fichier, on lit la première ligne pour déterminer la taille 
 de la map, et on compte le nombre de lignes restantes pour déterminer 
