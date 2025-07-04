@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+         #
+#    By: vihane <vihane@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/22 14:53:05 by vihane            #+#    #+#              #
-#    Updated: 2025/03/28 19:25:39 by vgalmich         ###   ########.fr        #
+#    Updated: 2025/07/04 19:54:09 by vihane           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ SRCS        :=      sources/ft_str/ft_strchr.c \
                           sources/ft_is/ft_isdelimiter.c \
                           sources/ft_is/ft_isdigit.c \
                           sources/ft_is/ft_isprint.c \
+                          sources/ft_is/ft_ignore_space.c \
                           sources/ft_lst/ft_lstadd_back.c \
                           sources/ft_lst/ft_lstadd_front.c \
                           sources/ft_lst/ft_lstclear.c \

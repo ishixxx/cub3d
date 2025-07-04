@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:38:27 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/04 13:56:16 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/04 19:51:47 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	close_game(void *param, char *msg)
 	}
 	if (cub3d->mlx_ptr)
 	{
-		mlx_destroy_display(cub3d->mlx_ptr);
+		//mlx_destroy_display(cub3d->mlx_ptr);
 		free(cub3d->mlx_ptr);
 		cub3d->mlx_ptr = NULL;
 	}

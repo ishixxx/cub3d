@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map1.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 14:44:54 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/04 19:19:04 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/04 20:33:06 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,9 @@ int	map_texture_and_color(t_cub3d *cub3d, char *line)
 	return (1);
 }
 
-int	parse_map_first(int fd, t_cub3d *cub3d, char *file)
+int	parse_map_first(t_cub3d *cub3d, char *file)
 {
 	int	n;
-	(void)fd; // parametre non utilise?
 
 	n = 0;
 	cub3d->fd = open(file, O_RDONLY);

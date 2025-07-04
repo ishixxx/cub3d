@@ -3,34 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   initialisation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 17:18:26 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/04 18:05:36 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/04 20:36:24 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-int	init_file(char *map_file, t_cub3d *cub3d)
-{
-	int		fd;
-	char	**map_tmp;
-
-	printf("Opening file in init_file: %s\n", map_file);
-	fd = open(map_file, O_RDONLY);
-	if (fd == -1)
-		close_game(cub3d, ERR_FILE);
-	map_tmp = read_file(fd, cub3d);
-	if (!map_tmp)
-	{
-		close(fd);
-		return (close_game(cub3d, ERR_MAP), 1);
-	}
-	if (close(fd) == -1)
-		return (close_game(cub3d, ERR_FILE), 1);
-	return (0);
-}
 
 void	init_mlx(t_cub3d *cub3d)
 {
@@ -62,10 +42,7 @@ void	init_data(t_cub3d *cub3d)
 {
 	cub3d->mlx_ptr = mlx_init();
 	if (!cub3d->mlx_ptr)
-	{
-		ft_putstr_fd(ERR_MLX, 2);
-		exit(EXIT_FAILURE);
-	}
+		simple_exit(ERR_MLX);
 	cub3d->win_ptr = NULL;
 	cub3d->image.data = NULL;
 	cub3d->image.addr = NULL;
@@ -82,8 +59,8 @@ void	init_data(t_cub3d *cub3d)
 	cub3d->ceiling.r = -1;
 	cub3d->ceiling.g = -1;
 	cub3d->ceiling.b = -1;
-	init_texture(cub3d);
-	init_player(cub3d);
+	init_texture(&cub3d);
+	init_player(&cub3d);
 }
 
 void	init_texture(t_cub3d *cub3d)

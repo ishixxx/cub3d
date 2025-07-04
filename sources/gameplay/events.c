@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 15:29:20 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/04 13:42:40 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/04 19:52:44 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,10 @@
 int keypress(int keycode, t_cub3d *cub3d)
 {
     double  move_speed;
-    double  rotation_speed;
+    // double  rotation_speed;
 
     move_speed = 0.1;
-    rotation_speed = 0.05;
+    // rotation_speed = 0.05;
 
     if (keycode == ESC) // fermer le jeu
         close_window(cub3d);

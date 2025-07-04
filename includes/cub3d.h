@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/04 18:02:23 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/04 20:36:04 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CUB3D_H
 
 // # include "../minilibx-mac-osx/mlx.h"
-# include "../minilibx-linux/mlx.h"
+// # include "../minilibx-linux/mlx.h"
 # include "../libft/includes/get_next_line.h"
 # include "../libft/includes/libft.h"
 # include <fcntl.h>
@@ -200,6 +200,7 @@ void	check_color(t_cub3d *cub3d, t_color *color, char *line);
 int		keypress(int keycode, t_cub3d *cub3d);
 
 int		main(int argc, char **argv);
+void	simple_exit(char *msg);
 
 void	map_height_size(t_cub3d *cub3d, int fd, int n);
 void	add_map_line(t_cub3d *cub3d, char *line);
@@ -208,7 +209,7 @@ void	keep_map(t_cub3d *cub3d, char *file, char *line, int n);
 
 void	check_map_texture_and_color(t_cub3d *cub3d);
 int		map_texture_and_color(t_cub3d *cub3d, char *line);
-int		parse_map_first(int fd, t_cub3d *cub3d, char *file);
+int		parse_map_first(t_cub3d *cub3d, char *file);
 
 void    check_map_inside(t_cub3d *cub3d, char c, int i, int j);
 void    check_space(t_cub3d *cub3d, int i, int j);
@@ -228,7 +229,6 @@ void	ft_free_split(char **split);
 
 // INIT
 
-int	init_file(char *map_file, t_cub3d *cub3d);
 void	init_mlx(t_cub3d *cub3d);
 void	init_data(t_cub3d *cub3d);
 void	init_texture(t_cub3d *cub3d);
@@ -263,7 +263,7 @@ void    player_move(t_cub3d *cub, double dx, double dy, char sign);
 void    player_rotate(t_cub3d *cub, double angle);
 int 	init_game(t_cub3d *cub);
 
-int	is_line_empty(char *line);
+int		is_line_empty(char *line);
 
 // void	handle_events(t_cub3d *cub3d);
 

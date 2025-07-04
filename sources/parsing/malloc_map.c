@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   malloc_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 17:20:27 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/04 13:06:52 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/04 20:08:02 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,13 +95,16 @@ void	keep_map(t_cub3d *cub3d, char *file, char *line, int n)
 {
 	int	i;
 
+	i = 0;
 	if (!cub3d->map)
 		init_map(cub3d, file, n);
-	i = 0;
 	while (ft_isspace(line[i]))
 		i++;
-	if (!line[i] && cub3d->map[0])
-		close_game(cub3d, ERR_MAP);
-	else if (line[i])
-		add_map_line(cub3d, line);
+	if (!line[i])
+	{
+		if (cub3d->map[0])	
+			close_game(cub3d, ERR_MAP);
+		return ;
+	}
+	add_map_line(cub3d, line);
 }
