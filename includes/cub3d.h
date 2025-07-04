@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/04 15:13:12 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/04 18:02:23 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -262,6 +262,8 @@ int 	close_window(t_cub3d *cub3d);
 void    player_move(t_cub3d *cub, double dx, double dy, char sign);
 void    player_rotate(t_cub3d *cub, double angle);
 int 	init_game(t_cub3d *cub);
+
+int	is_line_empty(char *line);
 
 // void	handle_events(t_cub3d *cub3d);
 
