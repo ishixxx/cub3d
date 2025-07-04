@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/04 13:56:30 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/04 15:13:12 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@
 # define ERR_NO_CEILING "Error\nMissing ceiling color\n"
 # define ERR_XPM "Error\nInvalid texture file format. Expected .xpm\n"
 # define ERR_CLOSE_MAP "Error\nMap must be closed by walls\n"
+# define ERR_DUP_PLAYER "Error: Duplicate player position detected\n"
 
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600

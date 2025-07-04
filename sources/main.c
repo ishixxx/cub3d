@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:04:36 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/04 14:30:01 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/04 15:48:10 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,24 +37,20 @@ int	main(int argc, char **argv)
 	// fd = open(argv[1], O_RDONLY);
 	// if (fd == -1)
 	//	close_game(&cub3d, ERR_FILE);
-	printf("Avant parse_map_first\n");
+	cub3d.mlx_ptr = mlx_init();
+	if (!cub3d.mlx_ptr)
+		close_game(&cub3d, "Failed to initialize mlx");
+	init_mlx(&cub3d);
 	if (!parse_map_first(-1, &cub3d, argv[1]))
 	{
 		printf("parse_map_first a echoue\n");
 	//	close(fd);
 		close_game(&cub3d, ERR_MAP);
 	}
-	printf("Apres parse_map_first\n");
-	printf("Avant init_file\n");
 	if (init_file(argv[1], &cub3d) != 0)
 		return (1);
-	printf("Apres init_file\n");
 	init_data(&cub3d);
 	init_player(&cub3d);
-	// cub3d.mlx_ptr = mlx_init();
-	// if (!cub3d.mlx_ptr)
-	//	close_game(&cub3d, "Failed to initialize mlx");
-	init_mlx(&cub3d);
 	// handle_events(&cub3d);
 	init_game(&cub3d);
 	return (0);

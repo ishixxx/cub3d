@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 14:44:54 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/04 14:26:45 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/04 15:43:24 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	check_map_texture_and_color(t_cub3d *cub3d)
 		close_game(cub3d, ERR_NO_CEILING);
 	if (!cub3d->map || !cub3d->map[0])
 		close_game(cub3d, ERR_NO_MAP);
+	printf("All textures, colors, and map are OK\n");
 	parse_map_second(cub3d);
 }
 
@@ -67,7 +68,7 @@ int	parse_map_first(int fd, t_cub3d *cub3d, char *file)
 		n++;
 		if (!cub3d->texture_north.data || !cub3d->texture_south.data
 			|| !cub3d->texture_east.data || !cub3d->texture_west.data
-			|| !cub3d->floor.b || !cub3d->ceiling.b)
+			|| cub3d->floor.r == -1 || cub3d->ceiling.r == -1)
 		{
 			ignore_space(&cub3d->line);
 			map_texture_and_color(cub3d, cub3d->line);
@@ -78,6 +79,8 @@ int	parse_map_first(int fd, t_cub3d *cub3d, char *file)
 		cub3d->line = get_next_line(cub3d->fd);
 	}
 	close(cub3d->fd);
+	printf("Check map array before parse_map_second:\n");
 	check_map_texture_and_color(cub3d);
 	return (1);
+	printf("parse map first OK\n");
 }

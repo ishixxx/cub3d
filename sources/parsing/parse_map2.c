@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 19:20:49 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/04 14:24:19 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/04 15:46:14 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void    check_space(t_cub3d *cub3d, int i, int j)
 
 void    parse_map_second(t_cub3d *cub3d)
 {
+    printf("Map height: %d\n", cub3d->map_height);
     cub3d->i = 0;
     while (cub3d->map[cub3d->i])
     {
@@ -69,5 +70,6 @@ void    parse_map_second(t_cub3d *cub3d)
     cub3d->i++;
     }
     if (cub3d->player.pos.x == -1 || cub3d->player.pos.y == -1)
-        close_game(cub3d, ERR_NO_PLAYER); 
+        close_game(cub3d, ERR_NO_PLAYER);
+    printf("End parse_map_second\n");
 }

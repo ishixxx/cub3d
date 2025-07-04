@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 17:18:26 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/04 14:15:35 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/04 14:58:00 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,12 @@ void	init_data(t_cub3d *cub3d)
 	cub3d->map = NULL;
 	cub3d->map_width = 0;
 	cub3d->map_height = 0;
-	cub3d->floor.r = 0;
-	cub3d->floor.g = 0;
-	cub3d->floor.b = 0;
-	cub3d->ceiling.r = 0;
-	cub3d->ceiling.g = 0;
-	cub3d->ceiling.b = 0;
+	cub3d->floor.r = -1; // -1 car non definie
+	cub3d->floor.g = -1;
+	cub3d->floor.b = -1;
+	cub3d->ceiling.r = -1;
+	cub3d->ceiling.g = -1;
+	cub3d->ceiling.b = -1;
 	init_texture(cub3d);
 	init_player(cub3d);
 }
