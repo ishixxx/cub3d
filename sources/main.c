@@ -6,12 +6,13 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:04:36 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/04 15:48:10 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/04 19:16:36 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
+// soit on garde cette fonction soit celle init_game dans gameplay
 /*
 void	handle_events(t_cub3d *cub3d)
 {
