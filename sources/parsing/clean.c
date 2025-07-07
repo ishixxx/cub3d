@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:38:27 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/04 19:51:47 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/07 14:28:55 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	close_game(void *param, char *msg)
 {
-	t_cub3d *cub3d;
+	t_cub3d	*cub3d;
+
 	cub3d = (t_cub3d *)param;
 	printf("%s\n", msg); // rajouter fonction ft_printf
 	if (cub3d->mlx_ptr && cub3d->win_ptr)
@@ -24,7 +25,7 @@ int	close_game(void *param, char *msg)
 	}
 	if (cub3d->mlx_ptr)
 	{
-		//mlx_destroy_display(cub3d->mlx_ptr);
+		mlx_destroy_display(cub3d->mlx_ptr);
 		free(cub3d->mlx_ptr);
 		cub3d->mlx_ptr = NULL;
 	}
@@ -52,7 +53,7 @@ void	free_map(t_cub3d *cub3d)
 
 void	free_double_array(char ***array)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	if (!array)

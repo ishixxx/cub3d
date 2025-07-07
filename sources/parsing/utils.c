@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 14:07:39 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/04 15:43:03 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/07 14:50:45 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,17 +33,6 @@ int	is_null(char **map, int i, int j)
 	if (k <= j)
 		return (1);
 	return (0);
-}
-
-void	ignore_space(char **line)
-{
-	char	*start;
-
-	start = *line;
-	while (*start && (*start == ' ' || *start == '\t'))
-		start++;
-	if (start != *line)
-		*line = start;
 }
 
 int	line_is_empty(t_cub3d *cub3d, char *line)

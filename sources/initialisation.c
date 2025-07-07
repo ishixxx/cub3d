@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 17:18:26 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/04 20:36:24 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/07 14:46:01 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,6 @@ void	init_data(t_cub3d *cub3d)
 	cub3d->win_ptr = NULL;
 	cub3d->image.data = NULL;
 	cub3d->image.addr = NULL;
-	cub3d->image.width = 0;
-	cub3d->image.height = 0;
-	cub3d->image.line_size = 0;
-	cub3d->image.endian = 0;
 	cub3d->map = NULL;
 	cub3d->map_width = 0;
 	cub3d->map_height = 0;
@@ -59,12 +55,14 @@ void	init_data(t_cub3d *cub3d)
 	cub3d->ceiling.r = -1;
 	cub3d->ceiling.g = -1;
 	cub3d->ceiling.b = -1;
-	init_texture(&cub3d);
-	init_player(&cub3d);
+	init_texture(cub3d);
+	init_player(cub3d);
 }
 
 void	init_texture(t_cub3d *cub3d)
 {
+	cub3d->map_view = 0;
+	cub3d->textture_view = 0;
 	cub3d->texture_north.data = NULL;
 	cub3d->texture_south.data = NULL;
 	cub3d->texture_west.data = NULL;
@@ -73,8 +71,8 @@ void	init_texture(t_cub3d *cub3d)
 
 void	init_player(t_cub3d *cub3d)
 {
-	cub3d->player.pos.x = 0;
-	cub3d->player.pos.y = 0;
+	cub3d->player.pos.x = -1; // -1 car non definie
+	cub3d->player.pos.y = -1; // -1 car non definie
 	cub3d->player.angle = 0;
 	cub3d->player.speed = 0.1;
 	cub3d->player.move_up = 0;

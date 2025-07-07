@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 14:44:54 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/04 20:33:06 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/07 14:54:17 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,9 @@ void	check_map_texture_and_color(t_cub3d *cub3d)
 
 int	map_texture_and_color(t_cub3d *cub3d, char *line)
 {
-	// char	*tmp; // parametre non utilise
-
+	
 	if (line_is_empty(cub3d, line))
-		return (0); // fonction int, doit retourner qlqchose
+		return (0);
 	if (!ft_strncmp(line, "NO ", 3) || !ft_strncmp(line, "SO ", 3)
 		|| !ft_strncmp(line, "WE ", 3) || !ft_strncmp(line, "EA ", 3))
 		check_texture(cub3d, line);
@@ -69,7 +68,7 @@ int	parse_map_first(t_cub3d *cub3d, char *file)
 			|| !cub3d->texture_east.data || !cub3d->texture_west.data
 			|| cub3d->floor.r == -1 || cub3d->ceiling.r == -1)
 		{
-			ignore_space(&cub3d->line);
+			cub3d->line = ft_ignore_spaces(cub3d->line);
 			map_texture_and_color(cub3d, cub3d->line);
 		}
 		else

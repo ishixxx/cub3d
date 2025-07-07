@@ -6,17 +6,17 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 17:20:27 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/04 20:08:02 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/07 14:33:26 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-/*On ouvre le fichier, on lit la première ligne pour déterminer la taille 
-de la map, et on compte le nombre de lignes restantes pour déterminer 
-la hauteur de la map. n == On ignore les n premières lignes du fichier, 
-qui ne sont pas des lignes de carte. On calcule le nombre de lignes dans 
-la carte à partir de la n-ième ligne du fichier, et mettre ce nombre dans 
+/*On ouvre le fichier, on lit la première ligne pour déterminer la taille
+de la map, et on compte le nombre de lignes restantes pour déterminer
+la hauteur de la map. n == On ignore les n premières lignes du fichier,
+qui ne sont pas des lignes de carte. On calcule le nombre de lignes dans
+la carte à partir de la n-ième ligne du fichier, et mettre ce nombre dans
 cub3d->map_height*/
 void	map_height_size(t_cub3d *cub3d, int fd, int n)
 {
@@ -59,14 +59,14 @@ void	add_map_line(t_cub3d *cub3d, char *line)
 		close_game(cub3d, ERR_STRDUP);
 	if (cub3d->map[cub3d->map_height][n] == '\n')
 		cub3d->map[cub3d->map_height][n] = '\0';
-	cub3d->map_width[cub3d->map_height] = ft_strlen
-		(cub3d->map[cub3d->map_height]);
+	cub3d->map_width[cub3d->map_height] = ft_strlen(cub3d->map
+		[cub3d->map_height]);
 	cub3d->map_height++;
 	cub3d->map[cub3d->map_height] = NULL;
 }
 
-/*On ouvre le fichier, appelle map_size pour déterminer la taille (height) 
-de la map, on alloue ensuite la mémoire nécessaire pour le tableau 
+/*On ouvre le fichier, appelle map_size pour déterminer la taille (height)
+de la map, on alloue ensuite la mémoire nécessaire pour le tableau
 de ligne et leur largeur*/
 void	init_map(t_cub3d *cub3d, char *file, int n)
 {
@@ -102,7 +102,7 @@ void	keep_map(t_cub3d *cub3d, char *file, char *line, int n)
 		i++;
 	if (!line[i])
 	{
-		if (cub3d->map[0])	
+		if (cub3d->map[0])
 			close_game(cub3d, ERR_MAP);
 		return ;
 	}

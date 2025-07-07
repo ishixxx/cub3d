@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:04:36 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/04 20:35:30 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/07 15:04:24 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	main(int argc, char **argv)
 	int		arg_len;
 	int		fd;
 	t_cub3d	cub3d;
+	char	buffer[100];
 
 	if (argc != 2)
 		simple_exit(ERR_ARG);
@@ -33,6 +34,11 @@ int	main(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		simple_exit(ERR_FILE);
+	if (read(fd, buffer, 100) == -1)
+	{
+		close(fd);
+		simple_exit(ERR_FILE);
+	}
 	init_data(&cub3d);
 	parse_map_first(&cub3d, argv[1]);
 	init_mlx(&cub3d);

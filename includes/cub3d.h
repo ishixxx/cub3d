@@ -6,15 +6,14 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/04 20:36:04 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/07 14:44:44 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-// # include "../minilibx-mac-osx/mlx.h"
-// # include "../minilibx-linux/mlx.h"
+# include "../minilibx-linux/mlx.h"
 # include "../libft/includes/get_next_line.h"
 # include "../libft/includes/libft.h"
 # include <fcntl.h>
@@ -187,6 +186,8 @@ typedef struct s_cub3d
 	int			map_height; // hauteur de la map (en cases)
 	int			win_width; // taille de la fenetre en pixels
 	int			win_height;
+	int			map_view; // 0 si on affiche la map, 1 si on affiche les textures
+	int			textture_view; // 0 si on affiche la map, 1 si on affiche les textures
 }					t_cub3d;
 
 /*FUNCTIONS*/
