@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 14:44:54 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/07 14:54:17 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/07 15:37:15 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,11 @@ void	check_map_texture_and_color(t_cub3d *cub3d)
 	if (!cub3d->map || !cub3d->map[0])
 		close_game(cub3d, ERR_NO_MAP);
 	printf("All textures, colors, and map are OK\n");
-	parse_map_second(cub3d); // pb
+	parse_map_second(cub3d);
 }
 
 int	map_texture_and_color(t_cub3d *cub3d, char *line)
 {
-	
 	if (line_is_empty(cub3d, line))
 		return (0);
 	if (!ft_strncmp(line, "NO ", 3) || !ft_strncmp(line, "SO ", 3)

@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 23:16:54 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/07 15:05:22 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/07 15:41:56 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	check_texture(t_cub3d *cub3d, char *line)
 {
 	t_img	*img;
-	
+
 	if (!ft_strncmp(line, "NO ", 3) && !cub3d->texture_north.data)
 		img = &cub3d->texture_north;
 	else if (!ft_strncmp(line, "SO ", 3) && !cub3d->texture_south.data)

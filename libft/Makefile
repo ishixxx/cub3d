@@ -6,15 +6,15 @@
 #    By: vihane <vihane@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/22 14:53:05 by vihane            #+#    #+#              #
-#    Updated: 2025/07/04 19:54:09 by vihane           ###   ########.fr        #
+#    Updated: 2025/07/07 16:42:01 by vihane           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	libft.a
 
-INCLUDE	=	includes/libft.h includes/ft_print.h includes/get_next_line.h
+INCLUDE	=	./includes/libft.h ./includes/get_next_line.h ./includes/ft_printf.h
 
-SRCS        :=      sources/ft_str/ft_strchr.c \
+SRCS        :=            sources/ft_str/ft_strchr.c \
                           sources/ft_str/ft_strdup.c \
                           sources/ft_str/ft_striteri.c \
                           sources/ft_str/ft_strjoin.c \
@@ -66,6 +66,13 @@ SRCS        :=      sources/ft_str/ft_strchr.c \
                           sources/ft_mem/ft_memset.c \
                           sources/ft_mem/ft_calloc.c \
                           sources/ft_mem/ft_bzero.c \
+                          sources/ft_printf/ft_print_char.c \
+                          sources/ft_printf/ft_print_hex.c \
+                          sources/ft_printf/ft_print_int.c \
+                          sources/ft_printf/ft_print_point.c \
+                          sources/ft_printf/ft_print_string.c \
+                          sources/ft_printf/ft_print_unsigned.c \
+                          sources/ft_printf/ft_printf.c \
 
 OBJS	=	${SRCS:.c=.o}
 

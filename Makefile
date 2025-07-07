@@ -36,7 +36,6 @@ SRCS =			$(SRCS_DIR)/parsing/clean.c \
 				$(SRCS_DIR)/parsing/color.c \
 				$(SRCS_DIR)/main.c \
 				$(SRCS_DIR)/parsing/malloc_map.c \
-				$(SRCS_DIR)/parsing/read_file.c \
 				$(SRCS_DIR)/parsing/textures.c \
 				$(SRCS_DIR)/parsing/utils.c \
 				$(SRCS_DIR)/parsing/parse_map1.c \

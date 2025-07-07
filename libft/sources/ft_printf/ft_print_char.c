@@ -1,28 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   read_file.c                                        :+:      :+:    :+:   */
+/*   ft_print_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/06/22 14:07:32 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/07 14:29:07 by vihane           ###   ########.fr       */
+/*   Created: 2024/06/12 15:00:32 by vihane            #+#    #+#             */
+/*   Updated: 2025/07/07 16:40:10 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../includes/ft_printf.h"
 
-char	**read_file(int fd, t_cub3d *cub3d)
+int	ft_print_char(char c)
 {
-	char	buffer[100];
-
-	(void)cub3d; // parametre non utilise
-	if (read(fd, buffer, sizeof(buffer) - 1) == -1)
-	{
-		ft_putstr_fd(ERR_FILE, 2);
-		return (NULL);
-	}
-	buffer[sizeof(buffer) - 1] = '\0';
-	close(fd);
-	return (NULL);
+	write (1, &c, 1);
+	return (1);
 }

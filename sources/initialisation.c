@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 17:18:26 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/07 14:46:01 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/07 15:28:35 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ void	init_mlx(t_cub3d *cub3d)
 		ft_putstr_fd(ERR_IMG_ADDR, 2);
 		exit(EXIT_FAILURE);
 	}
+	printf("MLX initialized successfully\n");
 }
 
 void	init_data(t_cub3d *cub3d)

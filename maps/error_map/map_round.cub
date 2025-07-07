@@ -1,7 +1,7 @@
-NO ./textures/
-SO ./textures/
-WE ./textures/
-EA ./textures/
+NO textures/north.xpm
+WE textures/west.xpm
+SO textures/south.xpm
+EA textures/east.xpm
 
 F 160,110,80
 C 120,60,60

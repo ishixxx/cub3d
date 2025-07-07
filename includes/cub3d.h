@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/07 14:44:44 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/07 16:49:52 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "../minilibx-linux/mlx.h"
 # include "../libft/includes/get_next_line.h"
 # include "../libft/includes/libft.h"
+#include "../libft/includes/ft_printf.h"
 # include <fcntl.h>
 # include <limits.h>
 # include <math.h>
@@ -53,6 +54,8 @@
 # define ERR_XPM "Error\nInvalid texture file format. Expected .xpm\n"
 # define ERR_CLOSE_MAP "Error\nMap must be closed by walls\n"
 # define ERR_DUP_PLAYER "Error: Duplicate player position detected\n"
+# define ERR_GNL "Error\nFailed to read line from file\n"
+# define ERR_IMG_INIT "Error\nImage not initialized.\n"
 
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600
@@ -216,13 +219,10 @@ void    check_map_inside(t_cub3d *cub3d, char c, int i, int j);
 void    check_space(t_cub3d *cub3d, int i, int j);
 void    parse_map_second(t_cub3d *cub3d);
 
-char	**read_file(int fd, t_cub3d *cub3d);
-
 void	check_texture(t_cub3d *cub3d, char *line);
 
 int		ft_isin(char c, char *str);
 int		is_null(char **map, int i, int j);
-void	ignore_space(char **line);
 int		line_is_empty(t_cub3d *cub3d, char *line);
 int		handle_coma(char *str);
 

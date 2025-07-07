@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 17:20:27 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/07 14:33:26 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/07 15:22:16 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,7 @@ void	map_height_size(t_cub3d *cub3d, int fd, int n)
 	cub3d->map_height = 0;
 	gnl_line = get_next_line(fd);
 	if (!gnl_line)
-	{
-		close(fd);
-		close_game(cub3d, ERR_NO_MAP);
-	}
+		simple_exit(ERR_GNL);
 	while (--n > 0)
 	{
 		free(gnl_line);
@@ -106,5 +103,6 @@ void	keep_map(t_cub3d *cub3d, char *file, char *line, int n)
 			close_game(cub3d, ERR_MAP);
 		return ;
 	}
-	add_map_line(cub3d, line);
+	else if (line[i])
+		add_map_line(cub3d, line);
 }
