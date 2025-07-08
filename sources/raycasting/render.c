@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:04:24 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/07/04 13:46:13 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/07 17:42:14 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,14 @@ int	render_3D_scene(void *param)
 {
 	t_cub3d *cub;
 	cub = (t_cub3d *)param;
-	
-	render_background(cub);
 	raycasting(cub);
-	mlx_put_image_to_window(cub->mlx_ptr, cub->win_ptr, cub->image.mlx_img, 0, 0);
+	render_background(cub);
+	put_img_to_window(cub);
 	return (0);
+}
+
+void put_img_to_window(t_cub3d *cub3d)
+{
+	if (mlx_put_image_to_window(cub3d->mlx_ptr, cub3d->win_ptr, cub3d->image.data, 0, 0) == -1)
+		close_game(cub3d, "Failed to put image to window.\n");
 }

@@ -6,21 +6,21 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/07 16:49:52 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/07 17:37:32 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../minilibx-linux/mlx.h"
+# include "../libft/includes/ft_printf.h"
 # include "../libft/includes/get_next_line.h"
 # include "../libft/includes/libft.h"
-#include "../libft/includes/ft_printf.h"
+# include "../minilibx-linux/mlx.h"
 # include <fcntl.h>
+# include <float.h>
 # include <limits.h>
 # include <math.h>
-# include <float.h>
 # include <stdbool.h>
 # include <stdio.h>
 # include <stdlib.h>
@@ -41,7 +41,7 @@
 # define ERR_MALLOC "Error\nMemory allocation failed\n"
 # define ERR_STRDUP "Error\nFailed to duplicate string\n"
 # define ERR_FILE "Error\nFile not found\n"
-# define ERR_COLOR "Error\nInvalid color format: expect (R,G,B) in range [0, 255]\n"
+# define ERR_COLOR "Error\nInvalid color: expect (R,G,B) in range [0,255]\n"
 # define ERR_DUP_COLOR "Error\nDuplicate color\n"
 # define ERR_TEXTURE "Error\nInvalid texture path\n"
 # define ERR_PLAYER "Error\nInvalid player position\n"
@@ -102,71 +102,74 @@ typedef enum e_event_mask
 
 typedef struct s_point
 {
-	double	x;
-	double	y;
-}			t_point;
+	double		x;
+	double		y;
+}				t_point;
 
 typedef struct s_player
 {
-	t_point	dir;
-	t_point	pos;
-	t_point	mouse_pos;
-	t_point	plane; // champ de vision du player
-	double	angle;
-	double	speed;
-	int		move_up;
-	int		move_down;
-	int		move_left;
-	int		move_right;
-	int		turn_left;
-	int		turn_right;
-}			t_player;
+	t_point		dir;
+	t_point		pos;
+	t_point		mouse_pos;
+	t_point plane; // champ de vision du player
+	double		angle;
+	double		speed;
+	int			move_up;
+	int			move_down;
+	int			move_left;
+	int			move_right;
+	int			turn_left;
+	int			turn_right;
+}				t_player;
 
 typedef struct s_color
 {
-	int 	r;
-	int 	g;
-	int		b;
-} 			t_color;
+	int			r;
+	int			g;
+	int			b;
+}				t_color;
 
 typedef struct s_img
 {
-	void	*mlx_img;
-	char 	*data; // adresse brut de l'image (utile ?)
-	char	*addr; // pointeur vers les pixels (image buffer)
-	int		bpp; // bits par pixel (32)
-	int 	width; // largeur de l'image en pixels
-	int		height; // hauteur de l'image en pixels
-	int		line_size; // nb d'octets par ligne de l'image
-	int		endian; // ordre des octets (couleurs)
-}			t_img;
+	void		*mlx_img;
+	char *data;    // adresse brut de l'image (utile ?)
+	char *addr;    // pointeur vers les pixels (image buffer)
+	int bpp;       // bits par pixel (32)
+	int width;     // largeur de l'image en pixels
+	int height;    // hauteur de l'image en pixels
+	int line_size; // nb d'octets par ligne de l'image
+	int endian;    // ordre des octets (couleurs)
+}				t_img;
 
-typedef	struct s_ray
+typedef struct s_ray
 {
-	int			map_x; // case actuelle du rayon dans la grille
+	int map_x; // case actuelle du rayon dans la grille
 	int			map_y;
-	int			step_x; // direction a prendre (+1 ou -1) en X
-	int			step_y; // same en Y
-	int			wall_side; // 0 si mur X touche, 1 si mur Y
-	double		cam_x; // coordonnee "camera" pour ce rayon
-	double		step; // pas pour le sampling vertical de la texture
-	double		tex_pos; // position verticale actuelle dans la texture
-	double		ray_dir_x; // direction du rayon en X
+	int step_x;       // direction a prendre (+1 ou -1) en X
+	int step_y;       // same en Y
+	int wall_side;    // 0 si mur X touche, 1 si mur Y
+	double cam_x;     // coordonnee "camera" pour ce rayon
+	double step;      // pas pour le sampling vertical de la texture
+	double tex_pos;   // position verticale actuelle dans la texture
+	double ray_dir_x; // direction du rayon en X
 	double		ray_dir_y;
-	double		delta_dist_x; // distance entre 2 lignes de grille sur X = distance pour traverser une case en X (horizontalement)
+	double		delta_dist_x;
+	// distance entre 2 lignes de grille sur X = distance pour traverser une case en X (horizontalement)
 	double		delta_dist_y;
-	double		side_dist_x; // distance restante jusqu'a la prochaine case X
+	double side_dist_x; // distance restante jusqu'a la prochaine case X
 	double		side_dist_y;
-	double		perp_wall_dist; // distance perpendiculaire entre le joueur et le mur (pour corriger le fish-eye distortion)
-	double		wall_x; // position precise ou le rayon touche le mur
-	int			tex_x; // colonne precise de la texture choisie pour le rayon actuel
+	double		perp_wall_dist;
+	// distance perpendiculaire entre le joueur et le mur (pour corriger le fish-eye distortion)
+	double wall_x; // position precise ou le rayon touche le mur
+	int			tex_x;
+	// colonne precise de la texture choisie pour le rayon actuel
 	int			tex_y;
 }				t_ray;
 
 typedef struct s_cub3d
 {
 	char		*line;
-	int 		fd;
+	int			fd;
 	int			i;
 	int			j;
 	char		**map;
@@ -183,90 +186,89 @@ typedef struct s_cub3d
 	t_color		floor;
 	t_color		ceiling;
 	t_color		rgb;
-	t_ray		ray; // pointeur ou pas ?
-	int			map_start; // ligne a partir de laquelle commence la map
-	int			*map_width; // largeur de la map (en cases)
-	int			map_height; // hauteur de la map (en cases)
-	int			win_width; // taille de la fenetre en pixels
+	t_ray ray;      // pointeur ou pas ?
+	int map_start;  // ligne a partir de laquelle commence la map
+	int *map_width; // largeur de la map (en cases)
+	int map_height; // hauteur de la map (en cases)
+	int win_width;  // taille de la fenetre en pixels
 	int			win_height;
-	int			map_view; // 0 si on affiche la map, 1 si on affiche les textures
-	int			textture_view; // 0 si on affiche la map, 1 si on affiche les textures
-}					t_cub3d;
+	int map_view;      // 0 si on affiche la map, 1 si on affiche les textures
+	int textture_view; // 0 si on affiche la map, 1 si on affiche les textures
+}				t_cub3d;
 
 /*FUNCTIONS*/
 
-int		close_game(void *param, char *msg);
-void	free_map(t_cub3d *cub3d);
-void	free_double_array(char ***array);
+int				close_game(void *param, char *msg);
+void			free_map(t_cub3d *cub3d);
+void			free_double_array(char ***array);
 
-void	check_color(t_cub3d *cub3d, t_color *color, char *line);
+void			check_color(t_cub3d *cub3d, t_color *color, char *line);
 
-int		keypress(int keycode, t_cub3d *cub3d);
+int				keypress(int keycode, t_cub3d *cub3d);
 
-int		main(int argc, char **argv);
-void	simple_exit(char *msg);
+int				main(int argc, char **argv);
+void			simple_exit(char *msg);
 
-void	map_height_size(t_cub3d *cub3d, int fd, int n);
-void	add_map_line(t_cub3d *cub3d, char *line);
-void	init_map(t_cub3d *cub3d, char *file, int n);
-void	keep_map(t_cub3d *cub3d, char *file, char *line, int n);
+void			map_height_size(t_cub3d *cub3d, int fd, int n);
+void			add_map_line(t_cub3d *cub3d, char *line);
+void			init_map(t_cub3d *cub3d, char *file, int n);
+void			keep_map(t_cub3d *cub3d, char *file, char *line, int n);
 
-void	check_map_texture_and_color(t_cub3d *cub3d);
-int		map_texture_and_color(t_cub3d *cub3d, char *line);
-int		parse_map_first(t_cub3d *cub3d, char *file);
+void			check_map_texture_and_color(t_cub3d *cub3d);
+int				map_texture_and_color(t_cub3d *cub3d, char *line);
+int				parse_map_first(t_cub3d *cub3d, char *file);
 
-void    check_map_inside(t_cub3d *cub3d, char c, int i, int j);
-void    check_space(t_cub3d *cub3d, int i, int j);
-void    parse_map_second(t_cub3d *cub3d);
+void			check_map_inside(t_cub3d *cub3d, char c, int i, int j);
+void			check_space(t_cub3d *cub3d, int i, int j);
+void			parse_map_second(t_cub3d *cub3d);
 
-void	check_texture(t_cub3d *cub3d, char *line);
+void			check_texture(t_cub3d *cub3d, char *line);
 
-int		ft_isin(char c, char *str);
-int		is_null(char **map, int i, int j);
-int		line_is_empty(t_cub3d *cub3d, char *line);
-int		handle_coma(char *str);
+int				ft_isin(char c, char *str);
+int				is_null(char **map, int i, int j);
+int				line_is_empty(t_cub3d *cub3d, char *line);
+int				handle_coma(char *str);
 
-void	ft_free_split(char **split);
+void			ft_free_split(char **split);
 
 // INIT
 
-void	init_mlx(t_cub3d *cub3d);
-void	init_data(t_cub3d *cub3d);
-void	init_texture(t_cub3d *cub3d);
-void	init_player(t_cub3d *cub3d);
-void	init_image(t_img *img, char *line, t_cub3d cub3d);
+void			init_mlx(t_cub3d *cub3d);
+void			init_data(t_cub3d *cub3d);
+void			init_texture(t_cub3d *cub3d);
+void			init_player(t_cub3d *cub3d);
+void			init_image(t_img *img, char *line, t_cub3d cub3d);
 
 // RAYCASTING
 
-void	get_delta_distance(t_ray *ray);
-void	setup_dda_steps(t_cub3d *cub);
-void	digital_differential_analyser(t_cub3d *cub);
-void	init_raycasting(t_cub3d *cub, int x);
-void	raycasting(t_cub3d *cub);
+void			get_delta_distance(t_ray *ray);
+void			setup_dda_steps(t_cub3d *cub);
+void			digital_differential_analyser(t_cub3d *cub);
+void			init_raycasting(t_cub3d *cub, int x);
+void			raycasting(t_cub3d *cub);
 
-void    draw_pixel(t_img *img, t_point p, int color);
-void    calculate_wall_slice(t_cub3d *cub, int *line_height, int *start, int *end);
-void    calculate_tex_mapping(t_cub3d *cub, int start, int line_height);
-void    draw_wall_pixel(t_cub3d *cub, t_point pos, int texture);
-void    draw_wall_column(t_cub3d *cub, int x);
+void			draw_pixel(t_img *img, t_point p, int color);
+void			calculate_wall_slice(t_cub3d *cub, int *line_height, int *start,
+					int *end);
+void			calculate_tex_mapping(t_cub3d *cub, int start, int line_height);
+void			draw_wall_pixel(t_cub3d *cub, t_point pos, int texture);
+void			draw_wall_column(t_cub3d *cub, int x);
 
-int		create_trgb(int t, t_color color);
-void	render_background(t_cub3d *cub);
-int	render_3D_scene(void *param);
+int				create_trgb(int t, t_color color);
+void			render_background(t_cub3d *cub);
+int				render_3D_scene(void *param);
 
-int 	get_color(t_cub3d *cub, int x, int y, int i);
+int				get_color(t_cub3d *cub, int x, int y, int i);
 
 // GAMEPLAY
 
-int 	keypress(int keycode, t_cub3d *cub3d);
-int 	close_window(t_cub3d *cub3d);
-void    player_move(t_cub3d *cub, double dx, double dy, char sign);
-void    player_rotate(t_cub3d *cub, double angle);
-int 	init_game(t_cub3d *cub);
+int				keypress(int keycode, t_cub3d *cub3d);
+int				close_window(t_cub3d *cub3d);
+void			player_move(t_cub3d *cub, double dx, double dy, char sign);
+void			player_rotate(t_cub3d *cub, double angle);
+int				init_game(t_cub3d *cub);
+int				line_is_empty(t_cub3d *cub3d, char *line);
 
-int		is_line_empty(char *line);
-
-// void	handle_events(t_cub3d *cub3d);
-
+void			put_img_to_window(t_cub3d *cub3d);
 
 #endif
