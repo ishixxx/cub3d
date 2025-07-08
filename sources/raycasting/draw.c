@@ -6,14 +6,14 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:04:20 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/07/03 14:27:40 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/08 20:02:48 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
 // fonction pour dessiner un pixel de couleur dans une image memoire
-void	draw_pixel(t_img *img, t_point p, int color)
+void	draw_pixel(t_cub3d *cub, t_point p, int color)
 {
 	char	*pixel;
 	int		x;
@@ -22,10 +22,10 @@ void	draw_pixel(t_img *img, t_point p, int color)
 	x = (int)p.x;
 	y = (int)p.y;
 	 // si les coordonnees depassent la fenetre -> on ne dessine pas
-	if (x < 0 || x >= img->width || y < 0 || y >= img->height)
+	if (x < 0 || x >= cub->image.width || y < 0 || y >= cub->image.height)
 		return;
 	// calcul de l'adresse memoire precise ou est stocke le pixel
-	pixel = img->addr + (y * img->line_size + x * (img->bpp / 8));
+	pixel = cub->image.addr + (y * cub->image.line_size + x * (cub->image.bpp / 8));
 	// on fait un cast pour pouvoir modifier un pixel ->
 	// on ecrit 4 octets en une seule operation
 	*(unsigned int *)pixel = color;
@@ -35,20 +35,30 @@ void	draw_pixel(t_img *img, t_point p, int color)
 /* fonction qui calcule la hauteur du mur a dessiner en fonction de la
 distance au mur (perp_wall_dist) et trouve les coordonnees verticales de
 début et de fin pour cette colones */
-void	calculate_wall_slice(t_cub3d *cub, int *line_height, int *start, int *end)
+void calculate_wall_slice(t_cub3d *cub, int *line_height, int *start, int *end)
 {
-	// calcul de la hauteur du mur projete a l'ecran
-	*line_height = (int)cub->win_height / cub->ray.perp_wall_dist;
-	// calcul du pointde depart vertical (debut du mur)
-	*start = -(*line_height) / 2 * cub->win_height / 2;
-	// si depassement, on coupe
-	if (*start < 0)
-		*start = 0;
-	// calcul du point de fin vertical (fin du mur)
-	*end = *line_height / 2 + cub->win_height / 2;
-	if (*end >= cub->win_height)
-		*end = cub->win_height - 1;
-}
+	if (cub->ray.perp_wall_dist < 0.01)
+    cub->ray.perp_wall_dist = 0.01;
+    // calcul de la hauteur du mur projeté à l'écran
+    *line_height = (int)(cub->win_height / cub->ray.perp_wall_dist);
+
+	// Assure que la hauteur de ligne est toujours au moins 1 pixel
+    if (*line_height > cub->win_height)
+    *line_height = cub->win_height;
+
+    // calcul du point de départ vertical (début du mur)
+    *start = (cub->win_height / 2) - (*line_height / 2);
+    if (*start < 0)
+        *start = 0;
+
+    // calcul du point de fin vertical (fin du mur)
+    *end = (cub->win_height / 2) + (*line_height / 2);
+    if (*end >= cub->win_height)
+	{
+        *end = cub->win_height - 1;
+	}
+	printf("line_height = %d, start = %d, end = %d\n", *line_height, *start, *end);
+}		
 
 /* fonction qui prepare tous les parametres pour mapper correctement
 une texture murale sur une colonne verticale de l'ecran, en fonction de
@@ -85,7 +95,7 @@ void	draw_wall_pixel(t_cub3d *cub, t_point pos, int texture)
 	p.x = (int)pos.x;
 	p.y = (int)pos.y;
 	color = get_color(cub, cub->ray.tex_x, cub->ray.tex_y, texture);
-	draw_pixel(&cub->image, p, color);
+	draw_pixel(cub, p, color);
 }
 
 /* fonction qui trace une ligne verticale sur l'ecran representant un mur*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/07 17:37:32 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/08 19:54:36 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,7 +247,7 @@ void			digital_differential_analyser(t_cub3d *cub);
 void			init_raycasting(t_cub3d *cub, int x);
 void			raycasting(t_cub3d *cub);
 
-void			draw_pixel(t_img *img, t_point p, int color);
+void	draw_pixel(t_cub3d *cub, t_point p, int color);
 void			calculate_wall_slice(t_cub3d *cub, int *line_height, int *start,
 					int *end);
 void			calculate_tex_mapping(t_cub3d *cub, int start, int line_height);

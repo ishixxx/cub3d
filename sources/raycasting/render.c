@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:04:24 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/07/07 17:42:14 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/08 20:28:50 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,12 +34,12 @@ void	render_background(t_cub3d *cub)
 			p.x = (double)x;
 			p.y = (double)y;
 			if (y < cub->win_height / 2) // si on est a la moitie haute de l'ecran
-				draw_pixel(&cub->image, p, create_trgb(0, cub->ceiling)); // coder ces 2 fonctions
+				draw_pixel(cub, p, create_trgb(0, cub->ceiling)); // coder ces 2 fonctions
 			else
-				draw_pixel(&cub->image, p, create_trgb(0, cub->floor));
+				draw_pixel(cub, p, create_trgb(0, cub->floor));
 			y++;
 		}
-		++x;
+		x++;
 	}	
 }
 
@@ -47,8 +47,8 @@ int	render_3D_scene(void *param)
 {
 	t_cub3d *cub;
 	cub = (t_cub3d *)param;
-	raycasting(cub);
-	render_background(cub);
+	render_background(cub); // fonction OK
+	raycasting(cub); // pb dans raycasting
 	put_img_to_window(cub);
 	return (0);
 }

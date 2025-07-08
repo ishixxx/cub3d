@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:03:49 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/07/04 13:39:42 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/08 20:22:22 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	digital_differential_analyser(t_cub3d *cub)
 /* fonction pour initialiser le raycasting */
 void	init_raycasting(t_cub3d *cub, int x)
 {
-	(void)x; // parametre non utilise
+	(void)x;
 	// init des positions de depart
 	cub->ray.map_x = (int)cub->player.pos.x;
 	cub->ray.map_y = (int)cub->player.pos.y;
@@ -102,9 +102,31 @@ void	init_raycasting(t_cub3d *cub, int x)
 	cub->ray.ray_dir_y = cub->player.dir.y + cub->player.plane.y * cub->ray.cam_x;
 }
 
+	/*
+	void	init_raycasting(t_cub3d *cub, int x)
+{
+	double	camera_x;
+
+	// Calcul de la position du rayon dans l'espace caméra (-1 à +1)
+	camera_x = 2.0 * x / (double)(cub->win_width) - 1.0;
+
+	// Position de départ dans la map
+	cub->ray.map_x = (int)cub->player.pos.x;
+	cub->ray.map_y = (int)cub->player.pos.y;
+
+	// Direction du rayon
+	cub->ray.ray_dir_x = cub->player.dir.x + cub->player.plane.x * camera_x;
+	cub->ray.ray_dir_y = cub->player.dir.y + cub->player.plane.y * camera_x;
+
+	// Stocke la valeur pour d'autres étapes
+	cub->ray.cam_x = camera_x;
+}
+	*/
+
 /* fonction qui gere le raycasting -> simule la vision 3D +
 corrige l'effet fish-eye en calcula la distance perpendiculaire
 au mur */
+
 void	raycasting(t_cub3d *cub)
 {
 	int	x;
@@ -112,16 +134,72 @@ void	raycasting(t_cub3d *cub)
 	x = 0;
 	while (x < cub->win_width)
 	{
+		// printf("raycasting called \n");
 		init_raycasting(cub, x);
 		get_delta_distance(&cub->ray);
 		setup_dda_steps(cub);
 		digital_differential_analyser(cub);
 		// calcul de la dist perp au mur selon le cote du mur touche
 		if (cub->ray.wall_side == 0)
-			cub->ray.perp_wall_dist = ((cub->ray.side_dist_x - cub->ray.delta_dist_x));
+		{
+			// Si on touche un mur vertical (côté X)
+			cub->ray.perp_wall_dist = (cub->ray.map_x - cub->player.pos.x + (1 - cub->ray.step_x) / 2) / cub->ray.ray_dir_x;
+		}
 		else
-			cub->ray.perp_wall_dist = ((cub->ray.side_dist_y - cub->ray.delta_dist_y));
+		{
+			// Si on touche un mur horizontal (côté Y)
+			cub->ray.perp_wall_dist = (cub->ray.map_y - cub->player.pos.y + (1 - cub->ray.step_y) / 2) / cub->ray.ray_dir_y;
+		}
 		draw_wall_column(cub, x);
 		x++;
 	}
 }
+
+
+/*
+void raycasting(t_cub3d *cub)
+{
+    int x;
+
+    x = 0;
+    while (x < cub->win_width)
+    {
+        printf("Raycasting column %d/%d\n", x, cub->win_width - 1);
+
+        // Initialisation des variables du rayon pour la colonne x
+        init_raycasting(cub, x);
+        printf("init_raycasting done\n");
+
+        // Calcul des distances delta pour le DDA
+        get_delta_distance(&cub->ray);
+        printf("get_delta_distance done\n");
+
+        // Définition des pas à prendre dans le DDA
+        setup_dda_steps(cub);
+        printf("setup_dda_steps done\n");
+
+        // Exécution du DDA pour trouver la collision mur
+        digital_differential_analyser(cub);
+        printf("digital_differential_analyser done\n");
+
+        // Calcul correct de la distance perpendiculaire au mur touché
+        if (cub->ray.wall_side == 0)
+            cub->ray.perp_wall_dist = (cub->ray.map_x - cub->player.pos.x + (1 - cub->ray.step_x) / 2) / cub->ray.ray_dir_x;
+        else
+            cub->ray.perp_wall_dist = (cub->ray.map_y - cub->player.pos.y + (1 - cub->ray.step_y) / 2) / cub->ray.ray_dir_y;
+
+        // Protection contre division par zéro ou valeurs trop petites
+        if (cub->ray.perp_wall_dist < 0.01)
+            cub->ray.perp_wall_dist = 0.01;
+
+        printf("perp_wall_dist: %f\n", cub->ray.perp_wall_dist);
+
+        // Dessine la colonne murale correspondante
+        draw_wall_column(cub, x);
+        printf("draw_wall_column done for column %d\n", x);
+
+        x++;
+    }
+}
+*/
+
