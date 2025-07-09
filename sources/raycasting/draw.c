@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:04:20 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/07/09 15:01:22 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/09 18:19:01 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,26 +38,27 @@ début et de fin pour cette colones */
 void calculate_wall_slice(t_cub3d *cub, int *line_height, int *start, int *end)
 {
 	if (cub->ray.perp_wall_dist < 0.1)
-    cub->ray.perp_wall_dist = 0.1;
-    // calcul de la hauteur du mur projeté à l'écran
-    *line_height = (int)(cub->win_height / cub->ray.perp_wall_dist);
+		cub->ray.perp_wall_dist = 0.1;
 
-	// Assure que la hauteur de ligne est toujours au moins 1 pixel
-    if (*line_height > cub->win_height)
-    *line_height = cub->win_height;
+	// Hauteur projetée du mur
+	*line_height = (int)(cub->win_height / cub->ray.perp_wall_dist + 0.5); // ✅ arrondi propre
 
-    // calcul du point de départ vertical (début du mur)
-    *start = (cub->win_height / 2) - (*line_height / 2);
-    if (*start < 0)
-        *start = 0;
+	// Limite max
+	if (*line_height > cub->win_height)
+		*line_height = cub->win_height;
 
-    // calcul du point de fin vertical (fin du mur)
-    *end = (cub->win_height / 2) + (*line_height / 2);
-    if (*end >= cub->win_height)
-	{
-        *end = cub->win_height - 1;
-	}
-}		
+	// Centre l’affichage du mur verticalement
+	int half_line = *line_height / 2;
+
+	*start = cub->win_height / 2 - half_line;
+	*end = cub->win_height / 2 + half_line - 1; // ✅ corrige le off-by-one
+
+	// Clamp les bornes
+	if (*start < 0)
+		*start = 0;
+	if (*end >= cub->win_height)
+		*end = cub->win_height - 1;
+}
 
 /* fonction qui prepare tous les parametres pour mapper correctement
 une texture murale sur une colonne verticale de l'ecran, en fonction de
@@ -114,11 +115,11 @@ void 	draw_wall_column(t_cub3d *cub, int x)
 	calculate_tex_mapping(cub, start, line_height);
 	// boucle de dessin pixel par pixel de la colonne verticale
 	y = start;
-	while (y < end)
+	while (y <= end)
 	{
 		// calculer la coordonee Y dans la texture
 		// cub->ray.tex_y = (int)cub->ray.tex_pos & (64 - 1);
-		cub->ray.tex_y = (int)(cub->ray.tex_pos) % 64; // remplacer
+		cub->ray.tex_y = ((int)(cub->ray.tex_pos) % 64); // remplacer
 		// avancer dans la texture
 		cub->ray.tex_pos += cub->ray.step;
 		// pos ecran a dessiner
