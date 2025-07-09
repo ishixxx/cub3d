@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:03:49 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/07/08 20:22:22 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/09 15:03:49 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	get_delta_distance(t_ray *ray)
 	// distance qu'un rayon doit parcourir pour passer d'une ligne verticale a l'autre (changer de case en X)
 		ray->delta_dist_x = fabs(1 / ray->ray_dir_x);
 	if (ray->ray_dir_y == 0)
-		ray->delta_dist_y = INT_MAX;
+		ray->delta_dist_y = DBL_MAX;
 	else
 	// distance qu'un rayon doit parcourir pour passer d'une ligne horizontale a l'autre (changer de case en Y)
 		ray->delta_dist_y = fabs(1 / ray->ray_dir_y);
@@ -91,13 +91,12 @@ void	digital_differential_analyser(t_cub3d *cub)
 /* fonction pour initialiser le raycasting */
 void	init_raycasting(t_cub3d *cub, int x)
 {
-	(void)x;
 	// init des positions de depart
 	cub->ray.map_x = (int)cub->player.pos.x;
 	cub->ray.map_y = (int)cub->player.pos.y;
-	// cam_x -> position horizontale de la camera
-	cub->ray.cam_x = 2.0 * (double)cub->win_width - 1.0;
-	// calcul de la direction du rayon (+ direction du joueur + camera)
+	// calcul correct de la position horizontale de la caméra
+	cub->ray.cam_x = 2.0 * x / (double)cub->win_width - 1.0;
+	// calcul de la direction du rayon
 	cub->ray.ray_dir_x = cub->player.dir.x + cub->player.plane.x * cub->ray.cam_x;
 	cub->ray.ray_dir_y = cub->player.dir.y + cub->player.plane.y * cub->ray.cam_x;
 }
@@ -126,7 +125,6 @@ void	init_raycasting(t_cub3d *cub, int x)
 /* fonction qui gere le raycasting -> simule la vision 3D +
 corrige l'effet fish-eye en calcula la distance perpendiculaire
 au mur */
-
 void	raycasting(t_cub3d *cub)
 {
 	int	x;
@@ -154,7 +152,6 @@ void	raycasting(t_cub3d *cub)
 		x++;
 	}
 }
-
 
 /*
 void raycasting(t_cub3d *cub)
