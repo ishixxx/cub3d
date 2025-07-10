@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/10 18:33:16 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/10 19:14:58 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -239,7 +239,6 @@ int				is_null(char **map, int i, int j);
 int				line_is_empty(t_cub3d *cub3d, char *line);
 int				handle_coma(char *str);
 
-void			ft_free_split(char **split);
 
 // INIT
 

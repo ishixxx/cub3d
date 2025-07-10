@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:38:27 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/10 18:40:26 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/10 18:55:30 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	close_game(void *param, char *msg)
 		cub3d->mlx_ptr = NULL;
 	}
 	free_map(cub3d);
+	free_double_array(&cub3d->map);
 	exit(EXIT_FAILURE);
 	return (0);
 }

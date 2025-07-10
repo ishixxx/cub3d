@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 14:44:54 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/07 15:37:15 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/10 18:43:42 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	check_map_texture_and_color(t_cub3d *cub3d)
 		close_game(cub3d, ERR_NO_CEILING);
 	if (!cub3d->map || !cub3d->map[0])
 		close_game(cub3d, ERR_NO_MAP);
-	printf("All textures, colors, and map are OK\n");
+	ft_printf("All textures, colors, and map are OK\n");
 	parse_map_second(cub3d);
 }
 
@@ -59,7 +59,6 @@ int	parse_map_first(t_cub3d *cub3d, char *file)
 	if (cub3d->fd == -1)
 		close_game(cub3d, ERR_FILE);
 	cub3d->line = get_next_line(cub3d->fd);
-	printf("bug avant parse map ?\n");
 	while (cub3d->line)
 	{
 		n++;

@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 15:29:20 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/10 18:28:04 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/10 19:22:01 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	keypress(int keycode, t_cub3d *cub3d)
 
 int	close_window(t_cub3d *cub3d)
 {
+	mlx_destroy_display(cub3d->mlx_ptr);
 	mlx_destroy_window(cub3d->mlx_ptr, cub3d->win_ptr);
 	free_map(cub3d);
 	exit(0);
