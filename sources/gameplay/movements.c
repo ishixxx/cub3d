@@ -15,7 +15,6 @@
 
 #include "../../includes/cub3d.h"
 
-
 void	player_move(t_cub3d *cub, double dx, double dy, char sign)
 {
 	// prochaine position potentielle du joueur
@@ -48,8 +47,8 @@ void	player_move(t_cub3d *cub, double dx, double dy, char sign)
 
 void	player_rotate(t_cub3d *cub, double angle)
 {
-	double old_dir_x;
-	double old_plane_x;
+	double	old_dir_x;
+	double	old_plane_x;
 
 	// rotation du vecteur direction (ou le joueur regarde)
 	old_dir_x = cub->player.dir.x;

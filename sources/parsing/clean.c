@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:38:27 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/07 16:28:41 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/10 18:40:26 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void	free_double_array(char ***array)
 	*array = NULL;
 }
 
-void	ft_free_split(char **split)
+void	ft_(char **split)
 {
 	int	i;
 

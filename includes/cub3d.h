@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/10 17:27:32 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/10 18:33:16 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -229,7 +229,8 @@ int				parse_map_first(t_cub3d *cub3d, char *file);
 void			check_map_inside(t_cub3d *cub3d, char c, int i, int j);
 void			check_space(t_cub3d *cub3d, int i, int j);
 void			parse_map_second(t_cub3d *cub3d);
-void			set_direction(t_cub3d *cub3d, char c);
+void			set_direction1(t_cub3d *cub3d, char c);
+void			set_direction2(t_cub3d *cub3d, char c);
 
 void			check_texture(t_cub3d *cub3d, char *line);
 
@@ -265,7 +266,7 @@ void			draw_wall_column(t_cub3d *cub, int x);
 
 int				create_trgb(int t, t_color color);
 void			render_background(t_cub3d *cub);
-int				render_3D_scene(void *param);
+int				render_scene(void *param);
 
 int				get_color(t_cub3d *cub, int x, int y, int i);
 

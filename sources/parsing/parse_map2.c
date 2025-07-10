@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 19:20:49 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/10 17:12:16 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/10 18:37:46 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,41 +20,58 @@ void	check_map_inside(t_cub3d *cub3d, char c, int i, int j)
 			close_game(cub3d, ERR_DUP_PLAYER);
 		cub3d->player.pos.x = j;
 		cub3d->player.pos.y = i;
-		set_direction(cub3d, c);
+		set_direction1(cub3d, c);
+		set_direction2(cub3d, c);
 	}
 	else if (!ft_isin(c, " 01"))
 		close_game(cub3d, ERR_MAP);
 }
 
-void	set_direction(t_cub3d *cub3d, char c)
+void	set_direction1(t_cub3d *cub3d, char c)
 {
 	if (c == 'N')
 	{
-		cub3d->player.dir.x = 0.0;
-		cub3d->player.dir.y = -1.0;
 		cub3d->player.plane.x = 0.66;
 		cub3d->player.plane.y = 0.0;
 	}
 	else if (c == 'S')
 	{
-		cub3d->player.dir.x = 0.0;
-		cub3d->player.dir.y = 1.0;
 		cub3d->player.plane.x = -0.66;
 		cub3d->player.plane.y = 0.0;
 	}
 	else if (c == 'E')
 	{
-		cub3d->player.dir.x = 1.0;
-		cub3d->player.dir.y = 0.0;
 		cub3d->player.plane.x = 0.0;
 		cub3d->player.plane.y = -0.66;
 	}
 	else if (c == 'W')
 	{
-		cub3d->player.dir.x = -1.0;
-		cub3d->player.dir.y = 0.0;
 		cub3d->player.plane.x = 0.0;
 		cub3d->player.plane.y = 0.66;
+	}
+}
+
+void	set_direction2(t_cub3d *cub3d, char c)
+{
+	if (c == 'N')
+	{
+		cub3d->player.dir.x = 0.0;
+		cub3d->player.dir.y = -1.0;
+	}
+	else if (c == 'S')
+	{
+		cub3d->player.dir.x = 0.0;
+		cub3d->player.dir.y = 1.0;
+	}
+	else if (c == 'E')
+	{
+		cub3d->player.dir.x = 1.0;
+		cub3d->player.dir.y = 0.0;
+	}
+	else if (c == 'W')
+	{
+		cub3d->player.dir.x = -1.0;
+		cub3d->player.dir.y = 0.0;
 	}
 }
 
@@ -66,7 +83,7 @@ void	check_space(t_cub3d *cub3d, int i, int j)
 			&& cub3d->map[i + 1][j] != ' ' && cub3d->map[i + 1][j] != '1')
 			close_game(cub3d, ERR_CLOSE_MAP);
 		if (i > 0 && !is_null(cub3d->map, i - 1, j) && cub3d->map[i
-			- 1][j] != ' ' && cub3d->map[i - 1][j] != '1')
+				- 1][j] != ' ' && cub3d->map[i - 1][j] != '1')
 			close_game(cub3d, ERR_CLOSE_MAP);
 		if (j > 0 && !is_null(cub3d->map, i, j - 1) && cub3d->map[i][j
 			- 1] != ' ' && cub3d->map[i][j - 1] != '1')
@@ -90,7 +107,7 @@ void	parse_map_second(t_cub3d *cub)
 				check_space(cub, cub->i, cub->j);
 			if ((cub->i == 0 || cub->i == cub->map_height - 1)
 				&& (cub->map[cub->i][cub->j] != '1'
-					&& cub->map[cub->i][cub->j] != ' '))
+				&& cub->map[cub->i][cub->j] != ' '))
 				close_game(cub, ERR_CLOSE_MAP);
 			if ((cub->j == 0 || !cub->map[cub->i][cub->j + 1])
 				&& (cub->map[cub->i][cub->j] != '1'

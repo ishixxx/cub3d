@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 17:44:31 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/07/10 16:54:10 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/10 18:22:11 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,43 +75,34 @@ void	digital_differential_analyser(t_cub3d *cub)
 	iterations = 0;
 	while (wall == 0 && iterations < max_iterations)
 	{
-		// Vérification des limites Y
 		if (cub->ray.map_y < 0 || cub->ray.map_y >= cub->map_height)
 		{
 			wall = 1; // Traiter les bords comme des murs
 			break ;
 		}
-		// Obtenir la largeur de la ligne actuelle
 		current_line_width = cub->map_width[cub->ray.map_y];
-		// Vérification des limites X pour cette ligne
 		if (cub->ray.map_x < 0 || cub->ray.map_x >= current_line_width)
 		{
 			wall = 1; // Traiter les bords comme des murs
 			break ;
 		}
-		// si le mur vertical est + proche
 		if (cub->ray.side_dist_x < cub->ray.side_dist_y)
 		{
-			// traversee verticale
 			cub->ray.side_dist_x += cub->ray.delta_dist_x;
 			cub->ray.map_x += cub->ray.step_x;
-			// on touche un mur vertical
 			cub->ray.wall_side = 0;
 		}
 		else
 		{
 			cub->ray.side_dist_y += cub->ray.delta_dist_y;
 			cub->ray.map_y += cub->ray.step_y;
-			// on touche un mur horizontal
 			cub->ray.wall_side = 1;
 		}
-		// Vérifier les limites avant l'accès au tableau
 		if (cub->ray.map_y >= 0 && cub->ray.map_y < cub->map_height)
 		{
 			current_line_width = cub->map_width[cub->ray.map_y];
 			if (cub->ray.map_x >= 0 && cub->ray.map_x < current_line_width)
 			{
-				// check si il y a un mur-> si 1 le point d'impact du rayon est trouve-> stop la boucle
 				if (cub->map[cub->ray.map_y][cub->ray.map_x] == '1')
 					wall = 1;
 			}
@@ -142,24 +133,6 @@ void	init_raycasting(t_cub3d *cub, int x)
 	cub->ray.ray_dir_y = cub->player.dir.y + cub->player.plane.y
 		* cub->ray.cam_x;
 }
-
-/*
-void	init_raycasting(t_cub3d *cub, int x)
-{
-double	camera_x;
-
-// Calcul de la position du rayon dans l'espace caméra (-1 à +1)
-camera_x = 2.0 * x / (double)(cub->win_width) - 1.0;
-// Position de départ dans la map
-cub->ray.map_x = (int)cub->player.pos.x;
-cub->ray.map_y = (int)cub->player.pos.y;
-// Direction du rayon
-cub->ray.ray_dir_x = cub->player.dir.x + cub->player.plane.x * camera_x;
-cub->ray.ray_dir_y = cub->player.dir.y + cub->player.plane.y * camera_x;
-// Stocke la valeur pour d'autres étapes
-cub->ray.cam_x = camera_x;
-}
-*/
 
 /* fonction qui gere le raycasting -> simule la vision 3D +
 corrige l'effet fish-eye en calcula la distance perpendiculaire
@@ -193,43 +166,3 @@ void	raycasting(t_cub3d *cub)
 		x++;
 	}
 }
-
-/*
-void	raycasting(t_cub3d *cub)
-{
-	int	x;
-
-	x = 0;
-	while (x < cub->win_width)
-	{
-		printf("Raycasting column %d/%d\n", x, cub->win_width - 1);
-		// Initialisation des variables du rayon pour la colonne x
-		init_raycasting(cub, x);
-		printf("init_raycasting done\n");
-		// Calcul des distances delta pour le DDA
-		get_delta_distance(&cub->ray);
-		printf("get_delta_distance done\n");
-		// Définition des pas à prendre dans le DDA
-		setup_dda_steps(cub);
-		printf("setup_dda_steps done\n");
-		// Exécution du DDA pour trouver la collision mur
-		digital_differential_analyser(cub);
-		printf("digital_differential_analyser done\n");
-		// Calcul correct de la distance perpendiculaire au mur touché
-		if (cub->ray.wall_side == 0)
-			cub->ray.perp_wall_dist = (cub->ray.map_x - cub->player.pos.x + (1
-						- cub->ray.step_x) / 2) / cub->ray.ray_dir_x;
-		else
-			cub->ray.perp_wall_dist = (cub->ray.map_y - cub->player.pos.y + (1
-						- cub->ray.step_y) / 2) / cub->ray.ray_dir_y;
-		// Protection contre division par zéro ou valeurs trop petites
-		if (cub->ray.perp_wall_dist < 0.01)
-			cub->ray.perp_wall_dist = 0.01;
-		printf("perp_wall_dist: %f\n", cub->ray.perp_wall_dist);
-		// Dessine la colonne murale correspondante
-		draw_wall_column(cub, x);
-		printf("draw_wall_column done for column %d\n", x);
-		x++;
-	}
-}
-*/
