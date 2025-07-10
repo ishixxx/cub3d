@@ -17,10 +17,10 @@
 int	keypress(int keycode, t_cub3d *cub3d)
 {
 	double	move_speed;
+	double	rotation_speed;
 
-	// double  rotation_speed;
 	move_speed = 0.1;
-	// rotation_speed = 0.05;
+	rotation_speed = 0.05;
 	if (keycode == ESC) // fermer le jeu
 		close_window(cub3d);
 	else if (keycode == W_KEY || keycode == UP_ARROW) // avancer
@@ -29,12 +29,16 @@ int	keypress(int keycode, t_cub3d *cub3d)
 	else if (keycode == S_KEY || keycode == DOWN_ARROW) // reculer
 		player_move(cub3d, cub3d->player.dir.x * move_speed, cub3d->player.dir.y
 			* move_speed, '-');
-	else if (keycode == D_KEY || keycode == RIGHT_ARROW) // aller a droite
+	else if (keycode == D_KEY) // mouvement latéral droite
 		player_move(cub3d, cub3d->player.dir.y * move_speed, cub3d->player.dir.x
 			* move_speed, '+');
-	else if (keycode == A_KEY || keycode == LEFT_ARROW) // aller a gauche
+	else if (keycode == A_KEY) // mouvement latéral gauche
 		player_move(cub3d, cub3d->player.dir.y * move_speed, cub3d->player.dir.x
 			* move_speed, '-');
+	else if (keycode == RIGHT_ARROW) // tourner à droite
+		player_rotate(cub3d, rotation_speed);
+	else if (keycode == LEFT_ARROW) // tourner à gauche
+		player_rotate(cub3d, -rotation_speed);
 	return (0);
 }
 

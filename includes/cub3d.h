@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/08 19:54:36 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/10 17:27:32 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,14 @@
 # define RIGHT 65363
 # define UP 65362
 # define DOWN 65364
+
+#ifndef TEXTURE_WIDTH
+# define TEXTURE_WIDTH 64
+#endif
+
+#ifndef TEXTURE_HEIGHT
+# define TEXTURE_HEIGHT 64
+#endif
 
 typedef enum e_keys
 {
@@ -221,6 +229,7 @@ int				parse_map_first(t_cub3d *cub3d, char *file);
 void			check_map_inside(t_cub3d *cub3d, char c, int i, int j);
 void			check_space(t_cub3d *cub3d, int i, int j);
 void			parse_map_second(t_cub3d *cub3d);
+void			set_direction(t_cub3d *cub3d, char c);
 
 void			check_texture(t_cub3d *cub3d, char *line);
 
@@ -247,7 +256,7 @@ void			digital_differential_analyser(t_cub3d *cub);
 void			init_raycasting(t_cub3d *cub, int x);
 void			raycasting(t_cub3d *cub);
 
-void	draw_pixel(t_cub3d *cub, t_point p, int color);
+void			draw_pixel(t_cub3d *cub, t_point p, int color);
 void			calculate_wall_slice(t_cub3d *cub, int *line_height, int *start,
 					int *end);
 void			calculate_tex_mapping(t_cub3d *cub, int start, int line_height);

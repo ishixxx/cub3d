@@ -2,11 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   movements.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
+/*                                                    +:+ +:+
 	+:+     */
-/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+      
+/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+
 	+#+        */
-/*                                                +#+#+#+#+#+  
+/*                                                +#+#+#+#+#+
 	+#+           */
 /*   Created: 2025/07/02 20:04:21 by vgalmich          #+#    #+#             */
 /*   Updated: 2025/07/02 20:04:21 by vgalmich         ###   ########.fr       */
@@ -36,11 +36,13 @@ void	player_move(t_cub3d *cub, double dx, double dy, char sign)
 	}
 	// check des collision (mur)
 	// on check la case X ou le joueur veut aller
-	// si elle contient 0 alors on maj pos_x
+	// si elle contient 0 ou un caractère de direction alors on maj pos_x
 	// on separe X et Y pour eviter que le player glisse dans un mur en diagonale
-	if (cub->map[(int)(cub->player.pos.y)][(int)(next_x)] == '0')
+	if (cub->map[(int)(cub->player.pos.y)][(int)(next_x)] == '0'
+		|| ft_isin(cub->map[(int)(cub->player.pos.y)][(int)(next_x)], "NSEW"))
 		cub->player.pos.x = next_x;
-	if (cub->map[(int)(next_y)][(int)(cub->player.pos.x)] == '0')
+	if (cub->map[(int)(next_y)][(int)(cub->player.pos.x)] == '0'
+		|| ft_isin(cub->map[(int)(next_y)][(int)(cub->player.pos.x)], "NSEW"))
 		cub->player.pos.y = next_y;
 }
 
