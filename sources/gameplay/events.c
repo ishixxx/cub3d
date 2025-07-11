@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 15:29:20 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/11 15:26:17 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/11 16:48:00 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,9 @@ int	keypress(int keycode, t_cub3d *cub3d)
 		player_move(cub3d, cub3d->player.dir.x * move_speed, cub3d->player.dir.y
 			* move_speed, '-');
 	else if (keycode == D_KEY) // mouvement latéral droite
-		player_move(cub3d, cub3d->player.dir.y * move_speed, cub3d->player.dir.x
-			* move_speed, '-');
+		player_move(cub3d, -cub3d->player.dir.y * move_speed, cub3d->player.dir.x * move_speed, '+');
 	else if (keycode == A_KEY) // mouvement latéral gauche
-		player_move(cub3d, cub3d->player.dir.y * move_speed, cub3d->player.dir.x
-			* move_speed, '+');
+		player_move(cub3d, cub3d->player.dir.y * move_speed, -cub3d->player.dir.x * move_speed, '+');
 	else if (keycode == RIGHT_ARROW) // tourner à droite
 		player_rotate(cub3d, rotation_speed);
 	else if (keycode == LEFT_ARROW) // tourner à gauche
