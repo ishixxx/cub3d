@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 17:44:31 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/07/10 18:22:11 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/11 17:28:17 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,57 +63,25 @@ void	setup_dda_steps(t_cub3d *cub)
 
 /* fonction qui lancer la boucle DDA -> traverse la grille case par case,
 jusqu'a rencontrer un mur */
-void	digital_differential_analyser(t_cub3d *cub)
+void
+digital_differential_analyser(t_cub3d *cub)
 {
-	int	wall;
-	int	max_iterations;
-	int	iterations;
-	int	current_line_width;
+	int wall;
+	int max_iterations;
+	int iterations;
 
 	wall = 0;
 	max_iterations = cub->win_width + cub->win_height; // Limite de sécurité
 	iterations = 0;
 	while (wall == 0 && iterations < max_iterations)
 	{
-		if (cub->ray.map_y < 0 || cub->ray.map_y >= cub->map_height)
-		{
-			wall = 1; // Traiter les bords comme des murs
-			break ;
-		}
-		current_line_width = cub->map_width[cub->ray.map_y];
-		if (cub->ray.map_x < 0 || cub->ray.map_x >= current_line_width)
-		{
-			wall = 1; // Traiter les bords comme des murs
-			break ;
-		}
-		if (cub->ray.side_dist_x < cub->ray.side_dist_y)
-		{
-			cub->ray.side_dist_x += cub->ray.delta_dist_x;
-			cub->ray.map_x += cub->ray.step_x;
-			cub->ray.wall_side = 0;
-		}
+		if (is_out_of_bounds(cub))
+			wall = 1;
 		else
 		{
-			cub->ray.side_dist_y += cub->ray.delta_dist_y;
-			cub->ray.map_y += cub->ray.step_y;
-			cub->ray.wall_side = 1;
-		}
-		if (cub->ray.map_y >= 0 && cub->ray.map_y < cub->map_height)
-		{
-			current_line_width = cub->map_width[cub->ray.map_y];
-			if (cub->ray.map_x >= 0 && cub->ray.map_x < current_line_width)
-			{
-				if (cub->map[cub->ray.map_y][cub->ray.map_x] == '1')
-					wall = 1;
-			}
-			else
-			{
-				wall = 1; // Hors limites = mur
-			}
-		}
-		else
-		{
-			wall = 1; // Hors limites = mur
+			advance_ray(cub);
+			if (!is_out_of_bounds(cub) && is_wall(cub))
+				wall = 1;
 		}
 		iterations++;
 	}

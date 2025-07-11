@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/11 17:17:18 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/11 17:28:10 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -269,6 +269,9 @@ int				render_scene(void *param);
 
 int				get_color(t_cub3d *cub, int x, int y, int i);
 int 			get_tex_id(t_cub3d *cub);
+int 			is_out_of_bounds(t_cub3d *cub);
+void			advance_ray(t_cub3d *cub);
+int				is_wall(t_cub3d *cub);
 
 // GAMEPLAY
 

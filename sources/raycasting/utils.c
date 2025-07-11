@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 15:48:16 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/07/11 17:17:04 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/11 17:28:21 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,36 @@ int get_tex_id(t_cub3d *cub)
 	if (cub->ray.wall_side == 0 && cub->ray.ray_dir_x < 0)
 		return (WEST);
 	return (EAST);
+}
+
+int is_out_of_bounds(t_cub3d *cub)
+{
+	if (cub->ray.map_y < 0 || cub->ray.map_y >= cub->map_height)
+		return (1);
+	if (cub->ray.map_x < 0 || cub->ray.map_x >= cub->map_width[cub->ray.map_y])
+		return (1);
+	return (0);
+}
+
+void advance_ray(t_cub3d *cub)
+{
+	if (cub->ray.side_dist_x < cub->ray.side_dist_y)
+	{
+		cub->ray.side_dist_x += cub->ray.delta_dist_x;
+		cub->ray.map_x += cub->ray.step_x;
+		cub->ray.wall_side = 0;
+	}
+	else
+	{
+		cub->ray.side_dist_y += cub->ray.delta_dist_y;
+		cub->ray.map_y += cub->ray.step_y;
+		cub->ray.wall_side = 1;
+	}
+}
+
+int is_wall(t_cub3d *cub)
+{
+	if (cub->map[cub->ray.map_y][cub->ray.map_x] == '1')
+		return (1);
+	return (0);
 }
