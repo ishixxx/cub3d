@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:04:20 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/07/10 18:23:11 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/11 17:22:31 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,42 +97,21 @@ void	draw_wall_pixel(t_cub3d *cub, t_point pos, int texture)
 /* fonction qui trace une ligne verticale sur l'ecran representant un mur*/
 void	draw_wall_column(t_cub3d *cub, int x)
 {
-	int line_height;
-	int start;
-	int end;
-	int y;
-	t_point pixel_pos;
-	int tex_id;
-	// calculer la hauteur et les limites de la colonne
-	// printf("perp_wall_dist: %.3f\n", cub->ray.perp_wall_dist);
+	int	line_height;
+	int	start;
+	int	end;
+	int	y;
+
 	calculate_wall_slice(cub, &line_height, &start, &end);
-	// printf("line_height: %d, start: %d, end: %d\n", line_height, start, end);
-	// calculer les coordonnees de texture
 	calculate_tex_mapping(cub, start, line_height);
-	// boucle de dessin pixel par pixel de la colonne verticale
 	y = start;
 	while (y <= end)
 	{
-		// calculer la coordonee Y dans la texture
-		// cub->ray.tex_y = (int)cub->ray.tex_pos & (64 - 1);
 		cub->ray.tex_y = (int)cub->ray.tex_pos % TEXTURE_HEIGHT;
 		if (cub->ray.tex_y < 0)
 			cub->ray.tex_y += TEXTURE_HEIGHT;
-		// avancer dans la texture
 		cub->ray.tex_pos += cub->ray.step;
-		// pos ecran a dessiner
-		pixel_pos.x = x;
-		pixel_pos.y = y;
-		// determiner la bonne tex selon le cote du mur touche
-		if (cub->ray.wall_side == 1 && cub->ray.ray_dir_y < 0)
-			tex_id = NORTH;
-		else if (cub->ray.wall_side == 1 && cub->ray.ray_dir_y > 0)
-			tex_id = SOUTH;
-		else if (cub->ray.wall_side == 0 && cub->ray.ray_dir_x < 0)
-			tex_id = WEST;
-		else if (cub->ray.wall_side == 0 && cub->ray.ray_dir_x > 0)
-			tex_id = EAST;
-		draw_wall_pixel(cub, pixel_pos, tex_id);
+		draw_wall_pixel(cub, (t_point){x, y}, get_tex_id(cub));
 		y++;
 	}
 }

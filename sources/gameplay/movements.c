@@ -17,17 +17,14 @@
 
 void	player_move(t_cub3d *cub, double dx, double dy, char sign)
 {
-	// prochaine position potentielle du joueur
 	double next_x;
 	double next_y;
 
-	// avancer/aller a droite
 	if (sign == '+')
 	{
 		next_x = cub->player.pos.x + dx;
 		next_y = cub->player.pos.y + dy;
 	}
-	// reculer/aller a gauche
 	else
 	{
 		next_x = cub->player.pos.x - dx;

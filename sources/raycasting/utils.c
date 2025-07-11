@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 15:48:16 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/07/10 18:27:14 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/11 17:17:04 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,15 @@ int	get_color(t_cub3d *cub, int x, int y, int i)
 	offset = y * tex->line_size + x * bytes_per_pixel;
 	pixel_address = tex->addr + offset;
 	return (*(unsigned int *)pixel_address);
+}
+
+int get_tex_id(t_cub3d *cub)
+{
+	if (cub->ray.wall_side == 1 && cub->ray.ray_dir_y < 0)
+		return (NORTH);
+	if (cub->ray.wall_side == 1 && cub->ray.ray_dir_y > 0)
+		return (SOUTH);
+	if (cub->ray.wall_side == 0 && cub->ray.ray_dir_x < 0)
+		return (WEST);
+	return (EAST);
 }
