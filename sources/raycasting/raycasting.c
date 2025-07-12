@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 17:44:31 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/07/11 17:28:17 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/12 12:49:01 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,7 @@ void	setup_dda_steps(t_cub3d *cub)
 
 /* fonction qui lancer la boucle DDA -> traverse la grille case par case,
 jusqu'a rencontrer un mur */
-void
-digital_differential_analyser(t_cub3d *cub)
+void	digital_differential_analyser(t_cub3d *cub)
 {
 	int wall;
 	int max_iterations;
@@ -73,18 +72,20 @@ digital_differential_analyser(t_cub3d *cub)
 	wall = 0;
 	max_iterations = cub->win_width + cub->win_height; // Limite de sécurité
 	iterations = 0;
+	cub->ray.wall_side = -1; // Initialisation explicite
 	while (wall == 0 && iterations < max_iterations)
 	{
-		if (is_out_of_bounds(cub))
+		if (is_out_of_bounds(cub) || is_wall(cub))
 			wall = 1;
 		else
 		{
 			advance_ray(cub);
-			if (!is_out_of_bounds(cub) && is_wall(cub))
-				wall = 1;
 		}
 		iterations++;
 	}
+	// Si le mur est touché dès la première case, on considère un mur vertical par défaut
+	if (cub->ray.wall_side == -1)
+		cub->ray.wall_side = 0;
 }
 
 /* fonction pour initialiser le raycasting */

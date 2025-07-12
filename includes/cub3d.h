@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/11 17:28:10 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/12 13:03:41 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,9 @@
 # define RIGHT 65363
 # define UP 65362
 # define DOWN 65364
+
+// Réduit la marge de collision pour un déplacement plus fluide
+#define COLLISION_RADIUS 0.11
 
 #ifndef TEXTURE_WIDTH
 # define TEXTURE_WIDTH 64
@@ -277,6 +280,7 @@ int				is_wall(t_cub3d *cub);
 
 int				keypress(int keycode, t_cub3d *cub3d);
 int				close_window(t_cub3d *cub3d);
+int				is_position_free(t_cub3d *cub, double x, double y);
 void			player_move(t_cub3d *cub, double dx, double dy, char sign);
 void			player_rotate(t_cub3d *cub, double angle);
 int				init_game(t_cub3d *cub);
