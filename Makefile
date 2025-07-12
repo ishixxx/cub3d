@@ -16,8 +16,10 @@ COL4 			= \033[38;5;240m  # Gris foncé
 ################################################################################
 
 NAME =			cub3d
+BONUS =			cub3d_bonus
+
 CC =			cc
-CFLAGS =		-Wall -Wextra -Werror
+CFLAGS =		-Wall -Wextra -Werror -g3
 AR =			ar rcs
 RM =			rm -f
 
@@ -26,8 +28,11 @@ RM =			rm -f
 ################################################################################
 
 # Directory paths
-SRCS_DIR =		./sources/
-OBJS_DIR =		./objets/
+SRCS_DIR =				./sources/
+OBJS_DIR =				./objets/
+SRCS_DIR_BONUS =		./sources_bonus/
+OBJS_DIR_BONUS =		./objets_bonus/
+
 MYLIB_DIR =		./libft/
 MLX_DIR =		./minilibx-linux/
 INCLUDES_DIR =	./includes/ ./libft/includes/
@@ -54,17 +59,35 @@ SRCS =			$(SRCS_DIR)/parsing/clean.c \
 				$(SRCS_DIR)/gameplay/init_game.c \
 				$(SRCS_DIR)/gameplay/movements.c \
 
-
 OBJS =			$(patsubst $(SRCS_DIR)%, $(OBJS_DIR)%, $(SRCS:.c=.o))
+
+SRCS_BONUS =	$(SRCS_DIR_BONUS)/parsing/clean.c \
+				$(SRCS_DIR_BONUS)/parsing/color.c \
+				$(SRCS_DIR_BONUS)/main.c \
+				$(SRCS_DIR_BONUS)/parsing/malloc_map.c \
+				$(SRCS_DIR_BONUS)/parsing/textures.c \
+				$(SRCS_DIR_BONUS)/parsing/utils.c \
+				$(SRCS_DIR_BONUS)/parsing/parse_map1.c \
+				$(SRCS_DIR_BONUS)/parsing/parse_map2.c \
+				$(SRCS_DIR_BONUS)/raycasting/draw.c \
+				$(SRCS_DIR_BONUS)/raycasting/raycasting.c \
+				$(SRCS_DIR_BONUS)/raycasting/render.c \
+				$(SRCS_DIR_BONUS)/raycasting/utils.c \
+				$(SRCS_DIR_BONUS)/initialisation.c \
+				$(SRCS_DIR_BONUS)/gameplay/events.c \
+				$(SRCS_DIR_BONUS)/gameplay/init_game.c \
+				$(SRCS_DIR_BONUS)/gameplay/movements.c \
+
+OBJS_BONUS =	$(patsubst $(SRCS_DIR_BONUS)%, $(OBJS_DIR_BONUS)%, $(SRCS_BONUS:.c=.o))
 
 ################################################################################
 #                                     RULES                                    #
 ################################################################################
 
-# Rule for compiling source files into object files
-$(OBJS_DIR)%.o:		$(SRCS_DIR)%.c
-					@mkdir -p $(dir $@)
-					@$(CC) $(CFLAGS) -c $< -o $@ $(foreach dir,$(INCLUDES_DIR),-I$(dir))
+# Default rule
+all:			$(NAME)
+# Bonus rule
+bonus:			$(BONUS)
 
 # Rule for creating the executionutable
 $(NAME):	$(OBJS)
@@ -94,8 +117,43 @@ $(NAME):	$(OBJS)
 			@echo "$(COL3)              ⠀⠸⡇⠁⠀⠀⢏⠉⠀⠀⠙⠛⠛⠛⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⢈⡏⠀⠀⠀"
 			@echo "$(COL3)              ⠀⠀⠯⣀⣈⣀⣈⣐⣲⣄⣄⣤⣴⣆⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣈⣛⡧⠀$(DEFAULT)"
 
-# Default rule
-all:			$(NAME)
+# Rule for creating the bonus executionutable
+$(BONUS):	$(OBJS_BONUS)
+			@make all --no-print-directory -C $(MYLIB_DIR)
+			@echo "$(WHITE)Building $(YELLOW)mlx $(CYAN)library $(DEFAULT)..."
+			@make all --no-print-directory -C $(MLX_DIR)
+			@echo "$(GREEN)Done $(DEFAULT)✔️"
+			@echo "$(WHITE)Linking $(YELLOW)$(BONUS) $(CYAN)executable $(DEFAULT)..."
+			@$(CC) $(CFLAGS) $(OBJS_BONUS) $(MYLIB) $(MLX) -o $(BONUS)
+			@echo "$(GREEN)Done $(DEFAULT)✔️"
+			@echo "$(COL1)  ██████╗██╗   ██╗██████╗ ██████╗ ██████╗       ██████╗  ██████╗ ███╗   ██╗██╗   ██╗███████╗"
+			@echo "$(COL1) ██╔════╝██║   ██║██╔══██╗╚════██╗██╔══██╗      ██╔══██╗██╔═══██╗████╗  ██║██║   ██║██╔════╝"
+			@echo "$(COL2) ██║     ██║   ██║██████╔╝ █████╔╝██║  ██║█████╗██████╔╝██║   ██║██╔██╗ ██║██║   ██║███████╗"
+			@echo "$(COL3) ██║     ██║   ██║██╔══██╗ ╚═══██╗██║  ██║╚════╝██╔══██╗██║   ██║██║╚██╗██║██║   ██║╚════██║"
+			@echo "$(COL3) ╚██████╗╚██████╔╝██████╔╝██████╔╝██████╔╝      ██████╔╝╚██████╔╝██║ ╚████║╚██████╔╝███████║"
+			@echo "$(COL4)  ╚═════╝ ╚═════╝ ╚═════╝ ╚═════╝ ╚═════╝       ╚═════╝  ╚═════╝ ╚═╝  ╚═══╝ ╚═════╝ ╚══════╝ $(DEFAULT)"
+			@echo "$(COL2)              ⠟⢦⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀"
+			@echo "$(COL2)              ⢷⡄⠈⡓⠢⢄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⠤⠂⢹"
+			@echo "$(COL3)              ⠈⡷⡄⠈⠲⢤⣈⠻⠉⠛⠉⠉⠁⠒⠖⠉⠉⠉⠒⠶⢦⣤⠴⠒⢉⣡⠴⠀⢀⠏"
+			@echo "$(COL3)              ⠀⢸⡿⡂⠀⠀⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣀⣠⣴⡞⠉⠀⢀⣠⡞⠀"
+			@echo "$(COL4)              ⠀⠀⢙⣿⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠉⠀⠀⢠⡼⡟⠀⠀"
+			@echo "$(COL4)              ⠀⠀⡼⠋⠀⣤⣀⠀⠀⠀⠀⠀⠈⠐⣂⣄⠀⠀⠀⠀⠀⠀⠀⢀⠀⣰⡟⠁⠀⠀"
+			@echo "$(COL1)              ⠀⢠⡇⠀⠀⠘⠛⠃⠀⠀⠀⠀⠾⣿⠿⠟⠉⠀⠀⠀⠀⠀⠀⠀⠀⢻⠀⠀⠀⠀"
+			@echo "$(COL1)              ⠀⢸⡇⢺⡀⠀⢠⡒⠠⣄⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠠⡀⠀⠀⠸⡇⠀⠀⠀"
+			@echo "$(COL2)              ⠀⢸⡇⣘⠑⡀⠀⠙⢏⣁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠈⠂⠀⣔⣇⠀⠀⠀"
+			@echo "$(COL2)              ⠀⢸⡇⡁⠀⢳⣶⣾⣷⣦⣄⣀⡀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢸⣿⠀⠀⠀"
+			@echo "$(COL3)              ⠀⠸⡇⠁⠀⠀⢏⠉⠀⠀⠙⠛⠛⠛⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⢈⡏⠀⠀⠀"
+			@echo "$(COL3)              ⠀⠀⠯⣀⣈⣀⣈⣐⣲⣄⣄⣤⣴⣆⣀⣀⣀⣀⣀⣀⣀⣀⣀⣀⣈⣛⡧⠀$(DEFAULT)"
+
+# Rule for compiling source files into object files
+$(OBJS_DIR)%.o:		$(SRCS_DIR)%.c
+					@mkdir -p $(dir $@)
+					@$(CC) $(CFLAGS) -c $< -o $@ $(foreach dir,$(INCLUDES_DIR),-I$(dir))
+
+# Rule for compiling bonus source files into object files
+$(OBJS_DIR_BONUS)%.o:	$(SRCS_DIR_BONUS)%.c
+						@mkdir -p $(dir $@)
+						@$(CC) $(CFLAGS) -c $< -o $@ $(foreach dir,$(INCLUDES_DIR),-I$(dir))
 
 # Rule for cleaning up object files
 clean:
@@ -118,4 +176,4 @@ fclean:
 re:				fclean all
 
 # Rule to ensure that these targets are always executionuted as intended, even if there are files with the same name
-.PHONY:			all clean fclean re
+.PHONY:			all bonus clean fclean re
