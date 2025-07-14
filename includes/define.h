@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 14:03:26 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/12 14:05:05 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/14 15:27:19 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@
 # define ERR_DUP_PLAYER "Error: Duplicate player position detected\n"
 # define ERR_GNL "Error\nFailed to read line from file\n"
 # define ERR_IMG_INIT "Error\nImage not initialized.\n"
+# define ERR_READ "Error\nFailed to read file\n"
+# define ERR_OPEN "Error\nFailed to open file\n"
 
 # define WIN_WIDTH 800
 # define WIN_HEIGHT 600

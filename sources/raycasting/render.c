@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:04:24 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/07/10 18:26:55 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/14 15:22:47 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int	render_scene(void *param)
 	render_background(cub); // fonction OK
 	raycasting(cub); // pb dans raycasting
 	put_img_to_window(cub);
+	
 	return (0);
 }
 

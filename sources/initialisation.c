@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialisation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 17:18:26 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/11 17:06:30 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/14 13:42:14 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,10 @@ void	init_mlx(t_cub3d *cub3d)
 	cub3d->win_ptr = mlx_new_window(cub3d->mlx_ptr, WIN_WIDTH, WIN_HEIGHT,
 			"Cub3D");
 	if (!cub3d->win_ptr)
-	{
-		ft_putstr_fd(ERR_WIN, 2);
-		exit(EXIT_FAILURE);
-	}
+		close_game(cub3d, ERR_WIN);
 	cub3d->image.data = mlx_new_image(cub3d->mlx_ptr, WIN_WIDTH, WIN_HEIGHT);
 	if (!cub3d->image.data)
-	{
-		ft_putstr_fd(ERR_IMG, 2);
-		exit(EXIT_FAILURE);
-	}
+		close_game(cub3d, ERR_IMG);
 	cub3d->image.addr = mlx_get_data_addr(cub3d->image.data, &cub3d->image.bpp,
 			&cub3d->image.line_size, &cub3d->image.endian);
 	cub3d->image.width = WIN_WIDTH;
@@ -34,10 +28,7 @@ void	init_mlx(t_cub3d *cub3d)
 	cub3d->win_width = WIN_WIDTH;
 	cub3d->win_height = WIN_HEIGHT;
 	if (!cub3d->image.addr)
-	{
-		ft_putstr_fd(ERR_IMG_ADDR, 2);
-		exit(EXIT_FAILURE);
-	}
+		close_game(cub3d, ERR_IMG_ADDR);
 	printf("MLX initialized successfully\n");
 }
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 15:29:20 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/11 16:48:00 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/14 15:42:27 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,10 @@ int	keypress(int keycode, t_cub3d *cub3d)
 
 int	close_window(t_cub3d *cub3d)
 {
-	mlx_destroy_display(cub3d->mlx_ptr);
-	mlx_destroy_window(cub3d->mlx_ptr, cub3d->win_ptr);
-	free_map(cub3d);
-	exit(0);
+	// mlx_destroy_display(cub3d->mlx_ptr);
+	// mlx_destroy_window(cub3d->mlx_ptr, cub3d->win_ptr);
+	free_cub(cub3d);
+	free_mlx(cub3d);
+	exit(EXIT_SUCCESS);
+	return (0);
 }

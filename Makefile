@@ -166,10 +166,10 @@ clean:
 fclean:			
 			@make fclean --no-print-directory -C $(MYLIB_DIR)
 			@echo "$(RED)Deleting $(CYAN)project object files $(DEFAULT)..."
-			@$(RM) -r $(OBJS_DIR)
+			@$(RM) -r $(OBJS_DIR) $(OBJS_DIR_BONUS)
 			@echo "$(GREEN)Done $(DEFAULT)✔️"
 			@echo "$(RED)Deleting $(YELLOW)$(NAME) $(CYAN)executable $(DEFAULT)..."
-			@$(RM) $(NAME)
+			@$(RM) $(NAME) $(BONUS)
 			@echo "$(GREEN)Done $(DEFAULT)✔️"
 
 # Rebuild rule

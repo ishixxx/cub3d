@@ -3,36 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   clean.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:38:27 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/11 16:43:30 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/14 15:47:19 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int	close_game(void *param, char *msg)
+void	free_mlx(t_cub3d *cub3d)
 {
-	t_cub3d	*cub3d;
+	if (cub3d)
+	{
+		if(cub3d->image.data)
+			mlx_destroy_image(cub3d->mlx_ptr, cub3d->image.data);
+		if (cub3d->texture_north.data)
+			mlx_destroy_image(cub3d->mlx_ptr, cub3d->texture_north.data);
+		if (cub3d->texture_south.data)
+			mlx_destroy_image(cub3d->mlx_ptr, cub3d->texture_south.data);
+		if (cub3d->texture_west.data)
+			mlx_destroy_image(cub3d->mlx_ptr, cub3d->texture_west.data);
+		if (cub3d->texture_east.data)
+			mlx_destroy_image(cub3d->mlx_ptr, cub3d->texture_east.data);
+		if (cub3d->win_ptr)
+			mlx_destroy_window(cub3d->mlx_ptr, cub3d->win_ptr);
+		if (cub3d->mlx_ptr)
+		{
+			mlx_destroy_display(cub3d->mlx_ptr);
+			free(cub3d->mlx_ptr);
+		}
+	}
+}
 
-	cub3d = (t_cub3d *)param;
+int	close_game(t_cub3d *cub3d, char *msg)
+{
 	ft_printf("%s\n", msg);
-	if (cub3d->mlx_ptr && cub3d->win_ptr)
-	{
-		mlx_destroy_window(cub3d->mlx_ptr, cub3d->win_ptr);
-		cub3d->win_ptr = NULL;
-	}
+	free_cub(cub3d);
 	if (cub3d->mlx_ptr)
-	{
-		mlx_destroy_display(cub3d->mlx_ptr);
-		free(cub3d->mlx_ptr);
-		cub3d->mlx_ptr = NULL;
-	}
-	free_map(cub3d);
-	free_double_array(&cub3d->map);
-	exit(EXIT_FAILURE);
-	return (0);
+		free_mlx(cub3d);
+	exit(1);
 }
 
 void	free_map(t_cub3d *cub3d)
@@ -69,17 +79,13 @@ void	free_double_array(char ***array)
 	*array = NULL;
 }
 
-void	ft_(char **split)
+void	free_cub(t_cub3d *cub3d)
 {
-	int	i;
-
-	if (!split)
-		return ;
-	i = 0;
-	while (split[i])
-	{
-		free(split[i]);
-		i++;
-	}
-	free(split);
+	if(cub3d->map)
+		free_double_array(&cub3d->map);
+	if (cub3d->line)
+		free(cub3d->line);
+	if (cub3d->map_width)
+		free(cub3d->map_width);
+	close(cub3d->fd);
 }
