@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d_bonus.h                                      :+:      :+:    :+:   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/12 14:07:01 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/14 15:40:16 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_BONUS_H
-# define CUB3D_BONUS_H
+#ifndef CUB3D_H
+# define CUB3D_H
 
 # include "../libft/includes/ft_printf.h"
 # include "../libft/includes/get_next_line.h"
@@ -158,9 +158,11 @@ typedef struct s_cub3d
 
 /*FUNCTIONS*/
 
-int				close_game(void *param, char *msg);
+int				close_game(t_cub3d *cub3d, char *msg);
 void			free_map(t_cub3d *cub3d);
 void			free_double_array(char ***array);
+void			free_mlx(t_cub3d *cub3d);
+void			free_cub(t_cub3d *cub3d);
 
 void			check_color(t_cub3d *cub3d, t_color *color, char *line);
 

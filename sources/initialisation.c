@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 17:18:26 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/14 13:42:14 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/14 16:02:24 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	init_mlx(t_cub3d *cub3d)
 	cub3d->win_height = WIN_HEIGHT;
 	if (!cub3d->image.addr)
 		close_game(cub3d, ERR_IMG_ADDR);
-	printf("MLX initialized successfully\n");
 }
 
 void	init_data(t_cub3d *cub3d)
@@ -43,7 +42,7 @@ void	init_data(t_cub3d *cub3d)
 	cub3d->map = NULL;
 	cub3d->map_width = 0;
 	cub3d->map_height = 0;
-	cub3d->floor.r = -1; // -1 car non definie
+	cub3d->floor.r = -1;
 	cub3d->floor.g = -1;
 	cub3d->floor.b = -1;
 	cub3d->ceiling.r = -1;
@@ -65,8 +64,8 @@ void	init_texture(t_cub3d *cub3d)
 
 void	init_player(t_cub3d *cub3d)
 {
-	cub3d->player.pos.x = -1; // -1 car non definie
-	cub3d->player.pos.y = -1; // -1 car non definie
+	cub3d->player.pos.x = -1;
+	cub3d->player.pos.y = -1;
 	cub3d->player.dir.x = 1.0;
 	cub3d->player.dir.y = 0.0;
 	cub3d->player.plane.x = 0.0;

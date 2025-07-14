@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:04:36 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/14 13:39:28 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/14 16:01:43 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	simple_exit(char *msg)
 {
-	ft_putstr_fd("Error\n", 2);
 	ft_putstr_fd(msg, 2);
 	exit(1);
 }

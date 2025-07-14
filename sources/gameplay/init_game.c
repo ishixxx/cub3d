@@ -2,11 +2,11 @@
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+        
+/*                                                    +:+ +:+
 	+:+     */
-/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+      
+/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+
 	+#+        */
-/*                                                +#+#+#+#+#+  
+/*                                                +#+#+#+#+#+
 	+#+           */
 /*   Created: 2025/07/02 22:41:31 by vgalmich          #+#    #+#             */
 /*   Updated: 2025/07/02 22:41:31 by vgalmich         ###   ########.fr       */

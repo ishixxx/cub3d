@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:38:27 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/14 15:47:19 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/14 16:06:28 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	free_mlx(t_cub3d *cub3d)
 {
 	if (cub3d)
 	{
-		if(cub3d->image.data)
+		if (cub3d->image.data)
 			mlx_destroy_image(cub3d->mlx_ptr, cub3d->image.data);
 		if (cub3d->texture_north.data)
 			mlx_destroy_image(cub3d->mlx_ptr, cub3d->texture_north.data);
@@ -81,7 +81,7 @@ void	free_double_array(char ***array)
 
 void	free_cub(t_cub3d *cub3d)
 {
-	if(cub3d->map)
+	if (cub3d->map)
 		free_double_array(&cub3d->map);
 	if (cub3d->line)
 		free(cub3d->line);

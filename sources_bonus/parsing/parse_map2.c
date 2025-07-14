@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 19:20:49 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/10 18:37:46 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/14 16:06:09 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	check_map_inside(t_cub3d *cub3d, char c, int i, int j)
 {
 	if (ft_isin(c, "NSEW"))
 	{
-		if (cub3d->player.pos.x != -1) // Vérifie si un joueur a déjà été placé
+		if (cub3d->player.pos.x != -1)
 			close_game(cub3d, ERR_DUP_PLAYER);
 		cub3d->player.pos.x = j;
 		cub3d->player.pos.y = i;
@@ -96,7 +96,6 @@ void	check_space(t_cub3d *cub3d, int i, int j)
 
 void	parse_map_second(t_cub3d *cub)
 {
-	printf("Map height: %d\n", cub->map_height);
 	cub->i = 0;
 	while (cub->map[cub->i])
 	{
@@ -121,5 +120,4 @@ void	parse_map_second(t_cub3d *cub)
 	}
 	if (cub->player.pos.x == -1 || cub->player.pos.y == -1)
 		close_game(cub, ERR_NO_PLAYER);
-	printf("End parse_map_second\n");
 }

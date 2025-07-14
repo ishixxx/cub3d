@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 14:44:54 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/14 15:27:03 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/14 16:05:15 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	map_texture_and_color(t_cub3d *cub3d, char *line)
 			close_game(cub3d, ERR_DUP_COLOR);
 	}
 	else
-		close_game(cub3d, "Invalid texture and/or color line\n");
+		close_game(cub3d, INVALID_COLOR_OR_TEXTURE);
 	return (1);
 }
 
@@ -75,6 +75,5 @@ int	parse_map_first(t_cub3d *cub3d, char *file)
 	}
 	close(cub3d->fd);
 	check_map_texture_and_color(cub3d);
-	printf("parse map first OK\n");
 	return (1);
 }
