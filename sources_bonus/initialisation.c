@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   initialisation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 17:18:26 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/14 16:02:24 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/15 12:23:47 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@ void	init_data(t_cub3d *cub3d)
 
 void	init_texture(t_cub3d *cub3d)
 {
-	cub3d->map_view = 0;
-	cub3d->textture_view = 0;
 	cub3d->texture_north.data = NULL;
 	cub3d->texture_south.data = NULL;
 	cub3d->texture_west.data = NULL;

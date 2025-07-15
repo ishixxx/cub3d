@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/14 15:40:16 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/15 12:34:07 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ typedef struct s_player
 	t_point		dir;
 	t_point		pos;
 	t_point		mouse_pos;
-	t_point plane; // champ de vision du player
+	t_point		plane;
 	double		angle;
 	double		speed;
 	int			move_up;
@@ -92,37 +92,34 @@ typedef struct s_color
 typedef struct s_img
 {
 	void		*mlx_img;
-	char *data;    // adresse brut de l'image (utile ?)
-	char *addr;    // pointeur vers les pixels (image buffer)
-	int bpp;       // bits par pixel (32)
-	int width;     // largeur de l'image en pixels
-	int height;    // hauteur de l'image en pixels
-	int line_size; // nb d'octets par ligne de l'image
-	int endian;    // ordre des octets (couleurs)
+	char		*data;
+	char		*addr;
+	int			bpp;
+	int			width;
+	int			height;
+	int			line_size;
+	int			endian;
 }				t_img;
 
 typedef struct s_ray
 {
-	int map_x; // case actuelle du rayon dans la grille
+	int			map_x;
 	int			map_y;
-	int step_x;       // direction a prendre (+1 ou -1) en X
-	int step_y;       // same en Y
-	int wall_side;    // 0 si mur X touche, 1 si mur Y
-	double cam_x;     // coordonnee "camera" pour ce rayon
-	double step;      // pas pour le sampling vertical de la texture
-	double tex_pos;   // position verticale actuelle dans la texture
-	double ray_dir_x; // direction du rayon en X
+	int			step_x;
+	int			step_y;
+	int			wall_side;
+	double		cam_x;
+	double		step;
+	double		tex_pos;
+	double		ray_dir_x;
 	double		ray_dir_y;
 	double		delta_dist_x;
-	// distance entre 2 lignes de grille sur X = distance pour traverser une case en X (horizontalement)
 	double		delta_dist_y;
-	double side_dist_x; // distance restante jusqu'a la prochaine case X
+	double		side_dist_x;
 	double		side_dist_y;
 	double		perp_wall_dist;
-	// distance perpendiculaire entre le joueur et le mur (pour corriger le fish-eye distortion)
-	double wall_x; // position precise ou le rayon touche le mur
+	double		wall_x;
 	int			tex_x;
-	// colonne precise de la texture choisie pour le rayon actuel
 	int			tex_y;
 }				t_ray;
 
@@ -146,14 +143,12 @@ typedef struct s_cub3d
 	t_color		floor;
 	t_color		ceiling;
 	t_color		rgb;
-	t_ray ray;      // pointeur ou pas ?
-	int map_start;  // ligne a partir de laquelle commence la map
-	int *map_width; // largeur de la map (en cases)
-	int map_height; // hauteur de la map (en cases)
-	int win_width;  // taille de la fenetre en pixels
+	t_ray		ray;
+	int			map_start;
+	int			*map_width;
+	int			map_height;
+	int			win_width;
 	int			win_height;
-	int map_view;      // 0 si on affiche la map, 1 si on affiche les textures
-	int textture_view; // 0 si on affiche la map, 1 si on affiche les textures
 }				t_cub3d;
 
 /*FUNCTIONS*/
@@ -199,7 +194,6 @@ void			init_mlx(t_cub3d *cub3d);
 void			init_data(t_cub3d *cub3d);
 void			init_texture(t_cub3d *cub3d);
 void			init_player(t_cub3d *cub3d);
-void			init_image(t_img *img, char *line, t_cub3d cub3d);
 
 // RAYCASTING
 
@@ -221,8 +215,8 @@ void			render_background(t_cub3d *cub);
 int				render_scene(void *param);
 
 int				get_color(t_cub3d *cub, int x, int y, int i);
-int 			get_tex_id(t_cub3d *cub);
-int 			is_out_of_bounds(t_cub3d *cub);
+int				get_tex_id(t_cub3d *cub);
+int				is_out_of_bounds(t_cub3d *cub);
 void			advance_ray(t_cub3d *cub);
 int				is_wall(t_cub3d *cub);
 

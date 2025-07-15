@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 15:48:16 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/07/11 17:28:21 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/15 12:42:48 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	get_color(t_cub3d *cub, int x, int y, int i)
 	return (*(unsigned int *)pixel_address);
 }
 
-int get_tex_id(t_cub3d *cub)
+int	get_tex_id(t_cub3d *cub)
 {
 	if (cub->ray.wall_side == 1 && cub->ray.ray_dir_y < 0)
 		return (NORTH);
@@ -50,7 +50,7 @@ int get_tex_id(t_cub3d *cub)
 	return (EAST);
 }
 
-int is_out_of_bounds(t_cub3d *cub)
+int	is_out_of_bounds(t_cub3d *cub)
 {
 	if (cub->ray.map_y < 0 || cub->ray.map_y >= cub->map_height)
 		return (1);
@@ -59,7 +59,7 @@ int is_out_of_bounds(t_cub3d *cub)
 	return (0);
 }
 
-void advance_ray(t_cub3d *cub)
+void	advance_ray(t_cub3d *cub)
 {
 	if (cub->ray.side_dist_x < cub->ray.side_dist_y)
 	{
@@ -75,7 +75,7 @@ void advance_ray(t_cub3d *cub)
 	}
 }
 
-int is_wall(t_cub3d *cub)
+int	is_wall(t_cub3d *cub)
 {
 	if (cub->map[cub->ray.map_y][cub->ray.map_x] == '1')
 		return (1);

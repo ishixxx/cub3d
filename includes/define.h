@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 14:03:26 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/14 16:05:41 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/15 12:29:44 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,15 +58,14 @@
 # define UP 65362
 # define DOWN 65364
 
-// Réduit la marge de collision pour un déplacement plus fluide
-#define COLLISION_RADIUS 0.11
+# define COLLISION_RADIUS 0.13
 
-#ifndef TEXTURE_WIDTH
-# define TEXTURE_WIDTH 64
+# ifndef TEXTURE_WIDTH
+#  define TEXTURE_WIDTH 64
+# endif
+
+# ifndef TEXTURE_HEIGHT
+#  define TEXTURE_HEIGHT 64
+# endif
+
 #endif
-
-#ifndef TEXTURE_HEIGHT
-# define TEXTURE_HEIGHT 64
-#endif
-
-#endif // DEFINE_H

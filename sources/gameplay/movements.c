@@ -15,24 +15,42 @@
 
 #include "../../includes/cub3d.h"
 
+static int	is_line_free(t_cub3d *cub, int j, int min_x, int max_x)
+{
+	int	i;
+
+	if (j < 0 || j >= cub->map_height || !cub->map[j])
+		return (0);
+	i = min_x;
+	while (i <= max_x)
+	{
+		if (i < 0 || i >= (int)ft_strlen(cub->map[j]))
+			return (0);
+		if (cub->map[j][i] == '1')
+			return (0);
+		i++;
+	}
+	return (1);
+}
+
 int	is_position_free(t_cub3d *cub, double x, double y)
 {
-	int min_x = (int)(x - COLLISION_RADIUS);
-	int max_x = (int)(x + COLLISION_RADIUS);
-	int min_y = (int)(y - COLLISION_RADIUS);
-	int max_y = (int)(y + COLLISION_RADIUS);
+	int	min_x;
+	int	max_x;
+	int	min_y;
+	int	max_y;
+	int	j;
 
-	for (int j = min_y; j <= max_y; j++)
+	min_x = (int)(x - COLLISION_RADIUS);
+	max_x = (int)(x + COLLISION_RADIUS);
+	min_y = (int)(y - COLLISION_RADIUS);
+	max_y = (int)(y + COLLISION_RADIUS);
+	j = min_y;
+	while (j <= max_y)
 	{
-		if (j < 0 || j >= cub->map_height)
+		if (!is_line_free(cub, j, min_x, max_x))
 			return (0);
-		for (int i = min_x; i <= max_x; i++)
-		{
-			if (i < 0 || i >= (int)ft_strlen(cub->map[j]))
-				return (0);
-			if (cub->map[j][i] == '1')
-				return (0);
-		}
+		j++;
 	}
 	return (1);
 }
