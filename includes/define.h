@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   define.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 14:03:26 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/15 12:29:44 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/15 17:25:01 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,12 +60,12 @@
 
 # define COLLISION_RADIUS 0.13
 
-# ifndef TEXTURE_WIDTH
-#  define TEXTURE_WIDTH 64
-# endif
+#ifndef TEXTURE_WIDTH
+# define TEXTURE_WIDTH 256
+#endif
 
-# ifndef TEXTURE_HEIGHT
-#  define TEXTURE_HEIGHT 64
-# endif
+#ifndef TEXTURE_HEIGHT
+# define TEXTURE_HEIGHT 256
+#endif
 
 #endif

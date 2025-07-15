@@ -35,11 +35,18 @@ static int	is_line_free(t_cub3d *cub, int j, int min_x, int max_x)
 
 int	is_position_free(t_cub3d *cub, double x, double y)
 {
+<<<<<<< HEAD
 	int	min_x;
 	int	max_x;
 	int	min_y;
 	int	max_y;
 	int	j;
+=======
+	int	min_x = (int)(x - COLLISION_RADIUS);
+	int	max_x = (int)(x + COLLISION_RADIUS);
+	int	min_y = (int)(y - COLLISION_RADIUS);
+	int	max_y = (int)(y + COLLISION_RADIUS);
+>>>>>>> 2d23b28 (??)
 
 	min_x = (int)(x - COLLISION_RADIUS);
 	max_x = (int)(x + COLLISION_RADIUS);

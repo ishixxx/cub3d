@@ -1,7 +1,7 @@
-NO textures/north.xpm
-WE textures/west.xpm
-SO textures/south.xpm
-EA textures/east.xpm
+NO textures/potion.xpm
+WE textures/fee.xpm
+SO textures/ouragan.xpm
+EA textures/sleepy.xpm
 
 F 255,182,193
 C 10,10,50
