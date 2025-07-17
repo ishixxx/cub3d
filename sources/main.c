@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:04:36 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/14 16:01:43 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/17 18:06:50 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	main(int argc, char **argv)
 		close(fd);
 		simple_exit(ERR_READ);
 	}
+	close(fd);
 	init_data(&cub3d);
 	parse_map_first(&cub3d, argv[1]);
 	init_mlx(&cub3d);

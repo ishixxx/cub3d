@@ -6,10 +6,11 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:04:20 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/07/15 12:43:59 by vgalmich         ###   ########.fr       */                                                        */
+/*   Updated: 2025/07/17 16:33:12 by vihane           ###   ########.fr       */
+/*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 // fonction pour dessiner un pixel de couleur dans une image memoire
 void	draw_pixel(t_cub3d *cub, t_point p, int color)

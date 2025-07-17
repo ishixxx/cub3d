@@ -6,11 +6,11 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 23:16:54 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/07 15:41:56 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/17 16:29:24 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 void	check_texture(t_cub3d *cub3d, char *line)
 {

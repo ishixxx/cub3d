@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:04:24 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/07/14 16:11:34 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/17 16:24:01 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,8 @@ void	render_background(t_cub3d *cub)
 	}
 }
 
-int	render_scene(void *param)
+int	render_scene(t_cub3d *cub)
 {
-	t_cub3d	*cub;
-
-	cub = (t_cub3d *)param;
 	render_background(cub);
 	raycasting(cub);
 	put_img_to_window(cub);

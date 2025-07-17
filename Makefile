@@ -59,6 +59,7 @@ SRCS =			$(SRCS_DIR)/parsing/clean.c \
 				$(SRCS_DIR)/gameplay/init_game.c \
 				$(SRCS_DIR)/gameplay/movements.c \
 
+
 OBJS =			$(patsubst $(SRCS_DIR)%, $(OBJS_DIR)%, $(SRCS:.c=.o))
 
 SRCS_BONUS =	$(SRCS_DIR_BONUS)/parsing/clean.c \
@@ -77,6 +78,9 @@ SRCS_BONUS =	$(SRCS_DIR_BONUS)/parsing/clean.c \
 				$(SRCS_DIR_BONUS)/gameplay/events.c \
 				$(SRCS_DIR_BONUS)/gameplay/init_game.c \
 				$(SRCS_DIR_BONUS)/gameplay/movements.c \
+				$(SRCS_DIR_BONUS)/minimap/minimap.c \
+				$(SRCS_DIR_BONUS)/minimap/minimap_utils.c \
+				$(SRCS_DIR_BONUS)/minimap/minimap_player.c \
 
 OBJS_BONUS =	$(patsubst $(SRCS_DIR_BONUS)%, $(OBJS_DIR_BONUS)%, $(SRCS_BONUS:.c=.o))
 

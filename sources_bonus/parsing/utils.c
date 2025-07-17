@@ -6,11 +6,11 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/22 14:07:39 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/07 14:50:45 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/17 16:29:29 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 int	ft_isin(char c, char *str)
 {

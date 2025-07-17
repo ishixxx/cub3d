@@ -6,11 +6,11 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 23:18:44 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/10 18:40:09 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/17 16:29:02 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 void	check_color(t_cub3d *cub3d, t_color *color, char *line)
 {

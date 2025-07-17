@@ -13,7 +13,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 static int	is_line_free(t_cub3d *cub, int j, int min_x, int max_x)
 {

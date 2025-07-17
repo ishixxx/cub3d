@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 10:57:14 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/07 16:25:56 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/17 17:17:33 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,9 @@
 # include <stdint.h>
 # include <limits.h>
 # include <stdarg.h>
+
+# include "get_next_line.h"
+# include "ft_printf.h"
 
 void	*ft_memset(void *s, int c, size_t len);
 void	ft_bzero(void *s, size_t n);

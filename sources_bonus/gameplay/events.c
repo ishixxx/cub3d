@@ -6,11 +6,11 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 15:29:20 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/14 16:07:48 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/17 16:28:43 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 // utiliser fonction move et rotate
 

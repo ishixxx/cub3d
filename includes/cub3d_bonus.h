@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d_bonus.h                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/15 12:34:35 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/17 17:46:28 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include "../libft/includes/libft.h"
 # include "../minilibx-linux/mlx.h"
 # include "define.h"
-
 # include <fcntl.h>
 # include <float.h>
 # include <limits.h>
@@ -173,7 +172,7 @@ void			keep_map(t_cub3d *cub3d, char *file, char *line, int n);
 
 void			check_map_texture_and_color(t_cub3d *cub3d);
 int				map_texture_and_color(t_cub3d *cub3d, char *line);
-int				parse_map_first(t_cub3d *cub3d, char *file);
+void			parse_map_first(t_cub3d *cub3d, char *file);
 
 void			check_map_inside(t_cub3d *cub3d, char c, int i, int j);
 void			check_space(t_cub3d *cub3d, int i, int j);
@@ -212,7 +211,7 @@ void			draw_wall_column(t_cub3d *cub, int x);
 
 int				create_trgb(int t, t_color color);
 void			render_background(t_cub3d *cub);
-int				render_scene(void *param);
+int				render_scene(t_cub3d *cub);
 
 int				get_color(t_cub3d *cub, int x, int y, int i);
 int				get_tex_id(t_cub3d *cub);
@@ -231,5 +230,23 @@ int				init_game(t_cub3d *cub);
 int				line_is_empty(t_cub3d *cub3d, char *line);
 
 void			put_img_to_window(t_cub3d *cub3d);
+
+void			draw_minimap_border(t_cub3d *cub3d);
+void			draw_minimap_background(t_cub3d *cub3d);
+void			draw_minimap_pixel(t_cub3d *cub, int x, int y, int color);
+void			draw_minimap_element(t_cub3d *cub3d, int x, int y, int color);
+void			draw_player_on_minimap(t_cub3d *cub);
+
+int				get_map_tile_at_position(t_cub3d *cub3d, double map_x,
+					double map_y);
+void			draw_minimap_pixel_at(t_cub3d *cub3d, int x, int y,
+					int tile_type);
+void			draw_minimap_line(t_cub3d *cub3d, int y, double player_x,
+					double player_y);
+void			draw_centered_map(t_cub3d *cub3d, double player_x,
+					double player_y);
+void			render_minimap(t_cub3d *cub3d);
+
+void			draw_player_at_center(t_cub3d *cub3d);
 
 #endif

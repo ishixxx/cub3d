@@ -6,11 +6,11 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 17:20:27 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/07 15:22:16 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/17 16:29:07 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 /*On ouvre le fichier, on lit la première ligne pour déterminer la taille
 de la map, et on compte le nombre de lignes restantes pour déterminer

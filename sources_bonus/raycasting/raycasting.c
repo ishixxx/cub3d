@@ -6,11 +6,11 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 17:44:31 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/07/15 17:26:18 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/17 16:27:45 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 /* fonction qui calcule la distance qu'un rayon doit parcourir pour
 franchir une case de la grille dans chaque direction X ou Y */

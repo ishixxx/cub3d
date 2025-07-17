@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/15 12:34:07 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/17 17:46:48 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,7 +173,7 @@ void			keep_map(t_cub3d *cub3d, char *file, char *line, int n);
 
 void			check_map_texture_and_color(t_cub3d *cub3d);
 int				map_texture_and_color(t_cub3d *cub3d, char *line);
-int				parse_map_first(t_cub3d *cub3d, char *file);
+void			parse_map_first(t_cub3d *cub3d, char *file);
 
 void			check_map_inside(t_cub3d *cub3d, char c, int i, int j);
 void			check_space(t_cub3d *cub3d, int i, int j);
@@ -212,7 +212,7 @@ void			draw_wall_column(t_cub3d *cub, int x);
 
 int				create_trgb(int t, t_color color);
 void			render_background(t_cub3d *cub);
-int				render_scene(void *param);
+int				render_scene(t_cub3d *cub);
 
 int				get_color(t_cub3d *cub, int x, int y, int i);
 int				get_tex_id(t_cub3d *cub);

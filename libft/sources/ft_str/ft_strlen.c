@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: viviane <viviane@student.42.fr>            +#+  +:+       +#+        */
+/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 11:21:26 by vihane            #+#    #+#             */
-/*   Updated: 2025/03/28 18:03:33 by viviane          ###   ########.fr       */
+/*   Updated: 2025/07/17 17:19:44 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ size_t	ft_strlen(const char *s)
 	size_t	len;
 
 	len = 0;
+	if (!s)
+		return (0);
 	while (*s)
 	{
 		len++;

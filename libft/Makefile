@@ -6,7 +6,7 @@
 #    By: vihane <vihane@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/22 14:53:05 by vihane            #+#    #+#              #
-#    Updated: 2025/07/07 16:42:01 by vihane           ###   ########.fr        #
+#    Updated: 2025/07/17 17:34:34 by vihane           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,6 @@ SRCS        :=            sources/ft_str/ft_strchr.c \
                           sources/ft_put/ft_putendl_fd.c \
                           sources/ft_put/ft_putnbr_fd.c \
                           sources/ft_put/ft_putstr_fd.c \
-                          sources/ft_gnl/get_next_line_utils.c \
                           sources/ft_gnl/get_next_line.c \
                           sources/ft_is/ft_isalpha.c \
                           sources/ft_is/ft_isspace.c \

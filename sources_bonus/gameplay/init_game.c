@@ -13,13 +13,12 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 int	init_game(t_cub3d *cub)
 {
 	if (!cub->image.addr)
 		close_game(cub, ERR_IMG_INIT);
-	ft_printf("Game is starting\n");
 	mlx_hook(cub->win_ptr, 2, 1L << 0, keypress, cub);
 	mlx_hook(cub->win_ptr, 17, 1L << 0, close_game, cub);
 	mlx_loop_hook(cub->mlx_ptr, render_scene, cub);

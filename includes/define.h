@@ -6,12 +6,12 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/12 14:03:26 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/15 17:25:01 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/17 16:58:00 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINE_H
-# define DEFINE_H   
+# define DEFINE_H
 
 # define ERR_ARG "Error\nUsage: ./cub3d <map.cub>\n"
 # define ERR_CUB "Error\nInvalid file extension. Expected .cub\n"
@@ -60,12 +60,17 @@
 
 # define COLLISION_RADIUS 0.13
 
-#ifndef TEXTURE_WIDTH
-# define TEXTURE_WIDTH 256
-#endif
+# ifndef TEXTURE_WIDTH
+#  define TEXTURE_WIDTH 256
+# endif
 
-#ifndef TEXTURE_HEIGHT
-# define TEXTURE_HEIGHT 256
-#endif
+# ifndef TEXTURE_HEIGHT
+#  define TEXTURE_HEIGHT 256
+# endif
+
+# define MINIMAP_SIZE 200
+# define MINIMAP_SCALE 10
+# define MINIMAP_X 10
+# define MINIMAP_Y 10
 
 #endif

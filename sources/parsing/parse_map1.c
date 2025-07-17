@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/24 14:44:54 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/14 16:05:15 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/17 18:19:08 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	map_texture_and_color(t_cub3d *cub3d, char *line)
 	return (1);
 }
 
-int	parse_map_first(t_cub3d *cub3d, char *file)
+void	parse_map_first(t_cub3d *cub3d, char *file)
 {
 	int	n;
 
@@ -75,5 +75,4 @@ int	parse_map_first(t_cub3d *cub3d, char *file)
 	}
 	close(cub3d->fd);
 	check_map_texture_and_color(cub3d);
-	return (1);
 }

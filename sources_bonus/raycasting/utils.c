@@ -6,11 +6,11 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/23 15:48:16 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/07/15 17:26:34 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/17 16:27:59 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/cub3d.h"
+#include "../../includes/cub3d_bonus.h"
 
 /* fonction qui retourne la couleur d'un pixel situe aux coordonnees x,y dans
 une texture donnee par l'index i */
