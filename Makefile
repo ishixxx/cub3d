@@ -78,6 +78,7 @@ SRCS_BONUS =	$(SRCS_DIR_BONUS)/parsing/clean.c \
 				$(SRCS_DIR_BONUS)/gameplay/events.c \
 				$(SRCS_DIR_BONUS)/gameplay/init_game.c \
 				$(SRCS_DIR_BONUS)/gameplay/movements.c \
+				$(SRCS_DIR_BONUS)/gameplay/mouse.c \
 				$(SRCS_DIR_BONUS)/minimap/minimap.c \
 				$(SRCS_DIR_BONUS)/minimap/minimap_utils.c \
 				$(SRCS_DIR_BONUS)/minimap/minimap_player.c \

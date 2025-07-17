@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/28 20:05:21 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/17 17:46:28 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/17 20:29:48 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,6 +230,10 @@ int				init_game(t_cub3d *cub);
 int				line_is_empty(t_cub3d *cub3d, char *line);
 
 void			put_img_to_window(t_cub3d *cub3d);
+
+int				mouse_move(int x, int y, t_cub3d *cub3d);
+
+// MINIMAP
 
 void			draw_minimap_border(t_cub3d *cub3d);
 void			draw_minimap_background(t_cub3d *cub3d);

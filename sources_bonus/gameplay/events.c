@@ -6,14 +6,13 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 15:29:20 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/17 16:28:43 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/17 20:36:21 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d_bonus.h"
 
 // utiliser fonction move et rotate
-
 int	keypress(int keycode, t_cub3d *cub3d)
 {
 	double	move_speed;
