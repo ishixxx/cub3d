@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 19:20:49 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/17 17:10:21 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/23 16:56:12 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@ void	check_map_inside(t_cub3d *cub3d, char c, int i, int j)
 	{
 		if (cub3d->player.pos.x != -1)
 			close_game(cub3d, ERR_DUP_PLAYER);
-		cub3d->player.pos.x = j;
-		cub3d->player.pos.y = i;
+		cub3d->player.pos.x = j + 0.5;
+		cub3d->player.pos.y = i + 0.5;
 		set_direction1(cub3d, c);
 		set_direction2(cub3d, c);
 	}
-	else if (!ft_isin(c, " 01"))
+	else if (!ft_isin(c, " 01ss"))
 		close_game(cub3d, ERR_MAP);
 }
 

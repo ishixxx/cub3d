@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/12 18:04:20 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/07/17 16:33:12 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/23 16:51:16 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ void	draw_wall_pixel(t_cub3d *cub, t_point pos, int texture)
 	draw_pixel(cub, p, color);
 }
 
-/*fonction qui trace une ligne verticale sur l'ecran representant un mur*/
+/*fonction qui trace une ligne verticale sur l'ecran representant un mur */
 void	draw_wall_column(t_cub3d *cub, int x)
 {
 	int	line_height;
