@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/05 19:10:14 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/17 20:14:58 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/23 18:06:30 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	ft_readline(int fd, char **remaining_buffer)
 		if (!*remaining_buffer)
 			return (free(buffer), -1);
 	}
-	if (read_bytes < 0 ||*remaining_buffer[0] == '\0')
+	if (read_bytes < 0 || *remaining_buffer[0] == '\0')
 		read_bytes = -1;
 	free(buffer);
 	return (read_bytes);
@@ -112,12 +112,11 @@ char	*ft_removelinefromstatic(char **remaining_buffer)
 	return (read_line);
 }
 
-
 char	*get_next_line(int fd)
 {
-	static char buffer_static[4095][BUFFER_SIZE + 1];
-	char *all;
-	char *line;
+	static char	buffer_static[4095][BUFFER_SIZE + 1];
+	char		*all;
+	char		*line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
 		return (NULL);
@@ -140,4 +139,3 @@ char	*get_next_line(int fd)
 	(free(all), all = NULL);
 	return (line);
 }
-

@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 14:47:36 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/17 20:04:44 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/23 18:05:59 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,5 @@ int		ft_readline(int fd, char **fourre_merde);
 char	*ft_removelinefromstatic(char **fourre_merde);
 char	*ft_strcat_custom(char *fourre_merde, char *buff, int res);
 char	*ft_fill_line(int fd, char **fourre_merde);
-
 
 #endif

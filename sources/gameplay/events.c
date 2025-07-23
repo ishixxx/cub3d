@@ -3,36 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   events.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 15:29:20 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/23 17:51:46 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/23 18:04:04 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
 
-int keypress(int keycode, t_cub3d *cub3d)
+int	keypress(int keycode, t_cub3d *cub3d)
 {
-    double move_speed = 0.1;
-    double rotation_speed = 0.05;
+	double	move_speed;
+	double	rotation_speed;
 
-    if (keycode == ESC)
-        close_window(cub3d);
-    else if (keycode == W_KEY || keycode == UP_ARROW)
-        player_move(cub3d, cub3d->player.dir.x * move_speed, cub3d->player.dir.y * move_speed, '+');
-    else if (keycode == S_KEY || keycode == DOWN_ARROW)
-        player_move(cub3d, cub3d->player.dir.x * move_speed, cub3d->player.dir.y * move_speed, '-');
-    else if (keycode == D_KEY) // droite = + plane
-        player_move(cub3d, cub3d->player.plane.x * move_speed, cub3d->player.plane.y * move_speed, '+');
-    else if (keycode == A_KEY) // gauche = - plane
-        player_move(cub3d, cub3d->player.plane.x * move_speed, cub3d->player.plane.y * move_speed, '-');
-    else if (keycode == RIGHT_ARROW)
-        player_rotate(cub3d, rotation_speed);
-    else if (keycode == LEFT_ARROW)
-        player_rotate(cub3d, -rotation_speed);
-
-    return 0;
+	move_speed = 0.1;
+	rotation_speed = 0.05;
+	if (keycode == ESC)
+		close_window(cub3d);
+	else if (keycode == W_KEY || keycode == UP_ARROW)
+		player_move(cub3d, cub3d->player.dir.x * move_speed, cub3d->player.dir.y
+			* move_speed, '+');
+	else if (keycode == S_KEY || keycode == DOWN_ARROW)
+		player_move(cub3d, cub3d->player.dir.x * move_speed, cub3d->player.dir.y
+			* move_speed, '-');
+	else if (keycode == D_KEY)
+		player_move(cub3d, cub3d->player.plane.x * move_speed,
+			cub3d->player.plane.y * move_speed, '+');
+	else if (keycode == A_KEY)
+		player_move(cub3d, cub3d->player.plane.x * move_speed,
+			cub3d->player.plane.y * move_speed, '-');
+	else if (keycode == RIGHT_ARROW)
+		player_rotate(cub3d, rotation_speed);
+	else if (keycode == LEFT_ARROW)
+		player_rotate(cub3d, -rotation_speed);
+	return (0);
 }
 
 int	close_window(t_cub3d *cub3d)
