@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
+/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/09 17:44:31 by vgalmich          #+#    #+#             */
-/*   Updated: 2025/07/17 16:27:45 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/23 12:22:45 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,14 @@ jusqu'a rencontrer un mur */
 void	digital_differential_analyser(t_cub3d *cub)
 {
 	int	wall;
-	int	max_iterations;
-	int	iterations;
+	int	max_i;
+	int	i;
 
 	wall = 0;
-	max_iterations = cub->win_width + cub->win_height;
-	iterations = 0;
+	max_i = cub->win_width + cub->win_height;
+	i = 0;
 	cub->ray.wall_side = -1;
-	while (wall == 0 && iterations < max_iterations)
+	while (wall == 0 && i < max_i)
 	{
 		if (is_out_of_bounds(cub) || is_wall(cub))
 			wall = 1;
@@ -77,7 +77,7 @@ void	digital_differential_analyser(t_cub3d *cub)
 		{
 			advance_ray(cub);
 		}
-		iterations++;
+		i++;
 	}
 	if (cub->ray.wall_side == -1)
 		cub->ray.wall_side = 0;
