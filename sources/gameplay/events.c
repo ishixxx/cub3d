@@ -6,7 +6,7 @@
 /*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/02 15:29:20 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/23 18:04:04 by vihane           ###   ########.fr       */
+/*   Updated: 2025/07/23 18:23:09 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,11 @@ int	keypress(int keycode, t_cub3d *cub3d)
 
 int	close_window(t_cub3d *cub3d)
 {
-	free_cub(cub3d);
-	free_mlx(cub3d);
+	if (cub3d)
+	{
+		free_cub(cub3d);
+		free_mlx(cub3d);
+	}
 	exit(EXIT_SUCCESS);
 	return (0);
 }

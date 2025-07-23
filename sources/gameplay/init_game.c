@@ -17,7 +17,7 @@ int	init_game(t_cub3d *cub)
 	if (!cub->image.addr)
 		close_game(cub, ERR_IMG_INIT);
 	mlx_hook(cub->win_ptr, 2, 1L << 0, keypress, cub);
-	mlx_hook(cub->win_ptr, 17, 1L << 0, close_game, cub);
+	mlx_hook(cub->win_ptr, 17, 1L << 0, close_window, cub);
 	mlx_loop_hook(cub->mlx_ptr, render_scene, cub);
 	mlx_loop(cub->mlx_ptr);
 	return (0);
