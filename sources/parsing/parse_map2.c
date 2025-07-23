@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 19:20:49 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/23 16:54:21 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/23 17:37:57 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ void	set_direction1(t_cub3d *cub3d, char c)
 	else if (c == 'E')
 	{
 		cub3d->player.plane.x = 0.0;
-		cub3d->player.plane.y = -0.66;
+		cub3d->player.plane.y = 0.66;
 	}
 	else if (c == 'W')
 	{
 		cub3d->player.plane.x = 0.0;
-		cub3d->player.plane.y = 0.66;
+		cub3d->player.plane.y = -0.66;
 	}
 }
 

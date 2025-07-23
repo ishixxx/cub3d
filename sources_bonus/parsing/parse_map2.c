@@ -6,7 +6,7 @@
 /*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/29 19:20:49 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/23 16:56:12 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/23 17:54:05 by vgalmich         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	check_map_inside(t_cub3d *cub3d, char c, int i, int j)
 		set_direction1(cub3d, c);
 		set_direction2(cub3d, c);
 	}
-	else if (!ft_isin(c, " 01ss"))
+	else if (!ft_isin(c, " 01"))
 		close_game(cub3d, ERR_MAP);
 }
 
@@ -42,12 +42,12 @@ void	set_direction1(t_cub3d *cub3d, char c)
 	else if (c == 'E')
 	{
 		cub3d->player.plane.x = 0.0;
-		cub3d->player.plane.y = -0.66;
+		cub3d->player.plane.y = 0.66;
 	}
 	else if (c == 'W')
 	{
 		cub3d->player.plane.x = 0.0;
-		cub3d->player.plane.y = 0.66;
+		cub3d->player.plane.y = -0.66;
 	}
 }
 
