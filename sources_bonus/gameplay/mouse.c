@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: vgalmich <vgalmich@student.42.fr>          +#+  +:+       +#+        */
+/*   By: vihane <vihane@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/17 20:27:30 by vihane            #+#    #+#             */
-/*   Updated: 2025/07/23 13:45:02 by vgalmich         ###   ########.fr       */
+/*   Updated: 2025/07/23 13:49:26 by vihane           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	mouse_move(int x, int y, t_cub3d *cub3d)
 	int			delta_x;
 	double		rotation_speed;
 
-    (void) y;
+	(void)y;
 	rotation_speed = 0.002;
 	if (last_x == -1)
 	{
